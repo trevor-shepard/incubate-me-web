@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { AppThunk } from '..'
 
-import { auth, db } from '../../utils/firebase'
+import firebase, { auth, db } from 'utils/firebase'
 
 export interface UserState {
 	username: string | null
@@ -29,10 +29,19 @@ const user = createSlice({
 	initialState,
 	reducers: {
 		recieveUser(state, action: PayloadAction<User>) {
-			return state = {
+			return (state = {
 				...action.payload,
 				error: null
+			})
+		},
+		logout() {
+			return {
+				username: null,
+				email: null,
+				uid: null,
+				error: null,
 			}
+			
 		},
 		userError(state, action: PayloadAction<string>) {
 			state.error = action.payload
@@ -41,7 +50,7 @@ const user = createSlice({
 	}
 })
 
-export const { recieveUser, userError } = user.actions
+export const { recieveUser, userError, logout } = user.actions
 
 export default user.reducer
 
@@ -101,6 +110,48 @@ export const signup = (
 				uid
 			})
 		)
+	} catch (error) {
+		dispatch(userError(error.message))
+	}
+}
+
+
+export const googleLogIn = (
+	
+): AppThunk => async dispatch => {
+	try {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		firebase.auth().signInWithPopup(provider).then(async (result) => {
+			const googleUser = result.user;
+			if (!googleUser) throw Error('Google user not found')
+			const {uid, email, displayName} = googleUser
+			const user = (await db
+				.collection('users')
+				.doc(uid)
+				.get()
+				.then(doc => doc.data())) as User | null
+			
+			if (user) {
+				dispatch(recieveUser(user))
+			} else {
+				await db
+					.collection('users')
+					.doc(uid)
+					.set({
+						email,
+						username: displayName,
+						uid
+					})
+				dispatch(
+					recieveUser({
+						email,
+						username: displayName,
+						uid
+					}))
+				}
+		  }).catch((error) => {
+			dispatch(userError(error.message))
+		  });
 	} catch (error) {
 		dispatch(userError(error.message))
 	}

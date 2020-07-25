@@ -1,15 +1,19 @@
 import React, { FunctionComponent, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { signup } from 'store/slices/userSlice'
+import { login, googleLogIn } from 'store/slices/userSlice'
 import { Link } from 'react-router-dom'
+
 const SignUp: FunctionComponent = () => {
 	const dispatch = useDispatch()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [username, setUsername] = useState('')
 	const handleSignUp = () => {
-		dispatch(signup(email, password, username))
+		dispatch(login(email, password))
 	}
+	const handleGoogleSignIn = () => {
+		dispatch(googleLogIn())
+	}
+
 	return (
 		<>
 			<label>
@@ -20,13 +24,12 @@ const SignUp: FunctionComponent = () => {
 				Password:
 				<input value={password} onChange={e => setPassword(e.target.value)} />
 			</label>
-			<label>
-				Username:
-				<input value={username} onChange={e => setUsername(e.target.value)} />
-			</label>
 			<button onClick={handleSignUp}>Submit</button>
+			<div onClick={handleGoogleSignIn}>
+				Login with google
+			</div>
 			<div>
-				Have an account? <Link to="/login">login</Link>{' '}
+				New to incubate-me? <Link to="/signup">signup</Link>{' '}
 			</div>
 		</>
 	)
