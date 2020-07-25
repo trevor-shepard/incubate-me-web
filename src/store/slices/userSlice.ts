@@ -35,13 +35,13 @@ const user = createSlice({
 			})
 		},
 		logout() {
+			firebase.auth().signOut()
 			return {
 				username: null,
 				email: null,
 				uid: null,
-				error: null,
+				error: null
 			}
-			
 		},
 		userError(state, action: PayloadAction<string>) {
 			state.error = action.payload
@@ -115,44 +115,92 @@ export const signup = (
 	}
 }
 
-
-export const googleLogIn = (
-	
-): AppThunk => async dispatch => {
+export const googleLogIn = (): AppThunk => async dispatch => {
 	try {
-		const provider = new firebase.auth.GoogleAuthProvider();
-		firebase.auth().signInWithPopup(provider).then(async (result) => {
-			const googleUser = result.user;
-			if (!googleUser) throw Error('Google user not found')
-			const {uid, email, displayName} = googleUser
-			const user = (await db
-				.collection('users')
-				.doc(uid)
-				.get()
-				.then(doc => doc.data())) as User | null
-			
-			if (user) {
-				dispatch(recieveUser(user))
-			} else {
-				await db
+		const provider = new firebase.auth.GoogleAuthProvider()
+		firebase
+			.auth()
+			.signInWithPopup(provider)
+			.then(async result => {
+				const googleUser = result.user
+				if (!googleUser) throw Error('Google user not found')
+				const { uid, email, displayName } = googleUser
+				const user = (await db
 					.collection('users')
 					.doc(uid)
-					.set({
-						email,
-						username: displayName,
-						uid
-					})
-				dispatch(
-					recieveUser({
-						email,
-						username: displayName,
-						uid
-					}))
+					.get()
+					.then(doc => doc.data())) as User | null
+
+				if (user) {
+					dispatch(recieveUser(user))
+				} else {
+					await db
+						.collection('users')
+						.doc(uid)
+						.set({
+							email,
+							username: displayName,
+							uid
+						})
+					dispatch(
+						recieveUser({
+							email,
+							username: displayName,
+							uid
+						})
+					)
 				}
-		  }).catch((error) => {
-			dispatch(userError(error.message))
-		  });
+			})
+			.catch(error => {
+				dispatch(userError(error.message))
+			})
 	} catch (error) {
 		dispatch(userError(error.message))
 	}
 }
+
+export const facebookLogIn = (): AppThunk => async dispatch => {
+	try {
+		const provider = new firebase.auth.FacebookAuthProvider()
+		firebase
+			.auth()
+			.signInWithPopup(provider)
+			.then(async result => {
+				const facebookUser = result.user
+				if (!facebookUser) throw Error('Google user not found')
+				const { uid, email, displayName } = facebookUser
+				debugger
+				const user = (await db
+					.collection('users')
+					.doc(uid)
+					.get()
+					.then(doc => doc.data())) as User | null
+
+				if (user) {
+					dispatch(recieveUser(user))
+				} else {
+					await db
+						.collection('users')
+						.doc(uid)
+						.set({
+							email,
+							username: displayName,
+							uid
+						})
+					dispatch(
+						recieveUser({
+							email,
+							username: displayName,
+							uid
+						})
+					)
+				}
+			})
+			.catch(error => {
+				dispatch(userError(error.message))
+			})
+	} catch (error) {
+		dispatch(userError(error.message))
+	}
+}
+

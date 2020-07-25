@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { login, googleLogIn } from 'store/slices/userSlice'
+import { login, googleLogIn, facebookLogIn } from 'store/slices/userSlice'
 import { Link } from 'react-router-dom'
 
 const SignUp: FunctionComponent = () => {
@@ -10,10 +10,7 @@ const SignUp: FunctionComponent = () => {
 	const handleSignUp = () => {
 		dispatch(login(email, password))
 	}
-	const handleGoogleSignIn = () => {
-		dispatch(googleLogIn())
-	}
-
+	const handleProviderLogin = (providerLogin: ()=> void) => () => dispatch(providerLogin())
 	return (
 		<>
 			<label>
@@ -25,9 +22,8 @@ const SignUp: FunctionComponent = () => {
 				<input value={password} onChange={e => setPassword(e.target.value)} />
 			</label>
 			<button onClick={handleSignUp}>Submit</button>
-			<div onClick={handleGoogleSignIn}>
-				Login with google
-			</div>
+			<div onClick={ handleProviderLogin(googleLogIn)}>Login with google</div>
+			<div onClick={ handleProviderLogin(facebookLogIn)}>Login with facebook</div>
 			<div>
 				New to incubate-me? <Link to="/signup">signup</Link>{' '}
 			</div>

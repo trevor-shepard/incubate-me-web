@@ -8,7 +8,7 @@ const Landing: FunctionComponent = () => {
 	return (
 		<>
 			<div>{user.username}</div>
-			<button onClick={()=> dispatch(logout())}>Logout</button>
+			<button onClick={() => dispatch(logout())}>Logout</button>
 		</>
 	)
 }
