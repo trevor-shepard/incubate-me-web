@@ -22,7 +22,7 @@ function App() {
 					<Router>
 						<Switch>
 							<AuthRoute path="/signup" component={SignUp} />
-							<AuthRoute path="/login" component={Login} />
+							<AuthRoute path="/login" component={SignUp} />
 							<ProtectedRoute path="/" component={Landing} />
 						</Switch>
 					</Router>
