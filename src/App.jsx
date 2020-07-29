@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles/App.css'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 
@@ -11,6 +11,7 @@ import Login from './features/login'
 import Landing from './features/landing'
 
 import { AuthRoute, ProtectedRoute } from './utils/routeUtils'
+import LinkedInPopUp from 'components/LinkedIn/LinkedInPopUp'
 
 let persistor = persistStore(store)
 
@@ -21,6 +22,7 @@ function App() {
 				<PersistGate loading={null} persistor={persistor}>
 					<Router>
 						<Switch>
+							<Route path="/linkedin" component={LinkedInPopUp} />
 							<AuthRoute path="/signup" component={SignUp} />
 							<AuthRoute path="/login" component={Login} />
 							<ProtectedRoute path="/" component={Landing} />

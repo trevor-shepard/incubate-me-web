@@ -203,4 +203,3 @@ export const facebookLogIn = (): AppThunk => async dispatch => {
 		dispatch(userError(error.message))
 	}
 }
-
