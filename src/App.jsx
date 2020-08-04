@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
+import { Global, css } from '@emotion/core'
 
 import store from './store'
 import SignUp from './features/signup'
@@ -12,6 +13,8 @@ import Landing from './features/landing'
 
 import { AuthRoute, ProtectedRoute } from './utils/routeUtils'
 import LinkedInPopUp from 'components/LinkedIn/LinkedInPopUp'
+
+import MobileNav from 'features/navbar/mobile'
 
 let persistor = persistStore(store)
 
@@ -27,9 +30,17 @@ function App() {
 							<AuthRoute path="/login" component={Login} />
 							<ProtectedRoute path="/" component={Landing} />
 						</Switch>
+						<ProtectedRoute component={MobileNav} />
 					</Router>
 				</PersistGate>
 			</Provider>
+			<Global
+				styles={css`
+					.some-class {
+					color: hotpink !important;
+					}
+				`}
+				/>
 		</div>
 	)
 }
