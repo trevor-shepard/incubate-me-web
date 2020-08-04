@@ -13,7 +13,7 @@ const MobileNav: FunctionComponent = () => {
                 Home
             </Tab>
             <Tab to="/experts">
-                <TabIcon src={Chat} alt=' ' />
+                <TabIcon src={Experts} alt=' ' />
                 Experts
             </Tab>
             <Tab to="/chat">

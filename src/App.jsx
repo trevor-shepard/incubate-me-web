@@ -9,7 +9,7 @@ import { Global, css } from '@emotion/core'
 import store from './store'
 import SignUp from './features/signup'
 import Login from './features/login'
-import Landing from './features/landing'
+import Homepage from './features/homepage'
 
 import { AuthRoute, ProtectedRoute } from './utils/routeUtils'
 import LinkedInPopUp from 'components/LinkedIn/LinkedInPopUp'
@@ -28,7 +28,7 @@ function App() {
 							<Route path="/linkedin" component={LinkedInPopUp} />
 							<AuthRoute path="/signup" component={SignUp} />
 							<AuthRoute path="/login" component={Login} />
-							<ProtectedRoute path="/" component={Landing} />
+							<ProtectedRoute path="/" component={Homepage} />
 						</Switch>
 						<ProtectedRoute component={MobileNav} />
 					</Router>
