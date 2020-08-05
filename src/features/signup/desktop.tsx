@@ -96,174 +96,173 @@ const SignUp: FunctionComponent = () => {
 			<Logo src={IncubateMeLogo} />
 			<Content>
 				<Left>
-				<Header>
-				Sign up to get help on optimizing your business bottomline.
-			</Header>
-			<SubHeader>
-				Solve all your finance and HR needs at your fingertip, with a flexible
-				and connected team of accounting, HR, and finance experts accessible
-				on-demand. Try it for FREE.
-			</SubHeader>
+					<Header>
+						Sign up to get help on optimizing your business bottomline.
+					</Header>
+					<SubHeader>
+						Solve all your finance and HR needs at your fingertip, with a
+						flexible and connected team of accounting, HR, and finance experts
+						accessible on-demand. Try it for FREE.
+					</SubHeader>
 				</Left>
 				<Right>
-				{error && <Error>{error}</Error>}
-			<TextInput
-				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-					setUsername(e.target.value)
-				}
-				value={username}
-				label={'Your Name (First Last) *'}
-			/>
-			<TextInput
-				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-					setEmail(e.target.value)
-				}
-				value={email}
-				label={'Your Email *'}
-			/>
-			<TextInput
-				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-					linkedInSet(e.target.value)
-				}
-				value={linkedIn}
-				label={'Share a link to your LinkedIn profile'}
-			/>
-			<TextInput
-				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-					companyUrlSet(e.target.value)
-				}
-				value={companyUrl}
-				label={"Your company's URL"}
-			/>
-			<SelectInput
-				handleSelect={(e: React.ChangeEvent<HTMLSelectElement>) =>
-					fundingStageSet(
-						e.target.value as
-							| 'self/family'
-							| 'bank'
-							| 'angel'
-							| 'seed'
-							| 'series-a'
-							| 'other'
-					)
-				}
-				value={fundingStage}
-				options={FUNDING_STAGES}
-				label="Funding stage of your startup"
-			/>
-			<InputContainer>
-				<Label>Business expertise you are seeking *</Label>
-				<Checkbox
-					label="Book-keeping / General Ledger"
-					isSelected={bookKeeping}
-					onCheckboxChange={() => bookKeepingSet(!bookKeeping)}
-				/>
-				<Checkbox
-					label="Accounting / Banking Reconciliation"
-					isSelected={accounting}
-					onCheckboxChange={() => accountingSet(!accounting)}
-				/>
-				<Checkbox
-					label="Accounting / Banking Reconciliation"
-					isSelected={cpa}
-					onCheckboxChange={() => cpaSet(!cpa)}
-				/>
-				<Checkbox
-					label="Treasury Management"
-					isSelected={tresauryManagment}
-					onCheckboxChange={() => tresauryManagmentSet(!tresauryManagment)}
-				/>
-				<Checkbox
-					label="Payment Management (AP)"
-					isSelected={paymentManagement}
-					onCheckboxChange={() => paymentManagementSet(!paymentManagement)}
-				/>
-				<Checkbox
-					label="Receivables Management (AR)"
-					isSelected={receivablesManagment}
-					onCheckboxChange={() =>
-						receivablesManagmentSet(!receivablesManagment)
-					}
-				/>
-				<Checkbox
-					label="Flux Analysis of Monthly Financial Statements"
-					isSelected={fluxAnalysisOfMonthlyFinancialStatements}
-					onCheckboxChange={() =>
-						fluxAnalysisOfMonthlyFinancialStatementsSet(
-							!fluxAnalysisOfMonthlyFinancialStatements
-						)
-					}
-				/>
-				<Checkbox
-					label="Budgeting / Planning"
-					isSelected={budgetingPlanning}
-					onCheckboxChange={() => budgetingPlanningSet(!budgetingPlanning)}
-				/>
-				<Checkbox
-					label="Financial Modeling"
-					isSelected={financialModeling}
-					onCheckboxChange={() => financialModelingSet(!financialModeling)}
-				/>
-				<Checkbox
-					label="Alternative Financing / Gov Financing"
-					isSelected={alternativeFinancingGovFinancing}
-					onCheckboxChange={() =>
-						alternativeFinancingGovFinancingSet(
-							!alternativeFinancingGovFinancing
-						)
-					}
-				/>
-				<Checkbox
-					label="VP Finance / CFO Advisory"
-					isSelected={CFOAdvisory}
-					onCheckboxChange={() => CFOAdvisorySet(!CFOAdvisory)}
-				/>
-				<Checkbox
-					label="Contractors (1099) Management"
-					isSelected={Management1099}
-					onCheckboxChange={() => Management1099Set(!Management1099)}
-				/>
-				<Checkbox
-					label="W-2 &amp; Onboarding"
-					isSelected={w2Onboarding}
-					onCheckboxChange={() => w2OnboardingSet(!w2Onboarding)}
-				/>
-				<Checkbox
-					label="Payroll Management"
-					isSelected={payrollManagment}
-					onCheckboxChange={() => payrollManagmentSet(!payrollManagment)}
-				/>
-				<Checkbox
-					label="Healthcare Management"
-					isSelected={healthcareManagment}
-					onCheckboxChange={() => healthcareManagmentSet(!healthcareManagment)}
-				/>
-			</InputContainer>
-			<TextInput
-				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-					setPassword1(e.target.value)
-				}
-				type='password'
-				value={password1}
-				label={'Password *'}
-			/>
-			<TextInput
-				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-					setPassword2(e.target.value)
-				}
-				type='password'
-				value={password2}
-				label={'Confirm Password *'}
-			/>
-			{error && <Error>{error}</Error>}
-			<SubmitContainer>
-				<SubmitButton onClick={handleSignUp}>Submit</SubmitButton>
-			</SubmitContainer>
+					{error && <Error>{error}</Error>}
+					<TextInput
+						handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setUsername(e.target.value)
+						}
+						value={username}
+						label={'Your Name (First Last) *'}
+					/>
+					<TextInput
+						handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setEmail(e.target.value)
+						}
+						value={email}
+						label={'Your Email *'}
+					/>
+					<TextInput
+						handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+							linkedInSet(e.target.value)
+						}
+						value={linkedIn}
+						label={'Share a link to your LinkedIn profile'}
+					/>
+					<TextInput
+						handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+							companyUrlSet(e.target.value)
+						}
+						value={companyUrl}
+						label={"Your company's URL"}
+					/>
+					<SelectInput
+						handleSelect={(e: React.ChangeEvent<HTMLSelectElement>) =>
+							fundingStageSet(
+								e.target.value as
+									| 'self/family'
+									| 'bank'
+									| 'angel'
+									| 'seed'
+									| 'series-a'
+									| 'other'
+							)
+						}
+						value={fundingStage}
+						options={FUNDING_STAGES}
+						label="Funding stage of your startup"
+					/>
+					<InputContainer>
+						<Label>Business expertise you are seeking *</Label>
+						<Checkbox
+							label="Book-keeping / General Ledger"
+							isSelected={bookKeeping}
+							onCheckboxChange={() => bookKeepingSet(!bookKeeping)}
+						/>
+						<Checkbox
+							label="Accounting / Banking Reconciliation"
+							isSelected={accounting}
+							onCheckboxChange={() => accountingSet(!accounting)}
+						/>
+						<Checkbox
+							label="Accounting / Banking Reconciliation"
+							isSelected={cpa}
+							onCheckboxChange={() => cpaSet(!cpa)}
+						/>
+						<Checkbox
+							label="Treasury Management"
+							isSelected={tresauryManagment}
+							onCheckboxChange={() => tresauryManagmentSet(!tresauryManagment)}
+						/>
+						<Checkbox
+							label="Payment Management (AP)"
+							isSelected={paymentManagement}
+							onCheckboxChange={() => paymentManagementSet(!paymentManagement)}
+						/>
+						<Checkbox
+							label="Receivables Management (AR)"
+							isSelected={receivablesManagment}
+							onCheckboxChange={() =>
+								receivablesManagmentSet(!receivablesManagment)
+							}
+						/>
+						<Checkbox
+							label="Flux Analysis of Monthly Financial Statements"
+							isSelected={fluxAnalysisOfMonthlyFinancialStatements}
+							onCheckboxChange={() =>
+								fluxAnalysisOfMonthlyFinancialStatementsSet(
+									!fluxAnalysisOfMonthlyFinancialStatements
+								)
+							}
+						/>
+						<Checkbox
+							label="Budgeting / Planning"
+							isSelected={budgetingPlanning}
+							onCheckboxChange={() => budgetingPlanningSet(!budgetingPlanning)}
+						/>
+						<Checkbox
+							label="Financial Modeling"
+							isSelected={financialModeling}
+							onCheckboxChange={() => financialModelingSet(!financialModeling)}
+						/>
+						<Checkbox
+							label="Alternative Financing / Gov Financing"
+							isSelected={alternativeFinancingGovFinancing}
+							onCheckboxChange={() =>
+								alternativeFinancingGovFinancingSet(
+									!alternativeFinancingGovFinancing
+								)
+							}
+						/>
+						<Checkbox
+							label="VP Finance / CFO Advisory"
+							isSelected={CFOAdvisory}
+							onCheckboxChange={() => CFOAdvisorySet(!CFOAdvisory)}
+						/>
+						<Checkbox
+							label="Contractors (1099) Management"
+							isSelected={Management1099}
+							onCheckboxChange={() => Management1099Set(!Management1099)}
+						/>
+						<Checkbox
+							label="W-2 &amp; Onboarding"
+							isSelected={w2Onboarding}
+							onCheckboxChange={() => w2OnboardingSet(!w2Onboarding)}
+						/>
+						<Checkbox
+							label="Payroll Management"
+							isSelected={payrollManagment}
+							onCheckboxChange={() => payrollManagmentSet(!payrollManagment)}
+						/>
+						<Checkbox
+							label="Healthcare Management"
+							isSelected={healthcareManagment}
+							onCheckboxChange={() =>
+								healthcareManagmentSet(!healthcareManagment)
+							}
+						/>
+					</InputContainer>
+					<TextInput
+						handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setPassword1(e.target.value)
+						}
+						type="password"
+						value={password1}
+						label={'Password *'}
+					/>
+					<TextInput
+						handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setPassword2(e.target.value)
+						}
+						type="password"
+						value={password2}
+						label={'Confirm Password *'}
+					/>
+					{error && <Error>{error}</Error>}
+					<SubmitContainer>
+						<SubmitButton onClick={handleSignUp}>Submit</SubmitButton>
+					</SubmitContainer>
 				</Right>
 			</Content>
-			
-			
-			
 		</Container>
 	)
 }
@@ -278,7 +277,7 @@ const Content = styled.div`
 `
 
 const Left = styled.div`
-	width: 50%
+	width: 50%;
 `
 
 const Right = styled.div``

@@ -239,7 +239,7 @@ const SignUp: FunctionComponent = () => {
 				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
 					setPassword1(e.target.value)
 				}
-				type='password'
+				type="password"
 				value={password1}
 				label={'Password *'}
 			/>
@@ -247,7 +247,7 @@ const SignUp: FunctionComponent = () => {
 				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
 					setPassword2(e.target.value)
 				}
-				type='password'
+				type="password"
 				value={password2}
 				label={'Confirm Password *'}
 			/>

@@ -1,9 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Chat, Experts } from 'assets/icons'
 
 const MobileNav: FunctionComponent = () => {
+
+	const location = useLocation()
+
+	debugger
+
 	return (
 		<Navbar>
 			<Tab to="/">
@@ -36,7 +41,7 @@ const Navbar = styled.div`
 	justify-content: space-around;
 	align-items: center;
 	position: fixed;
-	bottom: 0;
+	bottom: 10px;
 `
 
 const Tab = styled(Link)`

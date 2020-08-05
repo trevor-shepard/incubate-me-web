@@ -9,7 +9,7 @@ const Login: FunctionComponent = () => {
 	const dispatch = useDispatch()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	
+
 	const handleLogin = () => {
 		dispatch(login(email, password))
 	}
@@ -42,7 +42,7 @@ const Login: FunctionComponent = () => {
 				onSuccess={() => setError('')}
 				redirectUri="http://localhost:3000/linkedin"
 			 /> */}
-			
+
 			<div>
 				New to incubate-me? <Link to="/signup">signup</Link>{' '}
 			</div>

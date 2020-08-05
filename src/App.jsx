@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
-import { Global, css } from '@emotion/core'
 
 import store from './store'
 import SignUp from './features/signup'
@@ -34,13 +33,6 @@ function App() {
 					</Router>
 				</PersistGate>
 			</Provider>
-			<Global
-				styles={css`
-					.some-class {
-						color: hotpink !important;
-					}
-				`}
-			/>
 		</div>
 	)
 }

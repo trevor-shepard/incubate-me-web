@@ -4,10 +4,11 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import Logo from 'components/Logo'
 import Logout from 'components/Logout'
+import ExpertsDisplay from 'components/experts/ExpertsDisplay'
 const MobileHomepage: FunctionComponent = () => {
 	const user = useSelector((state: RootState) => state.user)
 	return (
-		<>
+		<Container>
 			<Logo />
 			<Logout />
 			<Header>
@@ -15,32 +16,40 @@ const MobileHomepage: FunctionComponent = () => {
 			</Header>
 			<ServicesProgressContainer>
 				<ProgressContainer>
-					<ProgressIndicator />
+					<ProgressIndicator registered={user.services.accounting} />
 					<ProgressSeperator />
-					<ProgressIndicator />
+					<ProgressIndicator registered={user.services.humanResource} />
 					<ProgressSeperator />
-					<ProgressIndicator />
+					<ProgressIndicator registered={user.services.stratigicFinance} />
 					<ProgressSeperator />
-					<ProgressIndicator />
+					<ProgressIndicator registered={false} />
 				</ProgressContainer>
 				<ServicesContainer>
-					<Service>
-						Online Accounting Service
-					</Service>
-					<Service>
-						Online Human Resources Service
-					</Service>
-					<Service>
-						Online Strategic Finance Service
-					</Service>
-					<Service>
-						Online Accounting Service
-					</Service>
+					<Service>Online Accounting Service</Service>
+					<Service>Online Human Resources Service</Service>
+					<Service>Online Strategic Finance Service</Service>
+					<Service>Online Accounting Service</Service>
 				</ServicesContainer>
 			</ServicesProgressContainer>
-		</>
+			<ExpertsContainer>
+				<ExpertsHeader>Your Team of Experts</ExpertsHeader>
+				{user.experts.length ? (
+					<ExpertsDisplay />
+				) : (
+					<ExpertsEmptyMessage>
+						You haven’t hired any experts for your business yet. Make your
+						first hire!
+					</ExpertsEmptyMessage>
+				)}
+			</ExpertsContainer>
+		</Container>
 	)
 }
+
+const Container = styled.div`
+	height: calc(100vh - 60px);
+	overflow: scroll;
+`
 
 const Header = styled.div`
 	font-family: Open Sans;
@@ -53,13 +62,13 @@ const Header = styled.div`
 	width: 90%;
 	padding: 16px;
 	text-align: left;
-	margin-top: 20px;
+	margin-top: 10%;
 `
 const Service = styled.div`
 	width: 100%;
 	height: 51px;
-	background: #FFFFFF;
-	border: 1px solid #E4BF7A;
+	background: #ffffff;
+	border: 1px solid #e4bf7a;
 	box-sizing: border-box;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
@@ -70,7 +79,7 @@ const Service = styled.div`
 	line-height: 22px;
 	letter-spacing: -0.408px;
 	color: #696868;
-	margin-bottom: 40px;
+	margin-bottom: 15%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -78,7 +87,6 @@ const Service = styled.div`
 
 const ServicesProgressContainer = styled.div`
 	display: flex;
-
 `
 const ServicesContainer = styled.div`
 	display: flex;
@@ -87,24 +95,58 @@ const ServicesContainer = styled.div`
 `
 const ProgressContainer = styled.div`
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	align-items: center;
-	margin-top: 17px;
-	margin-bottom: 17px;
-	padding-left: 20px;
-	padding-right: 20px;
+	margin-top: 5%;
+	margin-bottom: 15%;
+	padding-left: 5%;
+	padding-right: 5%;
 `
-const ProgressIndicator = styled.div`
+
+interface ProgressIndicatorProps {
+	registered: boolean
+}
+
+const ProgressIndicator = styled.div<ProgressIndicatorProps>`
 	width: 14px;
 	height: 14px;
 	border-radius: 10px;
-	border: 2px solid #C4C4C4;
-	
+	border: 2px solid #e4bf7a;
+	background-color: ${({ registered }) =>
+		registered ? '#E4BF7A' : 'transparent'};
 `
 const ProgressSeperator = styled.div`
-	height: 70px;
-	border: 1px solid #C4C4C4;
-	
+	height: 23%;
+	border: 1px solid #c4c4c4;
+	margin-top: 2.5px;
+	margin-bottom: 2.5px;
+`
+
+const ExpertsContainer = styled.div`
+	width: 100%;
+	text-align: left;
+	padding: 16px;
+`
+
+const ExpertsHeader = styled.div`
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+	color: #696868;
+	margin-bottom: 20px;
+`
+
+const ExpertsEmptyMessage = styled.div`
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 22px;
+	letter-spacing: -0.408px;
+	color: #696868;
+	padding-right: 20px;
 `
 
 export default MobileHomepage
