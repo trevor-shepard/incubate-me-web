@@ -5,26 +5,24 @@ import { Chat, Experts } from 'assets/icons'
 
 const MobileNav: FunctionComponent = () => {
 
-	const location = useLocation()
-
-	debugger
+	const {pathname} = useLocation()
 
 	return (
 		<Navbar>
 			<Tab to="/">
-				<TabIcon src={Chat} alt=" " />
+				<TabIcon  current={pathname === '/'} src={Chat} alt=" " />
 				Home
 			</Tab>
 			<Tab to="/experts">
-				<TabIcon src={Experts} alt=" " />
+				<TabIcon src={Experts} current={pathname === '/experts'}  alt=" " />
 				Experts
 			</Tab>
-			<Tab to="/chat">
-				<TabIcon src={Chat} alt=" " />
+			<Tab  to="/chat">
+				<TabIcon current={pathname === '/chat'} src={Chat} alt=" " />
 				Chat
 			</Tab>
-			<Tab to="/">
-				<TabIcon src={Chat} alt=" " />
+			<Tab to="/profile">
+				<TabIcon current={pathname === '/profile'} src={Chat} alt=" " />
 				Profile
 			</Tab>
 		</Navbar>
@@ -43,6 +41,9 @@ const Navbar = styled.div`
 	position: fixed;
 	bottom: 10px;
 `
+interface TabIconProps {
+	current: boolean
+}
 
 const Tab = styled(Link)`
 	display: flex;
@@ -50,9 +51,11 @@ const Tab = styled(Link)`
 	align-items: center;
 	text-decoration: none;
 	font-size: 10px;
+	
 `
 
-const TabIcon = styled.img`
+const TabIcon = styled.img<TabIconProps>`
 	height: 20px;
 	width: 20px;
+	background-color: ${({current}) => current ? '#e4bf7a' : 'transparent'};
 `
