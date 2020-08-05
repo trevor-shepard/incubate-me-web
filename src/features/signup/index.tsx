@@ -3,11 +3,10 @@ import { useMediaQuery } from 'react-responsive'
 import Desktop from './desktop'
 import Mobile from './mobile'
 const Page: FunctionComponent = () => {
-	// const isTabletOrMobileDevice = useMediaQuery({
-	// 	query: '(max-device-width: 1224px)'
-	// })
-	return <Mobile />
-	// return isTabletOrMobileDevice ? <Mobile /> : <Desktop />
+	const isTabletOrMobileDevice = useMediaQuery({
+		query: '(max-device-width: 1224px)'
+	})
+	return isTabletOrMobileDevice ? <Mobile /> : <Desktop />
 }
 
 export default Page
