@@ -270,6 +270,7 @@ const SignUp: FunctionComponent = () => {
 const Container = styled.div`
 	padding: 20px;
 	height: 100vh;
+	overflow: scroll;
 `
 const Content = styled.div`
 	display: flex;
@@ -354,6 +355,7 @@ const SubmitButton = styled.button`
 	line-height: 1.9em;
 	font-size: calc(0vh + 1rem) !important;
 	padding: 0.8em 1.336em;
+	margin-bottom: 20px;
 `
 
 const SubmitContainer = styled.div`
