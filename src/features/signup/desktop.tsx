@@ -5,12 +5,11 @@ import { login } from 'store/slices/userSlice'
 
 // import LinkedInButton from 'components/LinkedIn/LinkedInButton'
 import { Link } from 'react-router-dom'
-const Login: FunctionComponent = () => {
+const SignUp: FunctionComponent = () => {
 	const dispatch = useDispatch()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	
-	const handleLogin = () => {
+	const handleSignUp = () => {
 		dispatch(login(email, password))
 	}
 	// const handleProviderLogin = (providerLogin: () => void) => () =>
@@ -34,7 +33,7 @@ const Login: FunctionComponent = () => {
 				Password:
 				<input value={password} onChange={e => setPassword(e.target.value)} />
 			</label>
-			<button onClick={handleLogin}>Submit</button>
+			<button onClick={handleSignUp}>Submit</button>
 
 			{/* <LinkedInButton
 				clientId="81lx5we2omq9xh"
@@ -78,4 +77,4 @@ const SubHeader = styled.div`
 	margin-top: 20px;
 `
 
-export default Login
+export default SignUp

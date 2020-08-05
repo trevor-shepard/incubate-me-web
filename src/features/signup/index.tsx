@@ -1,35 +1,13 @@
-import React, { FunctionComponent, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { signup } from 'store/slices/userSlice'
-import { Link } from 'react-router-dom'
-const SignUp: FunctionComponent = () => {
-	const dispatch = useDispatch()
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [username, setUsername] = useState('')
-	const handleSignUp = () => {
-		dispatch(signup(email, password, username))
-	}
-	return (
-		<>
-			<label>
-				Email:
-				<input value={email} onChange={e => setEmail(e.target.value)} />
-			</label>
-			<label>
-				Password:
-				<input value={password} onChange={e => setPassword(e.target.value)} />
-			</label>
-			<label>
-				Username:
-				<input value={username} onChange={e => setUsername(e.target.value)} />
-			</label>
-			<button onClick={handleSignUp}>Submit</button>
-			<div>
-				Have an account? <Link to="/login">login</Link>{' '}
-			</div>
-		</>
-	)
+import React, { FunctionComponent } from 'react'
+import { useMediaQuery } from 'react-responsive'
+import Desktop from './desktop'
+import Mobile from './mobile'
+const Page: FunctionComponent = () => {
+	// const isTabletOrMobileDevice = useMediaQuery({
+	// 	query: '(max-device-width: 1224px)'
+	// })
+	return <Mobile />
+	// return isTabletOrMobileDevice ? <Mobile /> : <Desktop />
 }
 
-export default SignUp
+export default Page

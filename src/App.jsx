@@ -37,10 +37,10 @@ function App() {
 			<Global
 				styles={css`
 					.some-class {
-					color: hotpink !important;
+						color: hotpink !important;
 					}
 				`}
-				/>
+			/>
 		</div>
 	)
 }

@@ -8,9 +8,13 @@ body {
 @font-face {
 	font-family: 'Open Sans';
 	src: local('Opem Sans'), url(./fonts/OpenSans-Regular.ttf) format('truetype');
-  }
+}
+@font-face {
+	font-family: 'Poppins';
+	src: local('Poppins'), url(./fonts/Poppins-Regular.ttf) format('truetype');
+}
 
 code {
-	font-family: 'Open Sans', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	font-family: 'Open Sans', source-code-pro, Menlo, Monaco, Consolas,
+		'Courier New', monospace;
 }
