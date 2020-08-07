@@ -1,7 +1,11 @@
 import React, { FunctionComponent } from 'react'
 
-const Feature: FunctionComponent = () => {
-	return <></>
+interface ExpertsDisplayProps {
+	experts: string[]
+}
+
+const Feature: FunctionComponent<ExpertsDisplayProps> = ({ experts }) => {
+	return <>{experts.length}</>
 }
 
 export default Feature

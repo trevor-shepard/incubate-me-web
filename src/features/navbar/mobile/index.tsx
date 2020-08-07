@@ -4,20 +4,19 @@ import { Link, useLocation } from 'react-router-dom'
 import { Chat, Experts } from 'assets/icons'
 
 const MobileNav: FunctionComponent = () => {
-
-	const {pathname} = useLocation()
+	const { pathname } = useLocation()
 
 	return (
 		<Navbar>
 			<Tab to="/">
-				<TabIcon  current={pathname === '/'} src={Chat} alt=" " />
+				<TabIcon current={pathname === '/'} src={Chat} alt=" " />
 				Home
 			</Tab>
 			<Tab to="/experts">
-				<TabIcon src={Experts} current={pathname === '/experts'}  alt=" " />
+				<TabIcon src={Experts} current={pathname === '/experts'} alt=" " />
 				Experts
 			</Tab>
-			<Tab  to="/chat">
+			<Tab to="/chat">
 				<TabIcon current={pathname === '/chat'} src={Chat} alt=" " />
 				Chat
 			</Tab>
@@ -51,11 +50,10 @@ const Tab = styled(Link)`
 	align-items: center;
 	text-decoration: none;
 	font-size: 10px;
-	
 `
 
 const TabIcon = styled.img<TabIconProps>`
 	height: 20px;
 	width: 20px;
-	background-color: ${({current}) => current ? '#e4bf7a' : 'transparent'};
+	background-color: ${({ current }) => (current ? '#e4bf7a' : 'transparent')};
 `

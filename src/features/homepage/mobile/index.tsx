@@ -5,40 +5,71 @@ import { RootState } from 'store/rootReducer'
 import Logo from 'components/Logo'
 import Logout from 'components/Logout'
 import ExpertsDisplay from 'components/experts/ExpertsDisplay'
+import { Link } from 'react-router-dom'
+
 const MobileHomepage: FunctionComponent = () => {
-	const user = useSelector((state: RootState) => state.user)
+	const { experts, username, services } = useSelector(
+		(state: RootState) => state.user
+	)
 	return (
 		<Container>
 			<Logo />
 			<Logout />
 			<Header>
-				Hi {user.username}, select the service&#40;s&#41; you would like to have
+				Hi {username}, select the service&#40;s&#41; you would like to have
 			</Header>
 			<ServicesProgressContainer>
 				<ProgressContainer>
-					<ProgressIndicator registered={user.services.accounting} />
+					<ProgressIndicator registered={services.accounting} />
 					<ProgressSeperator />
-					<ProgressIndicator registered={user.services.humanResource} />
+					<ProgressIndicator registered={services.humanResource} />
 					<ProgressSeperator />
-					<ProgressIndicator registered={user.services.stratigicFinance} />
+					<ProgressIndicator registered={services.stratigicFinance} />
 					<ProgressSeperator />
 					<ProgressIndicator registered={false} />
 				</ProgressContainer>
 				<ServicesContainer>
-					<Service>Online Accounting Service</Service>
-					<Service>Online Human Resources Service</Service>
-					<Service>Online Strategic Finance Service</Service>
-					<Service>Online Accounting Service</Service>
+					<Service
+						to={{
+							pathname: '/service',
+							state: {
+								service: 'accounting'
+							}
+						}}
+					>
+						Online Accounting Service
+					</Service>
+					<Service
+						to={{
+							pathname: '/service',
+							state: {
+								service: 'humanResource'
+							}
+						}}
+					>
+						Online Human Resources Service
+					</Service>
+					<Service
+						to={{
+							pathname: '/service',
+							state: {
+								service: 'stratigicFinance'
+							}
+						}}
+					>
+						Online Strategic Finance Service
+					</Service>
+					<Service to="/">Online Accounting Service</Service>
 				</ServicesContainer>
 			</ServicesProgressContainer>
 			<ExpertsContainer>
 				<ExpertsHeader>Your Team of Experts</ExpertsHeader>
-				{user.experts.length ? (
-					<ExpertsDisplay />
+				{experts.length ? (
+					<ExpertsDisplay experts={experts} />
 				) : (
 					<ExpertsEmptyMessage>
-						You haven’t hired any experts for your business yet. Make your
-						first hire!
+						You haven’t hired any experts for your business yet. Make your first
+						hire!
 					</ExpertsEmptyMessage>
 				)}
 			</ExpertsContainer>
@@ -64,7 +95,7 @@ const Header = styled.div`
 	text-align: left;
 	margin-top: 10%;
 `
-const Service = styled.div`
+const Service = styled(Link)`
 	width: 100%;
 	height: 51px;
 	background: #ffffff;
@@ -83,6 +114,7 @@ const Service = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-decoration: none;
 `
 
 const ServicesProgressContainer = styled.div`

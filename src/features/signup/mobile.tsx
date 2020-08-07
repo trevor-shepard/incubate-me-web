@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux'
 import { signup } from 'store/slices/userSlice'
@@ -102,6 +103,7 @@ const SignUp: FunctionComponent = () => {
 				and connected team of accounting, HR, and finance experts accessible
 				on-demand. Try it for FREE.
 			</SubHeader>
+			<Link to="/login">Already have an account? Login</Link>
 			{error && <Error>{error}</Error>}
 			<TextInput
 				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
