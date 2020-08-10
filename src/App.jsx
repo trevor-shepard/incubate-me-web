@@ -27,7 +27,6 @@ function App() {
 						<Switch>
 							<Route path="/linkedin" component={LinkedInPopUp} />
 							<AuthRoute path="/signup" component={SignUp} />
-							<AuthRoute path="/login" component={Login} />
 							<ProtectedRoute path="/service" component={Service} />
 							<ProtectedRoute path="/" component={Homepage} />
 						</Switch>

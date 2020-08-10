@@ -17,38 +17,41 @@ const Login: FunctionComponent = () => {
 	// 	dispatch(providerLogin())
 
 	return (
-		<>
+		<Container>
 			<Header>
-				Sign up to get help on optimizing your business bottomline.
+				Welcome to Incubate-me
 			</Header>
-			<SubHeader>
-				Solve all your finance and HR needs at your fingertip, with a flexible
-				and connected team of accounting, HR, and finance experts accessible
-				on-demand. Try it for FREE.
-			</SubHeader>
-			<label>
-				Email:
-				<input value={email} onChange={e => setEmail(e.target.value)} />
-			</label>
-			<label>
-				Password:
-				<input value={password} onChange={e => setPassword(e.target.value)} />
-			</label>
-			<button onClick={handleLogin}>Submit</button>
+			
+			<Input placeholder={'Email'} value={email} onChange={e => setEmail(e.target.value)} />
+		
+		
+			
+			<Input placeholder={'Password'} type='password' value={password} onChange={e => setPassword(e.target.value)} />
+		
+			<SubmitButton onClick={handleLogin}>Submit</SubmitButton>
+			
 
-			{/* <LinkedInButton
-				clientId="81lx5we2omq9xh"
-				onFailure={() => setError('error')}
-				onSuccess={() => setError('')}
-				redirectUri="http://localhost:3000/linkedin"
-			 /> */}
-
-			<div>
-				New to incubate-me? <Link to="/signup">signup</Link>{' '}
-			</div>
-		</>
+		</Container>
 	)
 }
+
+const Container = styled.div`
+	z-index: 100;
+	width: 360px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	opacity: 1;
+	background-color: white;
+	left: 0; 
+	right: 0; 
+	margin-left: auto; 
+	margin-right: auto; 
+
+`
 
 const Header = styled.div`
 	font-family: Poppins;
@@ -60,22 +63,29 @@ const Header = styled.div`
 	color: #696868;
 	width: 100%;
 	padding: 16px;
-	text-align: left;
 	margin-top: 20px;
 `
 
-const SubHeader = styled.div`
+const Input = styled.input`
+	width: 80%;
 	font-family: Poppins;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 15px;
-	line-height: 25px;
-	letter-spacing: -0.408px;
-	color: #696868;
-	width: 100%;
-	padding: 16px;
-	text-align: left;
-	margin-top: 20px;
+    font-size: 13px;
+    line-height: 22px;
 `
+
+const SubmitButton = styled.button`
+	font-family: Poppins;
+	background-color: #3e3e3e;
+    border-radius: 3px;
+    color: white;
+    display: block;
+    width: 30%;
+    font-weight: 500;
+    line-height: 22px;
+    padding: 11px;
+    margin-bottom: 22px;
+    text-transform: capitalize;
+`
+
 
 export default Login

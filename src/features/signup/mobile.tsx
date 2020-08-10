@@ -7,6 +7,7 @@ import TextInput from 'components/inputs/text'
 import SelectInput from 'components/inputs/select'
 import Checkbox from 'components/inputs/checkbox'
 import Logo from 'components/Logo'
+import Login from 'features/login'
 
 const SignUp: FunctionComponent = () => {
 	const dispatch = useDispatch()
@@ -41,6 +42,7 @@ const SignUp: FunctionComponent = () => {
 	const [w2Onboarding, w2OnboardingSet] = useState(false)
 	const [payrollManagment, payrollManagmentSet] = useState(false)
 	const [healthcareManagment, healthcareManagmentSet] = useState(false)
+	const [login, setLogin] = useState(false)
 
 	const [error, setError] = useState('')
 	const handleSignUp = () => {
@@ -95,6 +97,9 @@ const SignUp: FunctionComponent = () => {
 	return (
 		<Container>
 			<Logo />
+			<div onClick={() => setLogin(true)}>Login</div>
+			{login && <Grey onClick={() => setLogin(false)} />}
+			{login && <Login />}
 			<Header>
 				Sign up to get help on optimizing your business bottomline.
 			</Header>
@@ -103,7 +108,6 @@ const SignUp: FunctionComponent = () => {
 				and connected team of accounting, HR, and finance experts accessible
 				on-demand. Try it for FREE.
 			</SubHeader>
-			<Link to="/login">Already have an account? Login</Link>
 			{error && <Error>{error}</Error>}
 			<TextInput
 				handleInput={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -342,6 +346,18 @@ const SubmitContainer = styled.div`
 	justify-content: flex-start;
 	margin-top: 20px;
 	padding-bottom: 20px;
+`
+
+const Grey = styled.div`
+	height: 100vh;
+    width: 100vw;
+    z-index: 50;
+    opacity: 0.6;
+    background-color: #777375;
+    position: absolute;
+    left: 0;
+    top: 0;
+
 `
 
 export default SignUp

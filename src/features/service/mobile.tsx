@@ -7,6 +7,7 @@ import SERVICE_DETAILS from 'assets/data/servicesDetails'
 import { checkmark } from 'assets/icons'
 import ExpertsDisplay from 'components/experts/ExpertsDisplay'
 import Back from 'components/navigation/Back'
+
 interface LocationState {
 	state: {
 		service: string
@@ -16,12 +17,18 @@ interface LocationState {
 const MobileService: FunctionComponent = () => {
 	const user = useSelector((state: RootState) => state.user)
 	const history = useHistory()
-	const {
-		state: { service }
-	} = useLocation() as LocationState
+	const { state } = useLocation() as LocationState
 
-	if (!Object.keys(SERVICE_DETAILS).includes(service)) history.push('/')
-	console.log(SERVICE_DETAILS)
+	if (
+		!state ||
+		!state.service ||
+		!Object.keys(SERVICE_DETAILS).includes(state.service)
+	)
+		history.push('/')
+
+	const { service } = state
+	if (!Object.keys(SERVICE_DETAILS).includes(service))
+		console.log(SERVICE_DETAILS)
 
 	const { displayName, price, details, experts } = SERVICE_DETAILS[service]
 

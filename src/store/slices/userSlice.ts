@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '..'
 
 import firebase, { auth, db } from 'utils/firebase'
-
+import { fetchExperts } from './expertsSlice'
 export interface UserState {
 	username: string | null
 	email: string | null
@@ -210,6 +210,7 @@ export const login = (
 					return resp.user.uid
 				}
 			})
+		dispatch(fetchExperts())
 		const user = (await db
 			.collection('users')
 			.doc(uid)
@@ -236,6 +237,7 @@ export const signup = (
 					return resp.user.uid
 				}
 			})
+		dispatch(fetchExperts())
 		await db
 			.collection('users')
 			.doc(uid)

@@ -4,10 +4,14 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import Logout from 'components/Logout'
 import ExpertsDisplay from 'components/experts/ExpertsDisplay'
+import {Expert} from 'store/slices/expertsSlice'
 const DesktopHomepage: FunctionComponent = () => {
-	const { username, services, experts } = useSelector(
+	const { username, services } = useSelector(
 		(state: RootState) => state.user
 	)
+
+	const experts = useSelector((state: RootState) => Object.values(state.experts)as Expert[])
+
 	return (
 		<Container>
 			<Logout />

@@ -6,11 +6,14 @@ import Logo from 'components/Logo'
 import Logout from 'components/Logout'
 import ExpertsDisplay from 'components/experts/ExpertsDisplay'
 import { Link } from 'react-router-dom'
+import {Expert} from 'store/slices/expertsSlice'
 
 const MobileHomepage: FunctionComponent = () => {
-	const { experts, username, services } = useSelector(
+	const { username, services } = useSelector(
 		(state: RootState) => state.user
 	)
+
+	const experts = useSelector((state: RootState) => Object.values(state.experts) as Expert[])
 	return (
 		<Container>
 			<Logo />
@@ -158,16 +161,18 @@ const ExpertsContainer = styled.div`
 	width: 100%;
 	text-align: left;
 	padding: 16px;
+	padding-left: 0
 `
 
 const ExpertsHeader = styled.div`
 	font-family: Open Sans;
-	font-style: normal;
+	font-style: normal; 
 	font-weight: 600;
 	font-size: 16px;
 	line-height: 22px;
 	color: #696868;
 	margin-bottom: 20px;
+	padding-left: 16px;
 `
 
 const ExpertsEmptyMessage = styled.div`

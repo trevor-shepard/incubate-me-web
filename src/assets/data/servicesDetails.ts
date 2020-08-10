@@ -1,9 +1,12 @@
+import {Expert} from 'store/slices/expertsSlice'
+
+
 export interface Service {
 	name: string
 	displayName: string
 	price: string
 	details: string[]
-	experts: string[]
+	experts: Expert[]
 }
 
 export const accounting: Service = {
