@@ -48,9 +48,10 @@ const MobileService: FunctionComponent = () => {
 			<SubHeader>Our {displayName} includes:</SubHeader>
 			<DetailsContainer>{detailDisplays}</DetailsContainer>
 			<ExpertsContainer>
-				<ExpertsHeader>Your Team of Experts</ExpertsHeader>
+				<ExpertsHeader>Recommended Accounting Service Experts</ExpertsHeader>
 				<ExpertsDisplay experts={experts} />
 			</ExpertsContainer>
+			<PurchaseButton>Purchase</PurchaseButton>
 		</Container>
 	)
 }
@@ -128,7 +129,6 @@ const Checkmark = styled.img`
 const ExpertsContainer = styled.div`
 	width: 100%;
 	text-align: left;
-	padding: 16px;
 `
 
 const ExpertsHeader = styled.div`
@@ -139,6 +139,29 @@ const ExpertsHeader = styled.div`
 	line-height: 22px;
 	color: #696868;
 	margin-bottom: 20px;
+	padding-left: 10px;
+`
+
+const PurchaseButton = styled.div`
+	font-family: Open Sans;
+	background: #E4BF7A;
+	border: 1px solid #DEDEDE;
+	box-sizing: border-box;
+	width: 343px;
+	height: 50px;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 17px;
+	line-height: 22px;
+	color: #FFFFFF;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	margin: 0 auto;
+	margin-bottom: 22px;
+	margin-top: 25px;
 `
 
 export default MobileService

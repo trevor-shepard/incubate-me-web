@@ -171,7 +171,7 @@ const ExpertsHeader = styled.div`
 	font-size: 16px;
 	line-height: 22px;
 	color: #696868;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	padding-left: 16px;
 `
 
