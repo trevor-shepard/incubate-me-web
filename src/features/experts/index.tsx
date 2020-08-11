@@ -9,10 +9,8 @@ import { Expert } from 'store/slices/expertsSlice'
 import Select from 'components/inputs/select'
 import ExpertList from 'components/experts/ExpertsList'
 
-const DiscoverExperts: FunctionComponent = () => {
+const Experts: FunctionComponent = () => {
 	const [serviceName, setService] = useState('accounting')
-	const user = useSelector((state: RootState) => state.user)
-	const { username } = user
 
 	const allExperts = useSelector(
 		(state: RootState) => Object.values(state.experts) as Expert[]
@@ -34,9 +32,7 @@ const DiscoverExperts: FunctionComponent = () => {
 		<Container>
 			<Logo />
 			<Logout />
-			<Header>
-				Discover Experts
-			</Header>
+			<Header>Discover Experts</Header>
 			<StyledSelect
 				handleSelect={(e: React.ChangeEvent<HTMLSelectElement>) =>
 					setService(
@@ -51,9 +47,7 @@ const DiscoverExperts: FunctionComponent = () => {
 				leftMargin={'3%'}
 			/>
 
-			<SubHeader>
-				{displayName} Experts
-			</SubHeader>
+			<SubHeader>{displayName} Experts</SubHeader>
 			<ExpertList experts={experts} />
 		</Container>
 	)
@@ -89,11 +83,10 @@ const SubHeader = styled.div`
 	color: #696868;
 	text-align: left;
 	padding: 16px;
-
 `
 
 const StyledSelect = styled(Select)`
 	margin-left: 3%;
 `
 
-export default DiscoverExperts
+export default Experts

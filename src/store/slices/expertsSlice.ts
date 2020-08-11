@@ -8,6 +8,9 @@ export interface Expert {
 	name: string
 	email: string
 	title: string
+	linkedInProfile?: string
+	location: string
+	expertise: string[]
 }
 
 export interface ExpertState {

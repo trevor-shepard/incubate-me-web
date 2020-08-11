@@ -48,7 +48,7 @@ const Container = styled.div<ContainerProps>`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	${({leftMargin}) => leftMargin ? "margin-left: " + leftMargin: null}
+	${({ leftMargin }) => (leftMargin ? 'margin-left: ' + leftMargin : null)}
 `
 
 const Select = styled.select`
@@ -58,8 +58,8 @@ const Select = styled.select`
 	letter-spacing: 0em;
 	text-transform: none;
 	line-height: 1.9em;
-	background: #FFFFFF;
-	border: 1px solid #DEDEDE;
+	background: #ffffff;
+	border: 1px solid #dedede;
 	box-sizing: border-box;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 	border-radius: 5px;

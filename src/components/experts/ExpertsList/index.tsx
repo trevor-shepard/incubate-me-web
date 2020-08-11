@@ -22,8 +22,8 @@ const ExpertsContainer = styled.div`
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-    width: 100%;
-	border-top: 1px solid #DADADA;
+	width: 100%;
+	border-top: 1px solid #dadada;
 `
 
 export default Feature

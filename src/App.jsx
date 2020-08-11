@@ -10,9 +10,10 @@ import SignUp from 'features/signup'
 import Homepage from 'features/homepage'
 import Service from 'features/service'
 import Experts from 'features/experts'
+import Expert from 'features/expert'
 
 import { AuthRoute, ProtectedRoute } from './utils/routeUtils'
-import LinkedInPopUp from 'components/LinkedIn/LinkedInPopUp'
+// import LinkedInPopUp from 'components/LinkedIn/LinkedInPopUp'
 
 import MobileNav from 'features/navbar/mobile'
 
@@ -25,10 +26,11 @@ function App() {
 				<PersistGate loading={null} persistor={persistor}>
 					<Router>
 						<Switch>
-							<Route path="/linkedin" component={LinkedInPopUp} />
+							{/* <Route path="/linkedin" component={LinkedInPopUp} /> */}
 							<AuthRoute path="/signup" component={SignUp} />
-							<ProtectedRoute path="/service" component={Service} />
-							<ProtectedRoute path="/experts" component={Experts} />
+							<ProtectedRoute path="/service" exact component={Service} />
+							<ProtectedRoute path="/expert" exact component={Expert} />
+							<ProtectedRoute path="/experts" exact component={Experts} />
 							<ProtectedRoute path="/" component={Homepage} />
 						</Switch>
 						<ProtectedRoute component={MobileNav} />

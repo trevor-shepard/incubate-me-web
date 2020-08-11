@@ -269,7 +269,6 @@ const Container = styled.div`
 	height: 100vh;
 	overflow: scroll;
 	color: #696868;
-
 `
 const Error = styled.div`
 	border-radius: 2px;
