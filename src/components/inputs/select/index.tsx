@@ -13,6 +13,7 @@ interface SelectInputProps {
 	label?: string
 	height?: string
 	width?: string
+	leftMargin?: string
 }
 
 const SelectInput: FunctionComponent<SelectInputProps> = ({
@@ -21,13 +22,14 @@ const SelectInput: FunctionComponent<SelectInputProps> = ({
 	height,
 	width,
 	label,
-	options
+	options,
+	leftMargin
 }) => {
 	const optionElements = options.map(({ value, display }: Option) => (
 		<option value={value}>{display}</option>
 	))
 	return (
-		<Container width={width ? width : '90%'}>
+		<Container width={width ? width : '90%'} leftMargin={leftMargin}>
 			{label && <Label>{label}</Label>}
 			<Select onChange={handleSelect} value={value}>
 				{optionElements}
@@ -38,6 +40,7 @@ const SelectInput: FunctionComponent<SelectInputProps> = ({
 
 type ContainerProps = {
 	width: string
+	leftMargin?: string
 }
 
 const Container = styled.div<ContainerProps>`
@@ -45,6 +48,7 @@ const Container = styled.div<ContainerProps>`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	${({leftMargin}) => leftMargin ? "margin-left: " + leftMargin: null}
 `
 
 const Select = styled.select`
@@ -54,6 +58,12 @@ const Select = styled.select`
 	letter-spacing: 0em;
 	text-transform: none;
 	line-height: 1.9em;
+	background: #FFFFFF;
+	border: 1px solid #DEDEDE;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	color: #696868;
 `
 
 const Label = styled.label`

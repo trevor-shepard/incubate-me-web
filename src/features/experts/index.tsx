@@ -3,9 +3,12 @@ import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import Logout from 'components/Logout'
+import Logo from 'components/Logo'
 import SERVICE_DETAILS from 'assets/data/servicesDetails'
 import { Expert } from 'store/slices/expertsSlice'
 import Select from 'components/inputs/select'
+import ExpertList from 'components/experts/ExpertsList'
+
 const DiscoverExperts: FunctionComponent = () => {
 	const [serviceName, setService] = useState('accounting')
 	const user = useSelector((state: RootState) => state.user)
@@ -21,7 +24,7 @@ const DiscoverExperts: FunctionComponent = () => {
 		{ value: 'stratigicFinance', display: 'Stratigic Finance experts' }
 	]
 
-	const { expertIDs } = SERVICE_DETAILS[serviceName]
+	const { expertIDs, displayName } = SERVICE_DETAILS[serviceName]
 
 	const experts = Object.values(allExperts).filter(expert =>
 		expertIDs.includes(expert.id)
@@ -29,11 +32,12 @@ const DiscoverExperts: FunctionComponent = () => {
 
 	return (
 		<Container>
+			<Logo />
 			<Logout />
 			<Header>
-				Hi {username}, select the service&#40;s&#41; you would like to have
+				Discover Experts
 			</Header>
-			<Select
+			<StyledSelect
 				handleSelect={(e: React.ChangeEvent<HTMLSelectElement>) =>
 					setService(
 						e.target.value as
@@ -44,7 +48,13 @@ const DiscoverExperts: FunctionComponent = () => {
 				}
 				value={serviceName}
 				options={SERVICES}
+				leftMargin={'3%'}
 			/>
+
+			<SubHeader>
+				{displayName} Experts
+			</SubHeader>
+			<ExpertList experts={experts} />
 		</Container>
 	)
 }
@@ -66,6 +76,24 @@ const Header = styled.div`
 	padding: 16px;
 	text-align: left;
 	margin-top: 10%;
+	color: #696868;
+`
+
+const SubHeader = styled.div`
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 25px;
+	letter-spacing: -0.408px;
+	color: #696868;
+	text-align: left;
+	padding: 16px;
+
+`
+
+const StyledSelect = styled(Select)`
+	margin-left: 3%;
 `
 
 export default DiscoverExperts

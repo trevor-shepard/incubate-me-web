@@ -268,6 +268,8 @@ const Container = styled.div`
 	padding: 20px;
 	height: 100vh;
 	overflow: scroll;
+	color: #696868;
+
 `
 const Error = styled.div`
 	border-radius: 2px;

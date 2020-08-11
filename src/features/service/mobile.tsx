@@ -47,9 +47,9 @@ const MobileService: FunctionComponent = () => {
 	return (
 		<Container>
 			<Back />
-			<Header>{displayName}</Header>
+			<Header>Online {displayName} Service</Header>
 			<Pricing>{price}</Pricing>
-			<SubHeader>Our {displayName} includes:</SubHeader>
+			<SubHeader>Our Online {displayName} Service includes:</SubHeader>
 			<DetailsContainer>{detailDisplays}</DetailsContainer>
 			<ExpertsContainer>
 				<ExpertsHeader>Recommended Accounting Service Experts</ExpertsHeader>
