@@ -9,8 +9,8 @@ const Logo = styled.img`
 	position: absolute;
 	width: 87px;
 	height: 17px;
-	left: 11px;
-	top: 10px;
+	left: 2%;
+	top: 2%;
 `
 
 export default MobilePrePurchase

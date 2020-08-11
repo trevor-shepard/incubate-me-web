@@ -50,6 +50,7 @@ const Container = styled.div`
 	right: 0; 
 	margin-left: auto; 
 	margin-right: auto; 
+	top: 10%;
 
 `
 

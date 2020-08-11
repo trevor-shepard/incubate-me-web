@@ -16,15 +16,15 @@ const ExpertIcon: FunctionComponent<ExpertIconProps> = ({
 	return (
 		<ExpertIconContainer>
 			<ProfilePic src={photo} alt="" />
-			{name}
-			{title}
+			<div>{name}</div>
+			<div>{title}</div>
 		</ExpertIconContainer>
 	)
 }
 
 const ExpertIconContainer = styled.div`
 	height: 80px;
-	width: 70px;
+	width: 90px;
 	display: flex;
 	justify-content: space-between;
 	font-family: Open Sans;

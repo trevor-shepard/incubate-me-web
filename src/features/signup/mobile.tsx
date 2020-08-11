@@ -97,7 +97,7 @@ const SignUp: FunctionComponent = () => {
 	return (
 		<Container>
 			<Logo />
-			<div onClick={() => setLogin(true)}>Login</div>
+			<LoginButton onClick={() => setLogin(true)}>Login</LoginButton>
 			{login && <Grey onClick={() => setLogin(false)} />}
 			{login && <Login />}
 			<Header>
@@ -357,7 +357,13 @@ const Grey = styled.div`
     position: absolute;
     left: 0;
     top: 0;
-
+`
+const LoginButton = styled.div`
+	position: absolute;
+	width: 87px;
+	height: 17px;
+	left: 78%;
+	top: 2%;
 `
 
 export default SignUp

@@ -16,8 +16,8 @@ const Logout = styled.div`
 	position: absolute;
 	width: 87px;
 	height: 17px;
-	left: 201px;
-	top: 10px;
+	left: 78%;
+	top: 2%;
 `
 
 export default Button

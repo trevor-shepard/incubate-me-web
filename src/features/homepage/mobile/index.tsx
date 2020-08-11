@@ -83,6 +83,9 @@ const MobileHomepage: FunctionComponent = () => {
 const Container = styled.div`
 	height: calc(100vh - 60px);
 	overflow: scroll;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 `
 
 const Header = styled.div`
@@ -126,7 +129,7 @@ const ServicesProgressContainer = styled.div`
 const ServicesContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 70%;
+	width: 80%;
 `
 const ProgressContainer = styled.div`
 	display: flex;
@@ -161,7 +164,8 @@ const ExpertsContainer = styled.div`
 	width: 100%;
 	text-align: left;
 	padding: 16px;
-	padding-left: 0
+	padding-left: 0;
+	margin-bottom: 10px;
 `
 
 const ExpertsHeader = styled.div`
