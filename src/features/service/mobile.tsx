@@ -16,6 +16,7 @@ interface LocationState {
 
 const MobileService: FunctionComponent = () => {
 	const user = useSelector((state: RootState) => state.user)
+	const allExperts = useSelector((state: RootState) => state.experts)
 	const history = useHistory()
 	const { state } = useLocation() as LocationState
 
@@ -30,7 +31,10 @@ const MobileService: FunctionComponent = () => {
 	if (!Object.keys(SERVICE_DETAILS).includes(service))
 		console.log(SERVICE_DETAILS)
 
-	const { displayName, price, details, experts } = SERVICE_DETAILS[service]
+	const { displayName, price, details, expertIds } = SERVICE_DETAILS[service]
+
+	const experts = Object.values(allExperts).filter((expert) => expertIds.includes(expert.id))
+	
 
 	const detailDisplays = details.map(detail => (
 		<Detail>

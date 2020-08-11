@@ -6,7 +6,7 @@ export interface Service {
 	displayName: string
 	price: string
 	details: string[]
-	experts: Expert[]
+	expertIds: string[]
 }
 
 export const accounting: Service = {
@@ -21,29 +21,12 @@ export const accounting: Service = {
 		'On-demand chat with your expert team',
 		'One hour per month video session with your expert team'
 	],
-	experts: [
-		{
-			bio:'CFO, CFA for various startups and SMBs. MBA from University of Michigan, BSc from Columbia University. Had a baby during COVID19.',
-			id: 'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
-			name: 'Manny Song',
-			email: 'me.song@gmail.com',
-			title: 'CFO, CFA'
-		},
-		{
-			bio:'Controller & CPA for various startups & SMBs. Started as an accounting and tax specialist at KPMG. BS from San Jose State University. Does needlepoint in her spare time.',
-			id: 'Q47HpkjiSmUoi0RLtzuVgSLpCtR2',
-			name: 'Amy Marcoccia',
-			email: 'amy@amaccountancy.com',
-			title: 'Controller & CPA'
-		},
-		{
-			bio:'Founder of Incubate-me. Previously VP of Finance & HR at Premise; MBA from Wharton Business School. A wannabe yogi, meditator and foodie.',
-			id: 'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
-			name: 'Alice Zhang',
-			email: 'alice4zhang@gmail.com',
-			title: 'VP of Finance'
-		},
+	expertIds: [
+		'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
+		'Q47HpkjiSmUoi0RLtzuVgSLpCtR2',
+		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
 	]
+		
 }
 
 export const humanResource: Service = {
@@ -60,28 +43,10 @@ export const humanResource: Service = {
 		'On-demand chat with your expert team',
 		'One hour per month video session with your expert team'
 	],
-	experts: [
-		{
-			bio:'CFO, CFA for various startups and SMBs. MBA from University of Michigan, BSc from Columbia University. Had a baby during COVID19.',
-			id: 'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
-			name: 'Manny Song',
-			email: 'me.song@gmail.com',
-			title: 'CFO, CFA'
-		},
-		{
-			bio:'Controller & CPA for various startups & SMBs. Started as an accounting and tax specialist at KPMG. BS from San Jose State University. Does needlepoint in her spare time.',
-			id: 'Q47HpkjiSmUoi0RLtzuVgSLpCtR2',
-			name: 'Amy Marcoccia',
-			email: 'amy@amaccountancy.com',
-			title: 'Controller & CPA'
-		},
-		{
-			bio:'Founder of Incubate-me. Previously VP of Finance & HR at Premise; MBA from Wharton Business School. A wannabe yogi, meditator and foodie.',
-			id: 'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
-			name: 'Alice Zhang',
-			email: 'alice4zhang@gmail.com',
-			title: 'VP of Finance'
-		},
+	expertIds: [
+		'Z39gavNVVDY3pb2p5J8tz9I3Xva2',
+		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
+
 	]
 }
 export const stratigicFinance: Service = {
@@ -98,28 +63,10 @@ export const stratigicFinance: Service = {
 		'On-demand chat with your expert team',
 		'One hour per month video session with your expert team'
 	],
-	experts: [
-		{
-			bio:'CFO, CFA for various startups and SMBs. MBA from University of Michigan, BSc from Columbia University. Had a baby during COVID19.',
-			id: 'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
-			name: 'Manny Song',
-			email: 'me.song@gmail.com',
-			title: 'CFO, CFA'
-		},
-		{
-			bio:'Controller & CPA for various startups & SMBs. Started as an accounting and tax specialist at KPMG. BS from San Jose State University. Does needlepoint in her spare time.',
-			id: 'Q47HpkjiSmUoi0RLtzuVgSLpCtR2',
-			name: 'Amy Marcoccia',
-			email: 'amy@amaccountancy.com',
-			title: 'Controller & CPA'
-		},
-		{
-			bio:'Founder of Incubate-me. Previously VP of Finance & HR at Premise; MBA from Wharton Business School. A wannabe yogi, meditator and foodie.',
-			id: 'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
-			name: 'Alice Zhang',
-			email: 'alice4zhang@gmail.com',
-			title: 'VP of Finance'
-		},
+	expertIds: [
+		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
+		'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
+		'Q47HpkjiSmUoi0RLtzuVgSLpCtR2'
 	]
 }
 

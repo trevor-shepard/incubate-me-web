@@ -9,11 +9,14 @@ import { Link } from 'react-router-dom'
 import {Expert} from 'store/slices/expertsSlice'
 
 const MobileHomepage: FunctionComponent = () => {
-	const { username, services } = useSelector(
+	const allExperts = useSelector((state: RootState) => state.experts)
+
+	const { username, services, expertIDs } = useSelector(
 		(state: RootState) => state.user
 	)
 
-	const experts = useSelector((state: RootState) => Object.values(state.experts) as Expert[])
+	const experts = Object.values(allExperts).filter((expert) => expertIDs.includes(expert.id))
+
 	return (
 		<Container>
 			<Logo />
@@ -67,7 +70,7 @@ const MobileHomepage: FunctionComponent = () => {
 			</ServicesProgressContainer>
 			<ExpertsContainer>
 				<ExpertsHeader>Your Team of Experts</ExpertsHeader>
-				{experts.length ? (
+				{experts.length > 0 ? (
 					<ExpertsDisplay experts={experts} />
 				) : (
 					<ExpertsEmptyMessage>
@@ -187,7 +190,8 @@ const ExpertsEmptyMessage = styled.div`
 	line-height: 22px;
 	letter-spacing: -0.408px;
 	color: #696868;
-	padding-right: 20px;
+	padding-right: 5%;
+	padding-left: 5%;
 `
 
 export default MobileHomepage

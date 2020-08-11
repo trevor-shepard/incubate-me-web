@@ -40,7 +40,7 @@ export interface UserState {
 		payrollManagment: boolean
 		healthcareManagment: boolean
 	}
-	experts: string[]
+	expertIDs: string[]
 	error: string | null
 }
 
@@ -73,7 +73,7 @@ export interface User {
 		payrollManagment: boolean
 		healthcareManagment: boolean
 	}
-	experts: string[]
+	expertIDs: string[]
 }
 
 interface UserWithoutId {
@@ -104,7 +104,7 @@ interface UserWithoutId {
 		payrollManagment: boolean
 		healthcareManagment: boolean
 	}
-	experts: string[]
+	expertIDs: string[]
 }
 
 const initialState: UserState = {
@@ -137,7 +137,7 @@ const initialState: UserState = {
 		payrollManagment: false,
 		healthcareManagment: false
 	},
-	experts: []
+	expertIDs: []
 }
 
 const user = createSlice({
@@ -182,7 +182,7 @@ const user = createSlice({
 					payrollManagment: false,
 					healthcareManagment: false
 				},
-				experts: []
+				expertIDs: []
 			}
 		},
 		userError(state, action: PayloadAction<string>) {

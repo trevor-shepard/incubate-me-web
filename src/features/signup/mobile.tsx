@@ -79,7 +79,7 @@ const SignUp: FunctionComponent = () => {
 						humanResource: false,
 						stratigicFinance: false
 					},
-					experts: []
+					expertIDs: []
 				},
 				password1
 			)
