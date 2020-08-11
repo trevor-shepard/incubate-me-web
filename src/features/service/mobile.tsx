@@ -15,7 +15,6 @@ interface LocationState {
 }
 
 const MobileService: FunctionComponent = () => {
-	const user = useSelector((state: RootState) => state.user)
 	const allExperts = useSelector((state: RootState) => state.experts)
 	const history = useHistory()
 	const { state } = useLocation() as LocationState
@@ -31,10 +30,11 @@ const MobileService: FunctionComponent = () => {
 	if (!Object.keys(SERVICE_DETAILS).includes(service))
 		console.log(SERVICE_DETAILS)
 
-	const { displayName, price, details, expertIds } = SERVICE_DETAILS[service]
+	const { displayName, price, details, expertIDs } = SERVICE_DETAILS[service]
 
-	const experts = Object.values(allExperts).filter((expert) => expertIds.includes(expert.id))
-	
+	const experts = Object.values(allExperts).filter(expert =>
+		expertIDs.includes(expert.id)
+	)
 
 	const detailDisplays = details.map(detail => (
 		<Detail>
@@ -148,8 +148,8 @@ const ExpertsHeader = styled.div`
 
 const PurchaseButton = styled.div`
 	font-family: Open Sans;
-	background: #E4BF7A;
-	border: 1px solid #DEDEDE;
+	background: #e4bf7a;
+	border: 1px solid #dedede;
 	box-sizing: border-box;
 	width: 343px;
 	height: 50px;
@@ -157,7 +157,7 @@ const PurchaseButton = styled.div`
 	font-weight: bold;
 	font-size: 17px;
 	line-height: 22px;
-	color: #FFFFFF;
+	color: #ffffff;
 	text-align: center;
 	display: flex;
 	justify-content: center;

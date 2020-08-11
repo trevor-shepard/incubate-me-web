@@ -7,7 +7,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import store from './store'
 import SignUp from './features/signup'
-import Login from './features/login'
 import Homepage from './features/homepage'
 import Service from './features/service'
 

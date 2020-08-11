@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useState } from 'react'
-import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux'
 import { signup } from 'store/slices/userSlice'
@@ -350,13 +349,13 @@ const SubmitContainer = styled.div`
 
 const Grey = styled.div`
 	height: 100vh;
-    width: 100vw;
-    z-index: 50;
-    opacity: 0.6;
-    background-color: #777375;
-    position: absolute;
-    left: 0;
-    top: 0;
+	width: 100vw;
+	z-index: 50;
+	opacity: 0.6;
+	background-color: #777375;
+	position: absolute;
+	left: 0;
+	top: 0;
 `
 const LoginButton = styled.div`
 	position: absolute;

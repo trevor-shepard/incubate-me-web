@@ -1,12 +1,9 @@
-import {Expert} from 'store/slices/expertsSlice'
-
-
 export interface Service {
 	name: string
 	displayName: string
 	price: string
 	details: string[]
-	expertIds: string[]
+	expertIDs: string[]
 }
 
 export const accounting: Service = {
@@ -21,12 +18,11 @@ export const accounting: Service = {
 		'On-demand chat with your expert team',
 		'One hour per month video session with your expert team'
 	],
-	expertIds: [
+	expertIDs: [
 		'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
 		'Q47HpkjiSmUoi0RLtzuVgSLpCtR2',
-		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
+		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2'
 	]
-		
 }
 
 export const humanResource: Service = {
@@ -43,11 +39,7 @@ export const humanResource: Service = {
 		'On-demand chat with your expert team',
 		'One hour per month video session with your expert team'
 	],
-	expertIds: [
-		'Z39gavNVVDY3pb2p5J8tz9I3Xva2',
-		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
-
-	]
+	expertIDs: ['Z39gavNVVDY3pb2p5J8tz9I3Xva2', 'TGJ3tIDZn9dC84rKRYTfn6uyNYv2']
 }
 export const stratigicFinance: Service = {
 	name: 'stratigicFinance',
@@ -63,7 +55,7 @@ export const stratigicFinance: Service = {
 		'On-demand chat with your expert team',
 		'One hour per month video session with your expert team'
 	],
-	expertIds: [
+	expertIDs: [
 		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
 		'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
 		'Q47HpkjiSmUoi0RLtzuVgSLpCtR2'

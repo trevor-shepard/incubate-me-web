@@ -1,10 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import { useLocation } from 'react-router-dom'
 
 const DesktopService: FunctionComponent = () => {
-	const { search } = useLocation()
-
 	return <Container></Container>
 }
 

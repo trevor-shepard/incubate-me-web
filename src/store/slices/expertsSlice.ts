@@ -14,9 +14,7 @@ export interface ExpertState {
 	[id: string]: Expert
 }
 
-const initialState: ExpertState = {
-
-}
+const initialState: ExpertState = {}
 
 const experts = createSlice({
 	name: 'experts',

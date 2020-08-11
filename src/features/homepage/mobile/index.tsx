@@ -6,7 +6,6 @@ import Logo from 'components/Logo'
 import Logout from 'components/Logout'
 import ExpertsDisplay from 'components/experts/ExpertsDisplay'
 import { Link } from 'react-router-dom'
-import {Expert} from 'store/slices/expertsSlice'
 
 const MobileHomepage: FunctionComponent = () => {
 	const allExperts = useSelector((state: RootState) => state.experts)
@@ -15,7 +14,9 @@ const MobileHomepage: FunctionComponent = () => {
 		(state: RootState) => state.user
 	)
 
-	const experts = Object.values(allExperts).filter((expert) => expertIDs.includes(expert.id))
+	const experts = Object.values(allExperts).filter(expert =>
+		expertIDs.includes(expert.id)
+	)
 
 	return (
 		<Container>
@@ -173,7 +174,7 @@ const ExpertsContainer = styled.div`
 
 const ExpertsHeader = styled.div`
 	font-family: Open Sans;
-	font-style: normal; 
+	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
 	line-height: 22px;

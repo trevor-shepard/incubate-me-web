@@ -8,16 +8,20 @@ interface ExpertsDisplayProps {
 }
 
 const Feature: FunctionComponent<ExpertsDisplayProps> = ({ experts }) => {
-	return <ExpertsContainer>
-		{experts.slice(0, 3).map(expert => <ExpertIcon expert={expert} />)}
-	</ExpertsContainer>
+	return (
+		<ExpertsContainer>
+			{experts.slice(0, 3).map(expert => (
+				<ExpertIcon expert={expert} />
+			))}
+		</ExpertsContainer>
+	)
 }
 
 const ExpertsContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	align-items: center
+	align-items: center;
 `
 
 export default Feature

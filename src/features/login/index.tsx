@@ -3,8 +3,6 @@ import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux'
 import { login } from 'store/slices/userSlice'
 
-// import LinkedInButton from 'components/LinkedIn/LinkedInButton'
-import { Link } from 'react-router-dom'
 const Login: FunctionComponent = () => {
 	const dispatch = useDispatch()
 	const [email, setEmail] = useState('')
@@ -18,19 +16,22 @@ const Login: FunctionComponent = () => {
 
 	return (
 		<Container>
-			<Header>
-				Welcome to Incubate-me
-			</Header>
-			
-			<Input placeholder={'Email'} value={email} onChange={e => setEmail(e.target.value)} />
-		
-		
-			
-			<Input placeholder={'Password'} type='password' value={password} onChange={e => setPassword(e.target.value)} />
-		
-			<SubmitButton onClick={handleLogin}>Submit</SubmitButton>
-			
+			<Header>Welcome to Incubate-me</Header>
 
+			<Input
+				placeholder={'Email'}
+				value={email}
+				onChange={e => setEmail(e.target.value)}
+			/>
+
+			<Input
+				placeholder={'Password'}
+				type="password"
+				value={password}
+				onChange={e => setPassword(e.target.value)}
+			/>
+
+			<SubmitButton onClick={handleLogin}>Submit</SubmitButton>
 		</Container>
 	)
 }
@@ -46,12 +47,11 @@ const Container = styled.div`
 	position: absolute;
 	opacity: 1;
 	background-color: white;
-	left: 0; 
-	right: 0; 
-	margin-left: auto; 
-	margin-right: auto; 
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
 	top: 10%;
-
 `
 
 const Header = styled.div`
@@ -70,23 +70,22 @@ const Header = styled.div`
 const Input = styled.input`
 	width: 80%;
 	font-family: Poppins;
-    font-size: 13px;
-    line-height: 22px;
+	font-size: 13px;
+	line-height: 22px;
 `
 
 const SubmitButton = styled.button`
 	font-family: Poppins;
 	background-color: #3e3e3e;
-    border-radius: 3px;
-    color: white;
-    display: block;
-    width: 30%;
-    font-weight: 500;
-    line-height: 22px;
-    padding: 11px;
-    margin-bottom: 22px;
-    text-transform: capitalize;
+	border-radius: 3px;
+	color: white;
+	display: block;
+	width: 30%;
+	font-weight: 500;
+	line-height: 22px;
+	padding: 11px;
+	margin-bottom: 22px;
+	text-transform: capitalize;
 `
-
 
 export default Login

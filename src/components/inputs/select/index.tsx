@@ -10,7 +10,7 @@ interface SelectInputProps {
 	handleSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void
 	value: string
 	options: Option[]
-	label: string
+	label?: string
 	height?: string
 	width?: string
 }
@@ -28,7 +28,7 @@ const SelectInput: FunctionComponent<SelectInputProps> = ({
 	))
 	return (
 		<Container width={width ? width : '90%'}>
-			<Label>{label}</Label>
+			{label && <Label>{label}</Label>}
 			<Select onChange={handleSelect} value={value}>
 				{optionElements}
 			</Select>

@@ -1,20 +1,31 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import Logout from 'components/Logout'
 import SERVICE_DETAILS from 'assets/data/servicesDetails'
-import {Expert} from 'store/slices/expertsSlice'
+import { Expert } from 'store/slices/expertsSlice'
+import Select from 'components/inputs/select'
 const DiscoverExperts: FunctionComponent = () => {
-	const user  = useSelector(
-		(state: RootState) => state.user
+	const [serviceName, setService] = useState('accounting')
+	const user = useSelector((state: RootState) => state.user)
+	const { username } = user
+
+	const allExperts = useSelector(
+		(state: RootState) => Object.values(state.experts) as Expert[]
 	)
-	const { username, services, expertIDs } = user
 
-	const allExperts = useSelector((state: RootState) => Object.values(state.experts)as Expert[])
+	const SERVICES = [
+		{ value: 'accounting', display: 'Accounting experts' },
+		{ value: 'humanResource', display: 'Human Resource experts' },
+		{ value: 'stratigicFinance', display: 'Stratigic Finance experts' }
+	]
 
-	const experts = Object.values(allExperts).filter((expert) => expertIDs.includes(expert.id))
+	const { expertIDs } = SERVICE_DETAILS[serviceName]
 
+	const experts = Object.values(allExperts).filter(expert =>
+		expertIDs.includes(expert.id)
+	)
 
 	return (
 		<Container>
@@ -22,7 +33,18 @@ const DiscoverExperts: FunctionComponent = () => {
 			<Header>
 				Hi {username}, select the service&#40;s&#41; you would like to have
 			</Header>
-			
+			<Select
+				handleSelect={(e: React.ChangeEvent<HTMLSelectElement>) =>
+					setService(
+						e.target.value as
+							| 'accounting'
+							| 'humanResource'
+							| 'stratigicFinance'
+					)
+				}
+				value={serviceName}
+				options={SERVICES}
+			/>
 		</Container>
 	)
 }
