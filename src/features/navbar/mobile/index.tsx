@@ -1,27 +1,29 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { Link, useLocation } from 'react-router-dom'
-import { Chat, Experts } from 'assets/icons'
+import { Chat, Experts, Home, Profile } from 'assets/icons'
 
 const MobileNav: FunctionComponent = () => {
 	const { pathname } = useLocation()
 
+	useEffect(() => window.scrollTo(0, 0), [pathname])
+
 	return (
 		<Navbar>
-			<Tab to="/">
-				<TabIcon current={pathname === '/'} src={Chat} alt=" " />
+			<Tab current={pathname === '/'} to="/">
+				<TabIcon src={Home} alt=" " />
 				Home
 			</Tab>
-			<Tab to="/experts">
-				<TabIcon src={Experts} current={pathname === '/experts'} alt=" " />
+			<Tab current={pathname === '/experts'} to="/experts">
+				<TabIcon src={Experts} alt=" " />
 				Experts
 			</Tab>
-			<Tab to="/chat">
-				<TabIcon current={pathname === '/chat'} src={Chat} alt=" " />
+			<Tab current={pathname === '/chat'} to="/chat">
+				<TabIcon src={Chat} alt=" " />
 				Chat
 			</Tab>
-			<Tab to="/profile">
-				<TabIcon current={pathname === '/profile'} src={Chat} alt=" " />
+			<Tab current={pathname === '/profile'} to="/profile">
+				<TabIcon src={Profile} alt=" " />
 				Profile
 			</Tab>
 		</Navbar>
@@ -39,21 +41,27 @@ const Navbar = styled.div`
 	align-items: center;
 	position: fixed;
 	bottom: 10px;
+	opacity: 1;
+	background-color: #ffff;
 `
 interface TabIconProps {
 	current: boolean
 }
 
-const Tab = styled(Link)`
+const Tab = styled(Link)<TabIconProps>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	text-decoration: none;
 	font-size: 10px;
+	${({ current }) => current && 'border: 2px solid #e4bf7a'};
+	padding: 5px;
+	border-radius: 30px;
+	height: 36px;
+	width: 36px;
 `
 
-const TabIcon = styled.img<TabIconProps>`
+const TabIcon = styled.img`
 	height: 20px;
 	width: 20px;
-	background-color: ${({ current }) => (current ? '#e4bf7a' : 'transparent')};
 `

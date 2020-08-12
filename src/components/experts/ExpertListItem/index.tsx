@@ -61,7 +61,7 @@ const ProfilePic = styled.img`
 	border-radius: 40px;
 	height: 60px;
 	width: 60px;
-	margin-left: 2%;
+	margin-left: 4%;
 `
 
 const ExpertTitle = styled.div`

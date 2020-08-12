@@ -8,8 +8,8 @@ export interface UserState {
 	username: string | null
 	email: string | null
 	uid: string | null
-	linkedIn?: string | null
-	companyUrl?: string | null
+	linkedIn: string | null
+	companyUrl: string | null
 	fundingStage:
 		| 'self/family'
 		| 'bank'
@@ -48,8 +48,8 @@ export interface User {
 	username: string
 	uid: string
 	email: string
-	linkedIn?: string | null
-	companyUrl: string | null
+	linkedIn: string
+	companyUrl: string
 	fundingStage: 'self/family' | 'bank' | 'angel' | 'seed' | 'series-a' | 'other'
 	services: {
 		accounting: boolean
@@ -79,9 +79,9 @@ export interface User {
 interface UserWithoutId {
 	username: string
 	email: string
-	linkedIn?: string | null
+	linkedIn: string
 	fundingStage: 'self/family' | 'bank' | 'angel' | 'seed' | 'series-a' | 'other'
-	companyUrl: string | null
+	companyUrl: string
 	services: {
 		accounting: boolean
 		humanResource: boolean
@@ -105,6 +105,35 @@ interface UserWithoutId {
 		healthcareManagment: boolean
 	}
 	expertIDs: string[]
+}
+
+interface UserUpdate {
+	linkedIn?: string
+	fundingStage?:
+		| 'self/family'
+		| 'bank'
+		| 'angel'
+		| 'seed'
+		| 'series-a'
+		| 'other'
+	companyUrl?: string
+	neededExpertise?: {
+		bookKeeping: boolean
+		accounting: boolean
+		cpa: boolean
+		tresauryManagment: boolean
+		paymentManagement: boolean
+		receivablesManagment: boolean
+		fluxAnalysisOfMonthlyFinancialStatements: boolean
+		budgetingPlanning: boolean
+		financialModeling: boolean
+		alternativeFinancingGovFinancing: boolean
+		CFOAdvisory: boolean
+		Management1099: boolean
+		w2Onboarding: boolean
+		payrollManagment: boolean
+		healthcareManagment: boolean
+	}
 }
 
 const initialState: UserState = {
@@ -145,10 +174,10 @@ const user = createSlice({
 	initialState,
 	reducers: {
 		recieveUser(state, action: PayloadAction<User>) {
-			return (state = {
+			return {
 				...action.payload,
 				error: null
-			})
+			}
 		},
 		logout() {
 			firebase.auth().signOut()
@@ -185,6 +214,12 @@ const user = createSlice({
 				expertIDs: []
 			}
 		},
+		updateUser(state, action: PayloadAction<UserUpdate>) {
+			return {
+				...state,
+				...action.payload
+			}
+		},
 		userError(state, action: PayloadAction<string>) {
 			state.error = action.payload
 			return state
@@ -192,7 +227,7 @@ const user = createSlice({
 	}
 })
 
-export const { recieveUser, userError, logout } = user.actions
+export const { recieveUser, userError, logout, updateUser } = user.actions
 
 export default user.reducer
 
@@ -253,6 +288,22 @@ export const signup = (
 		)
 	} catch (error) {
 		dispatch(userError(error.message))
+	}
+}
+
+export const update = (
+	id: string,
+	update: UserUpdate
+): AppThunk => async dispatch => {
+	try {
+		await db
+			.collection('users')
+			.doc(id)
+			.update(update)
+		dispatch(updateUser(update))
+	} catch (error) {
+		dispatch(userError(error.message))
+
 	}
 }
 

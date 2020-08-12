@@ -43,7 +43,6 @@ const MobileService: FunctionComponent = () => {
 		</Detail>
 	))
 
-	// debugger
 	return (
 		<Container>
 			<Back />

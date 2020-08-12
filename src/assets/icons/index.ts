@@ -1,4 +1,6 @@
 export { default as Chat } from './chat.png'
 export { default as Experts } from './experts.png'
-export { default as checkmark } from './checkmark.png'
 export { default as backArrow } from './backArrow.png'
+export { default as checkmark } from './checkmark.png'
+export { default as Home } from './home.png'
+export { default as Profile } from './profile.png'

@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles/App.css'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 
@@ -11,6 +11,7 @@ import Homepage from 'features/homepage'
 import Service from 'features/service'
 import Experts from 'features/experts'
 import Expert from 'features/expert'
+import Profile from 'features/profile'
 
 import { AuthRoute, ProtectedRoute } from './utils/routeUtils'
 // import LinkedInPopUp from 'components/LinkedIn/LinkedInPopUp'
@@ -31,6 +32,7 @@ function App() {
 							<ProtectedRoute path="/service" exact component={Service} />
 							<ProtectedRoute path="/expert" exact component={Expert} />
 							<ProtectedRoute path="/experts" exact component={Experts} />
+							<ProtectedRoute path="/profile" exact component={Profile} />
 							<ProtectedRoute path="/" component={Homepage} />
 						</Switch>
 						<ProtectedRoute component={MobileNav} />
