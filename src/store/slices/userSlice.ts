@@ -4,6 +4,7 @@ import { AppThunk } from '..'
 
 import firebase, { auth, db } from 'utils/firebase'
 import { fetchExperts } from './expertsSlice'
+import { fetchChats } from './chatsSlice'
 export interface UserState {
 	username: string | null
 	email: string | null
@@ -41,6 +42,7 @@ export interface UserState {
 		healthcareManagment: boolean
 	}
 	expertIDs: string[]
+	chatIDs: string[]
 	error: string | null
 }
 
@@ -74,6 +76,7 @@ export interface User {
 		healthcareManagment: boolean
 	}
 	expertIDs: string[]
+	chatIDs: string[]
 }
 
 interface UserWithoutId {
@@ -104,6 +107,7 @@ interface UserWithoutId {
 		payrollManagment: boolean
 		healthcareManagment: boolean
 	}
+	chatIDs: string[]
 	expertIDs: string[]
 }
 
@@ -166,6 +170,7 @@ const initialState: UserState = {
 		payrollManagment: false,
 		healthcareManagment: false
 	},
+	chatIDs: [],
 	expertIDs: []
 }
 
@@ -211,7 +216,8 @@ const user = createSlice({
 					payrollManagment: false,
 					healthcareManagment: false
 				},
-				expertIDs: []
+				expertIDs: [],
+				chatIDs: []
 			}
 		},
 		updateUser(state, action: PayloadAction<UserUpdate>) {
@@ -252,6 +258,7 @@ export const login = (
 			.get()
 			.then(doc => doc.data())) as User
 
+		dispatch(fetchChats(user.chatIDs))
 		dispatch(recieveUser(user))
 	} catch (error) {
 		dispatch(userError(error.message))
@@ -303,7 +310,6 @@ export const update = (
 		dispatch(updateUser(update))
 	} catch (error) {
 		dispatch(userError(error.message))
-
 	}
 }
 

@@ -11,6 +11,7 @@ export interface Expert {
 	linkedInProfile?: string
 	location: string
 	expertise: string[]
+	chatIDs: string[]
 }
 
 export interface ExpertState {

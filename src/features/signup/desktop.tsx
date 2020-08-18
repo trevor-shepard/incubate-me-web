@@ -76,7 +76,8 @@ const SignUp: FunctionComponent = () => {
 						humanResource: false,
 						stratigicFinance: false
 					},
-					expertIDs: []
+					expertIDs: [],
+					chatIDs: []
 				},
 				password1
 			)

@@ -11,12 +11,12 @@ import Checkbox from 'components/inputs/checkbox'
 import Logo from 'components/Logo'
 
 const Profile: FunctionComponent = () => {
-    const user = useSelector((state: RootState) => state.user as User)
-    const dispatch = useDispatch()
+	const user = useSelector((state: RootState) => state.user as User)
+	const dispatch = useDispatch()
 	const history = useHistory()
-    
+
 	const [linkedIn, linkedInSet] = useState(user.linkedIn)
-    const [companyUrl, companyUrlSet] = useState(user.companyUrl)
+	const [companyUrl, companyUrlSet] = useState(user.companyUrl)
 	const [fundingStage, fundingStageSet] = useState<
 		'self/family' | 'bank' | 'angel' | 'seed' | 'series-a' | 'other'
 	>(user.fundingStage)
@@ -26,64 +26,83 @@ const Profile: FunctionComponent = () => {
 	const [bookKeeping, bookKeepingSet] = useState(neededExpertise.bookKeeping)
 	const [accounting, accountingSet] = useState(neededExpertise.accounting)
 	const [cpa, cpaSet] = useState(false)
-	const [tresauryManagment, tresauryManagmentSet] = useState(neededExpertise.tresauryManagment)
-	const [paymentManagement, paymentManagementSet] = useState(neededExpertise.paymentManagement)
-	const [receivablesManagment, receivablesManagmentSet] = useState(neededExpertise.receivablesManagment)
+	const [tresauryManagment, tresauryManagmentSet] = useState(
+		neededExpertise.tresauryManagment
+	)
+	const [paymentManagement, paymentManagementSet] = useState(
+		neededExpertise.paymentManagement
+	)
+	const [receivablesManagment, receivablesManagmentSet] = useState(
+		neededExpertise.receivablesManagment
+	)
 	const [
 		fluxAnalysisOfMonthlyFinancialStatements,
 		fluxAnalysisOfMonthlyFinancialStatementsSet
 	] = useState(neededExpertise.fluxAnalysisOfMonthlyFinancialStatements)
-	const [budgetingPlanning, budgetingPlanningSet] = useState(neededExpertise.budgetingPlanning)
-	const [financialModeling, financialModelingSet] = useState(neededExpertise.financialModeling)
+	const [budgetingPlanning, budgetingPlanningSet] = useState(
+		neededExpertise.budgetingPlanning
+	)
+	const [financialModeling, financialModelingSet] = useState(
+		neededExpertise.financialModeling
+	)
 	const [
 		alternativeFinancingGovFinancing,
 		alternativeFinancingGovFinancingSet
 	] = useState(neededExpertise.alternativeFinancingGovFinancing)
 	const [CFOAdvisory, CFOAdvisorySet] = useState(neededExpertise.CFOAdvisory)
-	const [Management1099, Management1099Set] = useState(neededExpertise.Management1099)
+	const [Management1099, Management1099Set] = useState(
+		neededExpertise.Management1099
+	)
 	const [w2Onboarding, w2OnboardingSet] = useState(neededExpertise.w2Onboarding)
-	const [payrollManagment, payrollManagmentSet] = useState(neededExpertise.payrollManagment)
-	const [healthcareManagment, healthcareManagmentSet] = useState(neededExpertise.healthcareManagment)
+	const [payrollManagment, payrollManagmentSet] = useState(
+		neededExpertise.payrollManagment
+	)
+	const [healthcareManagment, healthcareManagmentSet] = useState(
+		neededExpertise.healthcareManagment
+	)
 
 	const [error, setError] = useState('')
 
-
 	const isURL = (str: string) => {
-		var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-		'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
-		'((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-		'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-		'(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-		'(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-		return pattern.test(str);
-	  }
+		var pattern = new RegExp(
+			'^(https?:\\/\\/)?' + // protocol
+			'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+			'((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+			'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+			'(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+				'(\\#[-a-z\\d_]*)?$',
+			'i'
+		) // fragment locator
+		return pattern.test(str)
+	}
 
 	const handleUpdate = async () => {
-
 		let payload = {}
 
-		if (linkedIn !== user.linkedIn) payload = {...payload, linkedIn}
+		if (linkedIn !== user.linkedIn) payload = { ...payload, linkedIn }
 		if (companyUrl !== user.companyUrl) {
 			if (!isURL(companyUrl)) return setError('please provide a valid url')
-			payload = {...payload, companyUrl}
+			payload = { ...payload, companyUrl }
 		}
-		if (fundingStage !== user.fundingStage) payload = {...payload, fundingStage}
+		if (fundingStage !== user.fundingStage)
+			payload = { ...payload, fundingStage }
 
-		type Expertise = 'bookKeeping' |
-		'accounting' |
-		'cpa' |
-		'tresauryManagment' |
-		'paymentManagement' |
-		'receivablesManagment' |
-		'fluxAnalysisOfMonthlyFinancialStatements' |
-		'budgetingPlanning' |
-		'financialModeling' |
-		'alternativeFinancingGovFinancing' |
-		'CFOAdvisory' |
-		'Management1099' |
-		'w2Onboarding' |
-		'payrollManagment' |
-		'healthcareManagment'
+		type Expertise =
+			| 'bookKeeping'
+			| 'accounting'
+			| 'cpa'
+			| 'tresauryManagment'
+			| 'paymentManagement'
+			| 'receivablesManagment'
+			| 'fluxAnalysisOfMonthlyFinancialStatements'
+			| 'budgetingPlanning'
+			| 'financialModeling'
+			| 'alternativeFinancingGovFinancing'
+			| 'CFOAdvisory'
+			| 'Management1099'
+			| 'w2Onboarding'
+			| 'payrollManagment'
+			| 'healthcareManagment'
 
 		const neededExpertiseUpdate = {
 			bookKeeping,
@@ -103,20 +122,25 @@ const Profile: FunctionComponent = () => {
 			healthcareManagment
 		}
 
-		
-
 		const expertiseKeys = Object.keys(neededExpertise) as Expertise[]
-		
-		const expertiseUpdate = expertiseKeys.some((expertise) => neededExpertise[expertise] !== neededExpertiseUpdate[expertise])
 
-		if (expertiseUpdate) payload = {...payload, neededExpertise: {
-			...neededExpertiseUpdate
-		}}
-		
-		if (Object.keys(payload).length > 0 ) await dispatch(update(user.uid, payload))
+		const expertiseUpdate = expertiseKeys.some(
+			expertise =>
+				neededExpertise[expertise] !== neededExpertiseUpdate[expertise]
+		)
+
+		if (expertiseUpdate)
+			payload = {
+				...payload,
+				neededExpertise: {
+					...neededExpertiseUpdate
+				}
+			}
+
+		if (Object.keys(payload).length > 0)
+			await dispatch(update(user.uid, payload))
 
 		history.push('/')
-
 	}
 	const FUNDING_STAGES = [
 		{ value: 'self/family', display: 'Self / Friends & Family Funded,' },
@@ -130,11 +154,9 @@ const Profile: FunctionComponent = () => {
 	return (
 		<Container>
 			<Logo />
-			<Header>
-				Update your profile
-			</Header>
+			<Header>Update your profile</Header>
 			<SubHeader>
-				Create your profile to make yourself discoverable by experts 
+				Create your profile to make yourself discoverable by experts
 			</SubHeader>
 			{error && <Error>{error}</Error>}
 
@@ -311,7 +333,7 @@ const SubHeader = styled.div`
 	font-size: 16px;
 	line-height: 25px;
 	letter-spacing: -0.408px;
-	color: #9F9F9F;
+	color: #9f9f9f;
 	width: 90%;
 	margin-top: none;
 	text-align: left;
