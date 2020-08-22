@@ -3,7 +3,7 @@ import { AppThunk } from '..'
 import { db } from 'utils/firebase'
 import { Expert } from './expertsSlice'
 import { convertTimestamp, Timestamp } from 'utils/dateUtils'
-import { Message } from 'store/slices/conversationsSlice'
+import { Message, recieveConversation, fetchConversation } from 'store/slices/conversationsSlice'
 
 export interface Chat {
 	id: string
@@ -80,12 +80,13 @@ export const fetchChat = (chatID: string): AppThunk => async dispatch => {
 
 export const fetchChats = (chatIDs: string[]): AppThunk => async dispatch => {
 	try {
+		if (chatIDs.length === 0) return 
 		const chats = await db
 			.collection('chats')
 			.where('id', 'in', chatIDs)
 			.get()
 			.then(querySnapshot => {
-				const values: Chat[] = []
+				const values: {[id: string]: Chat} = {}
 				querySnapshot.forEach(doc => {
 					const chat = doc.data() as DatabaseChat
 					const participants = Object.keys(chat.participants).reduce(
@@ -97,37 +98,24 @@ export const fetchChats = (chatIDs: string[]): AppThunk => async dispatch => {
 						},
 						{}
 					)
-					values.push({
+					values[chat.id] ={
 						...chat,
 						participants
-					})
+					}
 				})
 
 				return values
 			})
-
-		for (const chat of chats) {
-			db.collection('chats')
-				.doc(chat.id)
-				.collection('conversation')
-				.get()
-				.then(querySnapshot => {
-					const messages: Message[] = []
-
-					querySnapshot.forEach(doc => {
-						const message = doc.data() as Message
-
-						messages.push(message)
-					})
-
-					dispatch(
-						recieveChat({
-							...chat
-						})
-					)
-				})
+		
+		for (const {id} of Object.values(chats)) {
+			
+			dispatch(fetchConversation(id))
 		}
-	} catch (e) {}
+
+		dispatch(recieveChats(chats))
+	} catch (e) {
+		
+	}
 }
 
 export const createChat = (experts: Expert[]): AppThunk => async (
@@ -173,6 +161,11 @@ export const createChat = (experts: Expert[]): AppThunk => async (
 		}
 
 		dispatch(recieveChat(chat))
+		dispatch(recieveConversation({[chat.id]: {
+
+		}}))
+
+
 	} catch (e) {}
 }
 

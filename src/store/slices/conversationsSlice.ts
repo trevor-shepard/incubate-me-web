@@ -53,8 +53,12 @@ export const fetchConversation = (
 				})
 			}
 
-			return conversation
+			
+
+			return messages
 		})
+
+	
 	dispatch(
 		recieveConversation({
 			[chatID]: conversation

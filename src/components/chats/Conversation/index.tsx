@@ -12,7 +12,6 @@ const Conversation: FunctionComponent<Props> = ({ chatID }) => {
 	const conversation = useSelector(
 		(state: RootState) => state.conversations[chatID]
 	)
-
 	const messages = Object.values(conversation)
 		.sort((a, b) => (a.date > b.date ? -1 : a.date < b.date ? 1 : 0))
 		.map((message, i) => (
