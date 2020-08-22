@@ -36,8 +36,8 @@ const MobileService: FunctionComponent = () => {
 		expertIDs.includes(expert.id)
 	)
 
-	const detailDisplays = details.map(detail => (
-		<Detail>
+	const detailDisplays = details.map((detail, i) => (
+		<Detail key={`${i}-key`}>
 			<Checkmark src={checkmark} alt="checkmark" />
 			<DetailContent>{detail}</DetailContent>
 		</Detail>

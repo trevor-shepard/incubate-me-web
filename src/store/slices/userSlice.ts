@@ -186,8 +186,7 @@ const user = createSlice({
 				error: null
 			}
 		},
-		clear(state, action: PayloadAction) {
-			debugger
+		clear() {
 			firebase.auth().signOut()
 			return {
 				username: null,

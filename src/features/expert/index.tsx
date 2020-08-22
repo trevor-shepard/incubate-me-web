@@ -26,8 +26,8 @@ const MobileService: FunctionComponent = () => {
 		state.id
 	]
 
-	const expertiseTags = expertise.map(expertise => (
-		<ExpertExpertise>{expertise}</ExpertExpertise>
+	const expertiseTags = expertise.map((expertise, i) => (
+		<ExpertExpertise key={`${i}- key`}>{expertise}</ExpertExpertise>
 	))
 
 	const photo = ExpertProfilePictures[state.id]
