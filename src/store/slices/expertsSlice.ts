@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '..'
 import { db } from 'utils/firebase'
-
+import { createChat } from 'store/slices/chatsSlice'
 export interface Expert {
 	bio: string
 	id: string
@@ -27,13 +27,13 @@ const experts = createSlice({
 		recieveExperts(state, action: PayloadAction<ExpertState>) {
 			return action.payload
 		},
-		logout() {
+		clearExperts() {
 			return {}
 		}
 	}
 })
 
-export const { recieveExperts } = experts.actions
+export const { recieveExperts, clearExperts } = experts.actions
 
 export const fetchExperts = (): AppThunk => async dispatch => {
 	try {
@@ -53,6 +53,29 @@ export const fetchExperts = (): AppThunk => async dispatch => {
 	} catch (e) {
 		console.log('error retreiving experts')
 	}
+}
+
+export const addExpert = (id: string): AppThunk => async (
+	dispatch,
+	getState
+) => {
+	try {
+		const {
+			user: { expertIDs, uid },
+			experts
+		} = getState()
+
+		const expert = experts[id]
+
+		await db
+			.collection('users')
+			.doc(uid as string)
+			.update({
+				expertIDs: [...expertIDs, id]
+			})
+
+		await dispatch(createChat([expert]))
+	} catch (error) {}
 }
 
 export default experts.reducer

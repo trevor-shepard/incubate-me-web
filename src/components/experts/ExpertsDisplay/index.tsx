@@ -10,8 +10,8 @@ interface ExpertsDisplayProps {
 const Feature: FunctionComponent<ExpertsDisplayProps> = ({ experts }) => {
 	return (
 		<ExpertsContainer>
-			{experts.slice(0, 3).map(expert => (
-				<ExpertIcon expert={expert} />
+			{experts.slice(0, 3).map((expert, i) => (
+				<ExpertIcon key={`expert-icon-${i}`} expert={expert} />
 			))}
 		</ExpertsContainer>
 	)

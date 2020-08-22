@@ -10,19 +10,19 @@ const MobileNav: FunctionComponent = () => {
 
 	return (
 		<Navbar>
-			<Tab current={pathname === '/'} to="/">
+			<Tab current={pathname === '/' ? 'true' : 'false'} to="/">
 				<TabIcon src={Home} alt=" " />
 				Home
 			</Tab>
-			<Tab current={pathname === '/experts'} to="/experts">
+			<Tab current={pathname === '/experts' ? 'true' : 'false'} to="/experts">
 				<TabIcon src={Experts} alt=" " />
 				Experts
 			</Tab>
-			<Tab current={pathname === '/chat'} to="/chat">
+			<Tab current={pathname === '/chats' ? 'true' : 'false'} to="/chats">
 				<TabIcon src={Chat} alt=" " />
 				Chat
 			</Tab>
-			<Tab current={pathname === '/profile'} to="/profile">
+			<Tab current={pathname === '/profile' ? 'true' : 'false'} to="/profile">
 				<TabIcon src={Profile} alt=" " />
 				Profile
 			</Tab>
@@ -45,7 +45,7 @@ const Navbar = styled.div`
 	background-color: #ffff;
 `
 interface TabIconProps {
-	current: boolean
+	current: string
 }
 
 const Tab = styled(Link)<TabIconProps>`
@@ -54,7 +54,7 @@ const Tab = styled(Link)<TabIconProps>`
 	align-items: center;
 	text-decoration: none;
 	font-size: 10px;
-	${({ current }) => current && 'border: 2px solid #e4bf7a'};
+	${({ current }) => current === 'true' && 'border: 2px solid #e4bf7a'};
 	padding: 5px;
 	border-radius: 30px;
 	height: 36px;

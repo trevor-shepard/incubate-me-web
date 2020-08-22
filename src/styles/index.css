@@ -13,6 +13,10 @@ body {
 	font-family: 'Poppins';
 	src: local('Poppins'), url(./fonts/Poppins-Regular.ttf) format('truetype');
 }
+@font-face {
+	font-family: 'Arimo';
+	src: local('Arimo'), url(./fonts/Arimo-Regular.ttf) format('truetype');
+}
 
 code {
 	font-family: 'Open Sans', source-code-pro, Menlo, Monaco, Consolas,

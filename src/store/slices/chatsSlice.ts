@@ -1,18 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '..'
 import { db } from 'utils/firebase'
-import { User } from './userSlice'
 import { Expert } from './expertsSlice'
 import { convertTimestamp, Timestamp } from 'utils/dateUtils'
-export interface Message {
-	senderID: string
-	text: string
-	sent: Date
-}
+import { Message } from 'store/slices/conversationsSlice'
 
 export interface Chat {
 	id: string
-	conversation: Message[]
 	participants: {
 		[userID: string]: Date
 	}
@@ -20,7 +14,6 @@ export interface Chat {
 
 export interface DatabaseChat {
 	id: string
-	conversation: Message[]
 	participants: {
 		[userID: string]: Timestamp
 	}
@@ -46,11 +39,14 @@ const chat = createSlice({
 				...state,
 				...action.payload
 			}
+		},
+		clearChats() {
+			return {}
 		}
 	}
 })
 
-export const { recieveChat, recieveChats } = chat.actions
+export const { recieveChat, recieveChats, clearChats } = chat.actions
 
 export const fetchChat = (chatID: string): AppThunk => async dispatch => {
 	try {
@@ -89,7 +85,7 @@ export const fetchChats = (chatIDs: string[]): AppThunk => async dispatch => {
 			.where('id', 'in', chatIDs)
 			.get()
 			.then(querySnapshot => {
-				const values = {} as ChatsState
+				const values: Chat[] = []
 				querySnapshot.forEach(doc => {
 					const chat = doc.data() as DatabaseChat
 					const participants = Object.keys(chat.participants).reduce(
@@ -101,26 +97,45 @@ export const fetchChats = (chatIDs: string[]): AppThunk => async dispatch => {
 						},
 						{}
 					)
-
-					values[chat.id] = {
+					values.push({
 						...chat,
 						participants
-					}
+					})
 				})
 
 				return values
 			})
 
-		debugger
-		dispatch(recieveChats(chats))
+		for (const chat of chats) {
+			db.collection('chats')
+				.doc(chat.id)
+				.collection('conversation')
+				.get()
+				.then(querySnapshot => {
+					const messages: Message[] = []
+
+					querySnapshot.forEach(doc => {
+						const message = doc.data() as Message
+
+						messages.push(message)
+					})
+
+					dispatch(
+						recieveChat({
+							...chat
+						})
+					)
+				})
+		}
 	} catch (e) {}
 }
 
-export const createChat = (
-	user: User,
-	experts: Expert[]
-): AppThunk => async dispatch => {
+export const createChat = (experts: Expert[]): AppThunk => async (
+	dispatch,
+	getState
+) => {
 	try {
+		const { user } = getState()
 		const ref = await db.collection('chats').doc()
 
 		const { id } = ref
@@ -132,11 +147,10 @@ export const createChat = (
 					[expert.id]: new Date()
 				}
 			},
-			{ [user.uid]: new Date() }
+			{ [user.uid as string]: new Date() }
 		)
 
 		const chat = {
-			conversation: [],
 			id,
 			participants
 		}
@@ -144,7 +158,7 @@ export const createChat = (
 
 		await db
 			.collection('users')
-			.doc(user.uid)
+			.doc(user.uid as string)
 			.update({
 				chatIDs: [...user.chatIDs, id]
 			})
@@ -162,4 +176,35 @@ export const createChat = (
 	} catch (e) {}
 }
 
+export const seenChat = (chatID: string): AppThunk => async (
+	dispatch,
+	getState
+) => {
+	const {
+		user: { uid },
+		chats
+	} = getState()
+	const chat = chats[chatID]
+	const { participants } = chat
+
+	await db
+		.collection('chats')
+		.doc(chatID)
+		.update({
+			participants: {
+				...participants,
+				[uid as string]: new Date()
+			}
+		})
+
+	dispatch(
+		recieveChat({
+			...chat,
+			participants: {
+				...participants,
+				[uid as string]: new Date()
+			}
+		})
+	)
+}
 export default chat.reducer

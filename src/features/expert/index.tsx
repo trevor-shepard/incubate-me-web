@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { useLocation, useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import Back from 'components/navigation/Back'
 import ExpertProfilePictures from 'assets/images/experts'
-
+import { addExpert } from 'store/slices/expertsSlice'
 interface LocationState {
 	state: {
 		id: string
@@ -14,6 +14,8 @@ interface LocationState {
 
 const MobileService: FunctionComponent = () => {
 	const allExperts = useSelector((state: RootState) => state.experts)
+	const dispatch = useDispatch()
+	const { expertIDs } = useSelector((state: RootState) => state.user)
 	const history = useHistory()
 	const { state } = useLocation() as LocationState
 
@@ -48,7 +50,11 @@ const MobileService: FunctionComponent = () => {
 			)}
 			<SubHeader>Expertise</SubHeader>
 			<ExpertExpertiseList>{expertiseTags}</ExpertExpertiseList>
-			<PurchaseButton>Add to My Expert Team</PurchaseButton>
+			{!expertIDs.includes(state.id) && (
+				<PurchaseButton onClick={() => dispatch(addExpert(state.id))}>
+					Add to My Expert Team
+				</PurchaseButton>
+			)}
 		</Container>
 	)
 }

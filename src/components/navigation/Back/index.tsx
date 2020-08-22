@@ -3,22 +3,31 @@ import styled from '@emotion/styled'
 import { useHistory } from 'react-router-dom'
 import { backArrow } from 'assets/icons'
 
-const Icon: FunctionComponent = () => {
+interface Props {
+	text?: boolean
+	absolute?: boolean
+}
+
+const Icon: FunctionComponent<Props> = ({ text = true, absolute = true }) => {
 	const history = useHistory()
 	return (
-		<BackArrow onClick={history.goBack}>
+		<BackArrow absolute={absolute} onClick={history.goBack}>
 			<Picture src={backArrow} alt="icon" />
-			<Back>Back</Back>
+			{text && <Back>Back</Back>}
 		</BackArrow>
 	)
 }
 
-const BackArrow = styled.div`
+interface StyleProps {
+	absolute: boolean
+}
+
+const BackArrow = styled.div<StyleProps>`
 	display: flex;
 	flex-direction: row;
-	position: absolute;
-	left: 15px;
-	top: 20px;
+	position: ${props => (props.absolute ? 'absolute' : 'relative')};
+	${props => (props.absolute ? 'left: 15px;' : null)}
+	${props => (props.absolute ? 'top: 20px;' : null)}
 `
 
 const Picture = styled.img`

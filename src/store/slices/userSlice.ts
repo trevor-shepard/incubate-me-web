@@ -3,8 +3,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '..'
 
 import firebase, { auth, db } from 'utils/firebase'
-import { fetchExperts } from './expertsSlice'
-import { fetchChats } from './chatsSlice'
+import { fetchExperts, clearExperts } from './expertsSlice'
+import { fetchChats, clearChats } from './chatsSlice'
+import { clearConversations } from './conversationsSlice'
+
 export interface UserState {
 	username: string | null
 	email: string | null
@@ -184,7 +186,8 @@ const user = createSlice({
 				error: null
 			}
 		},
-		logout() {
+		clear(state, action: PayloadAction) {
+			debugger
 			firebase.auth().signOut()
 			return {
 				username: null,
@@ -233,7 +236,7 @@ const user = createSlice({
 	}
 })
 
-export const { recieveUser, userError, logout, updateUser } = user.actions
+export const { recieveUser, userError, clear, updateUser } = user.actions
 
 export default user.reducer
 
@@ -313,91 +316,9 @@ export const update = (
 	}
 }
 
-// export const googleLogIn = (): AppThunk => async dispatch => {
-// 	try {
-// 		const provider = new firebase.auth.GoogleAuthProvider()
-// 		firebase
-// 			.auth()
-// 			.signInWithPopup(provider)
-// 			.then(async result => {
-// 				const googleUser = result.user
-// 				if (!googleUser) throw Error('Google user not found')
-// 				const { uid, email, displayName } = googleUser
-// 				const user = (await db
-// 					.collection('users')
-// 					.doc(uid)
-// 					.get()
-// 					.then(doc => doc.data())) as User | null
-
-// 				if (user) {
-// 					dispatch(recieveUser(user))
-// 				} else {
-// 					await db
-// 						.collection('users')
-// 						.doc(uid)
-// 						.set({
-// 							email,
-// 							username: displayName,
-// 							uid
-// 						})
-// 					dispatch(
-// 						recieveUser({
-// 							email,
-// 							username: displayName,
-// 							uid
-// 						})
-// 					)
-// 				}
-// 			})
-// 			.catch(error => {
-// 				dispatch(userError(error.message))
-// 			})
-// 	} catch (error) {
-// 		dispatch(userError(error.message))
-// 	}
-// }
-
-// export const facebookLogIn = (): AppThunk => async dispatch => {
-// 	try {
-// 		const provider = new firebase.auth.FacebookAuthProvider()
-// 		firebase
-// 			.auth()
-// 			.signInWithPopup(provider)
-// 			.then(async result => {
-// 				const facebookUser = result.user
-// 				if (!facebookUser) throw Error('Google user not found')
-// 				const { uid, email, displayName } = facebookUser
-// 				debugger
-// 				const user = (await db
-// 					.collection('users')
-// 					.doc(uid)
-// 					.get()
-// 					.then(doc => doc.data())) as User | null
-
-// 				if (user) {
-// 					dispatch(recieveUser(user))
-// 				} else {
-// 					await db
-// 						.collection('users')
-// 						.doc(uid)
-// 						.set({
-// 							email,
-// 							username: displayName,
-// 							uid
-// 						})
-// 					dispatch(
-// 						recieveUser({
-// 							email,
-// 							username: displayName,
-// 							uid
-// 						})
-// 					)
-// 				}
-// 			})
-// 			.catch(error => {
-// 				dispatch(userError(error.message))
-// 			})
-// 	} catch (error) {
-// 		dispatch(userError(error.message))
-// 	}
-// }
+export const logout = (): AppThunk => async dispatch => {
+	dispatch(clear())
+	dispatch(clearChats())
+	dispatch(clearConversations())
+	dispatch(clearExperts())
+}
