@@ -12,6 +12,7 @@ import {
 import { convertTimestamp, Timestamp } from 'utils/dateUtils'
 import { db } from 'utils/firebase'
 import ConversationComponent from 'components/chats/Conversation'
+import ChatInput from 'components/chats/ChatInput'
 import Logo from 'components/Logo'
 import Back from 'components/navigation/Back'
 import ChatIcon from 'components/chats/ChatIcon'
@@ -92,10 +93,11 @@ const Chat: FunctionComponent = () => {
 			<Logo />
 			<Header>
 				<Back absolute={false} text={false} />
-				<ChatIcon expertIDs={expertIDs} />
+				<ChatIcon height={'30px'} expertIDs={expertIDs} />
 				<ExpertInfo>{expertsInfo}</ExpertInfo>
 			</Header>
 			<ConversationComponent chatID={id} />
+			<ChatInput />
 		</Container>
 	)
 }
@@ -119,11 +121,10 @@ const ExpertInfo = styled.div`
 	font-weight: normal;
 	font-size: 17px;
 	line-height: 22px;
-	/* identical to box height, or 129% */
-
 	letter-spacing: -0.408px;
-
 	color: #000000;
+	margin-left: 2%;
+	padding-bottom: 4px;
 `
 
 export default Chat

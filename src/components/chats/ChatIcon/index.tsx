@@ -4,13 +4,20 @@ import ExpertProfilePictures from 'assets/images/experts'
 
 interface Props {
 	expertIDs: string[]
+	height?: string
 }
 
-const ChatIcon: FunctionComponent<Props> = ({ expertIDs }) => {
+const ChatIcon: FunctionComponent<Props> = ({ expertIDs, height }) => {
 	if (expertIDs.length === 0) return null
 
 	if (expertIDs.length === 1)
-		return <ProfilePic src={ExpertProfilePictures[expertIDs[0]]} alt="" />
+		return (
+			<ProfilePic
+				height={height}
+				src={ExpertProfilePictures[expertIDs[0]]}
+				alt=""
+			/>
+		)
 
 	return (
 		<MultiplePicContainer>
@@ -19,22 +26,30 @@ const ChatIcon: FunctionComponent<Props> = ({ expertIDs }) => {
 		</MultiplePicContainer>
 	)
 }
-const ProfilePic = styled.img`
-	border-radius: 40%;
-	height: 60px;
-	width: 60px;
+
+interface HeightProp {
+	height?: string
+}
+
+const ProfilePic = styled.img<HeightProp>`
+	border-radius: 50%;
+	height: ${({ height }) => (height ? height : '60px')};
+	width: ${({ height }) => (height ? height : '60px')};
 `
 
-const MultiplePicContainer = styled.div``
+const MultiplePicContainer = styled.div<HeightProp>`
+	height: ${({ height }) => (height ? height : '60px')};
+	width: ${({ height }) => (height ? height : '60px')};
+`
 const FrontPic = styled.img`
 	border-radius: 50%;
-	height: 40px;
-	width: 40px;
+	height: 66%;
+	width: 66%;
 `
 const BackPic = styled.img`
 	border-radius: 50%;
-	height: 40px;
-	width: 40px;
+	height: 66%;
+	width: 66%;
 `
 
 export default ChatIcon

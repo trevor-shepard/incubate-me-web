@@ -78,7 +78,7 @@ const SubHeader = styled.div`
 `
 
 const ProfilePic = styled.img`
-	border-radius: 40px;
+	border-radius: 50%;
 	height: 90px;
 	width: 90px;
 `

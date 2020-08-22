@@ -26,7 +26,9 @@ const SelectInput: FunctionComponent<SelectInputProps> = ({
 	leftMargin
 }) => {
 	const optionElements = options.map(({ value, display }: Option, i) => (
-		<option key={`option-${i}`} value={value}>{display}</option>
+		<option key={`option-${i}`} value={value}>
+			{display}
+		</option>
 	))
 	return (
 		<Container width={width ? width : '90%'} leftMargin={leftMargin}>

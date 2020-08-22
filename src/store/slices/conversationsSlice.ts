@@ -41,7 +41,7 @@ export const fetchConversation = (
 	const conversation: Conversation = await db
 		.collection('chats')
 		.doc(chatID)
-		.collection('friendsSubcollection')
+		.collection('conversation')
 		.get()
 		.then(qureySnapsot => {
 			const messages: { [id: string]: Message } = {}
@@ -53,17 +53,34 @@ export const fetchConversation = (
 				})
 			}
 
-			
-
 			return messages
 		})
 
-	
 	dispatch(
 		recieveConversation({
 			[chatID]: conversation
 		})
 	)
+}
+
+export const sendMessage = (chatID: string, text: string): AppThunk => async (
+	dispatch,
+	getState
+) => {
+	const {
+		user: { uid }
+	} = getState()
+	const ref = await db
+		.collection('chats')
+		.doc(chatID)
+		.collection('conversation')
+		.doc()
+	await ref.set({
+		id: ref.id,
+		text: text,
+		senderID: uid,
+		date: new Date()
+	})
 }
 
 export default conversations.reducer

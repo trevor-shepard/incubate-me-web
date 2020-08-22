@@ -40,7 +40,7 @@ const ExpertIconContainer = styled.div`
 `
 
 const ProfilePic = styled.img`
-	border-radius: 40px;
+	border-radius: 50%;
 	height: 60px;
 	width: 60px;
 `

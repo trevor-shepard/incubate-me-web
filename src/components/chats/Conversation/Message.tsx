@@ -13,11 +13,18 @@ const MessageComponent: FunctionComponent<Props> = ({
 	message: { text, senderID }
 }) => {
 	const { uid } = useSelector((state: RootState) => state.user)
-	const { id } = useSelector((state: RootState) => state.experts[senderID])
+	const expert = useSelector((state: RootState) => state.experts[senderID])
 
-	if (uid === senderID) return <UserMessage> {text} </UserMessage>
+	if (uid === senderID)
+		return (
+			<UserMessageContainer>
+				<UserMessage> {text} </UserMessage>
+			</UserMessageContainer>
+		)
 
-	const photo = ExpertProfilePictures[id]
+	if (!expert) return null
+
+	const photo = ExpertProfilePictures[expert.id]
 
 	return (
 		<ExpertMessageContainer>
@@ -27,12 +34,55 @@ const MessageComponent: FunctionComponent<Props> = ({
 	)
 }
 
-const ExpertMessageContainer = styled.div``
-const UserMessage = styled.div``
-const ExpertMessage = styled.div``
+const ExpertMessageContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	padding: 4%;
+`
+const UserMessageContainer = styled.div`
+	display: flex;
+	flex-direction: row-reverse;
+	padding: 4%;
+`
+const UserMessage = styled.div`
+	background: #dedede;
+	border: 1px solid #dadada;
+	box-sizing: border-box;
+	border-radius: 6px;
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 0.8rem;
+	color: #000000;
+	padding-left: 2%;
+	padding-right: 2%;
+	display: flex;
+	align-items: center;
+	height: 40px;
+	margin-left: 4%;
+	min-width: 35px;
+	text-align: center;
+	vertical-align: middle;
+`
+const ExpertMessage = styled.div`
+	background: #ffffff;
+	border: 1px solid #dadada;
+	box-sizing: border-box;
+	border-radius: 6px;
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 0.8rem;
+	color: #000000;
+	padding-left: 2%;
+	padding-right: 2%;
+	display: flex;
+	align-items: center;
+	margin-left: 4%;
+`
 const ProfilePic = styled.img`
-	border-radius: 40px;
-	height: 60px;
-	width: 60px;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
 `
 export default MessageComponent
