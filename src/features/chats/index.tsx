@@ -2,12 +2,14 @@ import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
+import { useHistory } from 'react-router-dom'
 
 import ChatListItem from 'components/chats/ChatListItem'
 
 import Logo from 'components/Logo'
 import { GroupChat } from 'assets/icons'
 const ChatList: FunctionComponent = () => {
+	const history = useHistory()
 	const chats = Object.values(
 		useSelector((state: RootState) => state.chats)
 	).map((chat, i) => <ChatListItem key={`${i}-key`} chat={chat} />)
@@ -17,7 +19,7 @@ const ChatList: FunctionComponent = () => {
 			<Logo />
 			<Header>
 				<HeaderTitle>Your experts</HeaderTitle>
-				<ChatLogo src={GroupChat} alt="" />
+				<ChatLogo src={GroupChat} alt="" onClick={() => history.push('/chats/create')} />
 			</Header>
 			<List>{chats}</List>
 		</Container>

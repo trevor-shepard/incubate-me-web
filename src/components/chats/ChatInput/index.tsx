@@ -47,9 +47,8 @@ const Container = styled.div`
 	flex-direction: row;
 	align-items: flex-end;
 	align-self: flex-end;
-	background: #FFFFFF;
+	background: #ffffff;
 	box-shadow: 0px -3px 4px rgba(202, 202, 202, 0.25);
-	
 `
 
 const Input = styled.input`
@@ -61,8 +60,8 @@ const Input = styled.input`
 		outline: none;
 	}
 	&:focus::-webkit-input-placeholder {
-    color: transparent;
-}
+		color: transparent;
+	}
 `
 
 const Submit = styled.div`
@@ -73,7 +72,6 @@ const Submit = styled.div`
 	line-height: 22px;
 	letter-spacing: -0.408px;
 	color: #2970f1;
-	
 `
 
 export default ChatInput

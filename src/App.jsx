@@ -14,6 +14,7 @@ import Expert from 'features/expert'
 import Profile from 'features/profile'
 import Chats from 'features/chats'
 import Chat from 'features/chat'
+import ChatsCreate from 'features/chats/create'
 
 import { AuthRoute, ProtectedRoute } from './utils/routeUtils'
 // import LinkedInPopUp from 'components/LinkedIn/LinkedInPopUp'
@@ -35,6 +36,7 @@ function App() {
 							<ProtectedRoute path="/expert" exact component={Expert} />
 							<ProtectedRoute path="/experts" exact component={Experts} />
 							<ProtectedRoute path="/profile" exact component={Profile} />
+							<ProtectedRoute path="/chats/create" exact component={ChatsCreate} />
 							<ProtectedRoute path="/chats" exact component={Chats} />
 							<ProtectedRoute path="/chat" exact component={Chat} />
 							<ProtectedRoute path="/" component={Homepage} />

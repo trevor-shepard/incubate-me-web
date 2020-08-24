@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '..'
 import { db } from 'utils/firebase'
-import { Expert } from './expertsSlice'
+import { Expert } from 'store/slices/expertsSlice'
 import { convertTimestamp, Timestamp } from 'utils/dateUtils'
 import {
 	recieveConversation,
