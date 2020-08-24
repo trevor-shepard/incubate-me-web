@@ -25,6 +25,7 @@ const ChatInput: FunctionComponent = () => {
 
 	const handleSubmit = () => {
 		if (message.length > 0) dispatch(sendMessage(id, message))
+		setMessage('')
 	}
 
 	return (
@@ -46,6 +47,9 @@ const Container = styled.div`
 	flex-direction: row;
 	align-items: flex-end;
 	align-self: flex-end;
+	background: #FFFFFF;
+	box-shadow: 0px -3px 4px rgba(202, 202, 202, 0.25);
+	
 `
 
 const Input = styled.input`
@@ -53,6 +57,12 @@ const Input = styled.input`
 	width: 80%;
 	text-align: center;
 	font-size: 16px;
+	&:hover {
+		outline: none;
+	}
+	&:focus::-webkit-input-placeholder {
+    color: transparent;
+}
 `
 
 const Submit = styled.div`
@@ -63,6 +73,7 @@ const Submit = styled.div`
 	line-height: 22px;
 	letter-spacing: -0.408px;
 	color: #2970f1;
+	
 `
 
 export default ChatInput
