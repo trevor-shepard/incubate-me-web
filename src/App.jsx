@@ -36,7 +36,11 @@ function App() {
 							<ProtectedRoute path="/expert" exact component={Expert} />
 							<ProtectedRoute path="/experts" exact component={Experts} />
 							<ProtectedRoute path="/profile" exact component={Profile} />
-							<ProtectedRoute path="/chats/create" exact component={ChatsCreate} />
+							<ProtectedRoute
+								path="/chats/create"
+								exact
+								component={ChatsCreate}
+							/>
 							<ProtectedRoute path="/chats" exact component={Chats} />
 							<ProtectedRoute path="/chat" exact component={Chat} />
 							<ProtectedRoute path="/" component={Homepage} />

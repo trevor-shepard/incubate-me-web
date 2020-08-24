@@ -1,4 +1,9 @@
-import React, { FunctionComponent, useState, ChangeEvent, useEffect } from 'react'
+import React, {
+	FunctionComponent,
+	useState,
+	ChangeEvent,
+	useEffect
+} from 'react'
 import styled from '@emotion/styled'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -14,21 +19,18 @@ const GroupChatCreate: FunctionComponent = () => {
 	const allExperts = useSelector((state: RootState) => state.experts)
 	const { expertIDs } = useSelector((state: RootState) => state.user)
 	const [selectedExperts, setSelectedExperts] = useState<string[]>([])
-	
-	
-	const selected: {[id: string]: boolean} = {}
+
+	const selected: { [id: string]: boolean } = {}
 
 	for (const id of expertIDs) {
 		selected[id] = selectedExperts.includes(id)
 	}
-
 
 	const userExperts = expertIDs.map((id: string) => (
 		<ExpertComponent
 			expertID={id}
 			selected={selected[id]}
 			onCheckboxChange={(e: ChangeEvent<HTMLInputElement>) => {
-
 				if (selectedExperts.includes(id)) {
 					const filtered = selectedExperts.filter(item => item !== id)
 					setSelectedExperts(filtered)
@@ -38,7 +40,6 @@ const GroupChatCreate: FunctionComponent = () => {
 			}}
 		/>
 	))
-	
 
 	const handleCreate = async () => {
 		const experts: Expert[] = selectedExperts.map(

@@ -38,15 +38,22 @@ const ProfilePic = styled.img<HeightProp>`
 `
 
 const MultiplePicContainer = styled.div<HeightProp>`
+	position: relative;
 	height: ${({ height }) => (height ? height : '60px')};
 	width: ${({ height }) => (height ? height : '60px')};
 `
 const FrontPic = styled.img`
+	position: absolute;
+	z-index: 20;
+	left: 10px;
 	border-radius: 50%;
 	height: 66%;
 	width: 66%;
 `
 const BackPic = styled.img`
+	z-index: 10;
+	top: 10px;
+	position: absolute;
 	border-radius: 50%;
 	height: 66%;
 	width: 66%;

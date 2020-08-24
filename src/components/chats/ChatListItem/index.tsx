@@ -31,7 +31,10 @@ const ChatListItem: FunctionComponent<Props> = ({
 	const expertsInfo =
 		expertIDs.length === 1
 			? `${experts[expertIDs[0]].name} ${experts[expertIDs[0]].title}`
-			: chatExperts.reduce((acc, curr) => acc + `${curr.name} `, '')
+			: chatExperts.reduce(
+					(acc, curr, i) => acc + `${i !== 0 ? ', ' : ''}${curr.name}`,
+					''
+			  )
 
 	return (
 		<Container

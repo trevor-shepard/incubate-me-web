@@ -19,7 +19,11 @@ const ChatList: FunctionComponent = () => {
 			<Logo />
 			<Header>
 				<HeaderTitle>Your experts</HeaderTitle>
-				<ChatLogo src={GroupChat} alt="" onClick={() => history.push('/chats/create')} />
+				<ChatLogo
+					src={GroupChat}
+					alt=""
+					onClick={() => history.push('/chats/create')}
+				/>
 			</Header>
 			<List>{chats}</List>
 		</Container>
