@@ -7,7 +7,7 @@ import SERVICE_DETAILS from 'assets/data/servicesDetails'
 import { checkmark } from 'assets/icons'
 import ExpertsDisplay from 'components/experts/ExpertsDisplay'
 import Back from 'components/navigation/Back'
-
+import ChargeBee from 'components/ChargeBee'
 interface LocationState {
 	state: {
 		service: string
@@ -30,7 +30,9 @@ const MobileService: FunctionComponent = () => {
 	if (!Object.keys(SERVICE_DETAILS).includes(service))
 		console.log(SERVICE_DETAILS)
 
-	const { displayName, price, details, expertIDs } = SERVICE_DETAILS[service]
+	const { displayName, price, details, expertIDs, plan } = SERVICE_DETAILS[
+		service
+	]
 
 	const experts = Object.values(allExperts).filter(expert =>
 		expertIDs.includes(expert.id)
@@ -42,7 +44,6 @@ const MobileService: FunctionComponent = () => {
 			<DetailContent>{detail}</DetailContent>
 		</Detail>
 	))
-
 	return (
 		<Container>
 			<Back />
@@ -54,7 +55,7 @@ const MobileService: FunctionComponent = () => {
 				<ExpertsHeader>Recommended Accounting Service Experts</ExpertsHeader>
 				<ExpertsDisplay experts={experts} />
 			</ExpertsContainer>
-			<PurchaseButton>Purchase</PurchaseButton>
+			<ChargeBee subscriptionPlan={plan}>Purchase</ChargeBee>
 		</Container>
 	)
 }
@@ -145,26 +146,6 @@ const ExpertsHeader = styled.div`
 	padding-left: 10px;
 `
 
-const PurchaseButton = styled.div`
-	font-family: Open Sans;
-	background: #e4bf7a;
-	border: 1px solid #dedede;
-	box-sizing: border-box;
-	width: 343px;
-	height: 50px;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 17px;
-	line-height: 22px;
-	color: #ffffff;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
-	margin: 0 auto;
-	margin-bottom: 22px;
-	margin-top: 25px;
-`
+const PurchaseButton = styled.div``
 
 export default MobileService

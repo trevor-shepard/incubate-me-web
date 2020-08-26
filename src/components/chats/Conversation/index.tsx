@@ -29,7 +29,9 @@ const Conversation: FunctionComponent<Props> = ({ chatID }) => {
 
 	return (
 		<Container ref={myRef}>
-			{messages.length > 0 ? messages : 'This is the beginning of your chat'}
+			<Begenning>This is the beginning of your chat</Begenning>
+
+			{messages}
 		</Container>
 	)
 }
@@ -37,6 +39,19 @@ const Conversation: FunctionComponent<Props> = ({ chatID }) => {
 const Container = styled.div`
 	height: 75%;
 	overflow: scroll;
+`
+const Begenning = styled.div`
+	margin-top: 2%;
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 22px;
+	/* identical to box height, or 169% */
+
+	letter-spacing: -0.408px;
+
+	color: #696868;
 `
 
 export default Conversation

@@ -1,6 +1,7 @@
 export interface Service {
 	name: string
 	displayName: string
+	plan: string
 	price: string
 	details: string[]
 	expertIDs: string[]
@@ -9,6 +10,7 @@ export interface Service {
 export const accounting: Service = {
 	name: 'accounting',
 	displayName: 'Accounting',
+	plan: 'online-accounting-service',
 	price: '$100 per month',
 	details: [
 		'Dedicated expert team including your account manager, accountant, and a CPA or VP of Finance level advisor.',
@@ -28,6 +30,7 @@ export const accounting: Service = {
 export const humanResource: Service = {
 	name: 'humanResource',
 	displayName: 'Human Resource',
+	plan: 'online-human-resource-service',
 	price: '$100 per month',
 	details: [
 		'Dedicated expert team including your account manager, HR specialist, and a HR manager or above level advisor.',
@@ -44,6 +47,7 @@ export const humanResource: Service = {
 export const stratigicFinance: Service = {
 	name: 'stratigicFinance',
 	displayName: 'Stratigic Finance',
+	plan: 'online-stratigic-finance-service',
 	price: '$250 per month',
 	details: [
 		'Dedicated expert team including your account manager, FP&A analyst, and a VP of Finance or CFO level advisor.',

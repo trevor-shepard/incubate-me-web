@@ -16,6 +16,16 @@ const ChatListItem: FunctionComponent<Props> = ({
 
 	const experts = useSelector((state: RootState) => state.experts)
 
+	const conversation = useSelector(
+		(state: RootState) => state.conversations[id]
+	)
+
+	const lastSeen = participants[uid as string]
+
+	const unseen = Object.values(conversation).filter(
+		message => lastSeen < message.date
+	)
+
 	const expertIDs = Object.keys(participants)
 		.filter(i => i !== uid)
 		.sort((a, b) =>
@@ -35,7 +45,6 @@ const ChatListItem: FunctionComponent<Props> = ({
 					(acc, curr, i) => acc + `${i !== 0 ? ', ' : ''}${curr.name}`,
 					''
 			  )
-
 	return (
 		<Container
 			to={{
@@ -45,7 +54,7 @@ const ChatListItem: FunctionComponent<Props> = ({
 				}
 			}}
 		>
-			<ChatIcon expertIDs={expertIDs} />
+			<ChatIcon expertIDs={expertIDs} unseen={unseen.length} />
 			<ExpertInfo>{expertsInfo}</ExpertInfo>
 		</Container>
 	)
