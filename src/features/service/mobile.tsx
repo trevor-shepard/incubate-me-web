@@ -146,6 +146,4 @@ const ExpertsHeader = styled.div`
 	padding-left: 10px;
 `
 
-const PurchaseButton = styled.div``
-
 export default MobileService

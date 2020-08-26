@@ -9,6 +9,7 @@ import store from 'store'
 import SignUp from 'features/signup'
 import Homepage from 'features/homepage'
 import Service from 'features/service'
+import Success from 'features/success'
 import Experts from 'features/experts'
 import Expert from 'features/expert'
 import Profile from 'features/profile'
@@ -33,6 +34,7 @@ function App() {
 							{/* <Route path="/linkedin" component={LinkedInPopUp} /> */}
 							<AuthRoute path="/signup" component={SignUp} />
 							<ProtectedRoute path="/service" exact component={Service} />
+							<ProtectedRoute path="/success" exact component={Success} />
 							<ProtectedRoute path="/expert" exact component={Expert} />
 							<ProtectedRoute path="/experts" exact component={Experts} />
 							<ProtectedRoute path="/profile" exact component={Profile} />

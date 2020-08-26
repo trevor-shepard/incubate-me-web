@@ -140,6 +140,11 @@ interface UserUpdate {
 		payrollManagment: boolean
 		healthcareManagment: boolean
 	}
+	services?: {
+		accounting: boolean
+		humanResource: boolean
+		stratigicFinance: boolean
+	}
 }
 
 const initialState: UserState = {
@@ -315,9 +320,35 @@ export const update = (
 	}
 }
 
+export const subscribe = (
+	serviceName: string
+): AppThunk => async (dispatch, getState) => {
+	try {
+		const {user :{uid, services}} = getState()
+		await db
+			.collection('users')
+			.doc(uid as string)
+			.update({
+				services: {
+					...services,
+					[serviceName]: true
+				}
+			})
+		dispatch(updateUser({
+			services: {
+				...services,
+				[serviceName]: true
+			}
+		}))
+	} catch (error) {
+		dispatch(userError(error.message))
+	}
+}
+
 export const logout = (): AppThunk => async dispatch => {
 	dispatch(clear())
 	dispatch(clearChats())
 	dispatch(clearConversations())
 	dispatch(clearExperts())
 }
+

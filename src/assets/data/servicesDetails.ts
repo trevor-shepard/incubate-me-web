@@ -76,4 +76,10 @@ const library: ServiceLibary = {
 	stratigicFinance
 }
 
+export const plans: ServiceLibary = {
+	onlineaccountingservice: accounting,
+	onlinehumanresourceservice: accounting,
+	onlinestratigicfinanceservice: stratigicFinance,
+}
+
 export default library

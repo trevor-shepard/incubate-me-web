@@ -1,7 +1,6 @@
 import React, { FunctionComponent, MouseEvent, useEffect } from 'react'
 
 import styled from '@emotion/styled'
-import { useHistory } from 'react-router-dom'
 
 declare global {
 	interface Window {
@@ -12,7 +11,6 @@ declare global {
 const ChargeBee: FunctionComponent<{ subscriptionPlan: string }> = ({
 	subscriptionPlan
 }) => {
-	const history = useHistory()
 	useEffect(() => {
 		const el = document.createElement('script')
 		el.onload = () => {
