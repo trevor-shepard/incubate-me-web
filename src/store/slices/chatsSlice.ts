@@ -165,7 +165,7 @@ export const createChat = (experts: Expert[]): AppThunk => async (
 	} catch (e) {}
 }
 
-export const seenChat = (chatID: string): AppThunk => async (
+export const seeChat = (chatID: string): AppThunk => async (
 	dispatch,
 	getState
 ) => {

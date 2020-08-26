@@ -15,18 +15,19 @@ const ChatIcon: FunctionComponent<Props> = ({ expertIDs, height, unseen }) => {
 		return (
 			<ProfilePic
 				height={height}
-				unseen={unseen}
+				unseen={unseen ? unseen : 0}
 				src={ExpertProfilePictures[expertIDs[0]]}
 				alt=""
 			/>
 		)
-
 	return (
-		<MultiplePicContainer height={height}>
+		<MultiplePicContainer height={height} unseen={unseen ? unseen : 0}>
 			<FrontPic src={ExpertProfilePictures[expertIDs[0]]} alt="" />
 			<BackPic src={ExpertProfilePictures[expertIDs[1]]} alt="" />
 		</MultiplePicContainer>
 	)
+
+	
 }
 
 interface StyleProps {

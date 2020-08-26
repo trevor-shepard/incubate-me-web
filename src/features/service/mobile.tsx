@@ -15,6 +15,7 @@ interface LocationState {
 }
 
 const MobileService: FunctionComponent = () => {
+	const { services } = useSelector((state:RootState) => state.user)
 	const allExperts = useSelector((state: RootState) => state.experts)
 	const history = useHistory()
 	const { state } = useLocation() as LocationState
@@ -55,7 +56,7 @@ const MobileService: FunctionComponent = () => {
 				<ExpertsHeader>Recommended Accounting Service Experts</ExpertsHeader>
 				<ExpertsDisplay experts={experts} />
 			</ExpertsContainer>
-			<ChargeBee subscriptionPlan={plan}>Purchase</ChargeBee>
+			{ !services[service as 'accounting' | 'humanResource' | 'stratigicFinance'] &&  <ChargeBee subscriptionPlan={plan}>Purchase</ChargeBee>}
 		</Container>
 	)
 }
@@ -80,7 +81,6 @@ const Header = styled.div`
 	padding: 16px;
 	text-align: left;
 	margin-top: 10%;
-	margin-bottom: 34px;
 `
 const Pricing = styled.div`
 	font-family: Open Sans;
@@ -90,7 +90,7 @@ const Pricing = styled.div`
 	line-height: 22px;
 	letter-spacing: -0.408px;
 	color: #696868;
-	margin-bottom: 29px;
+	margin-bottom: 3%;
 	padding-left: 16px;
 `
 const SubHeader = styled.div`
@@ -117,7 +117,7 @@ const Detail = styled.div`
 	color: #000000;
 	display: flex;
 	flex-direction: row;
-	margin-bottom: 25px;
+	margin-bottom: 3%;
 `
 const DetailContent = styled.div`
 	text-align: left;

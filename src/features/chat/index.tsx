@@ -8,6 +8,7 @@ import {
 	Conversation,
 	recieveConversation
 } from 'store/slices/conversationsSlice'
+import { seeChat } from "store/slices/chatsSlice";
 
 import { convertTimestamp, Timestamp } from 'utils/dateUtils'
 import { db } from 'utils/firebase'
@@ -39,8 +40,13 @@ const Chat: FunctionComponent = () => {
 	const [loading, setLoading] = useState(chat !== undefined)
 
 	useEffect(() => {
-		if (chat !== undefined) setLoading(false)
-	}, [chat])
+		if (chat !== undefined) {
+			setLoading(false)
+			dispatch(seeChat(id))
+		}
+	}, [id])
+
+	
 
 	useEffect(() => {
 		const unsubscribe = db

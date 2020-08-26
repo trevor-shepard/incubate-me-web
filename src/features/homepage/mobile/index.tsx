@@ -120,7 +120,7 @@ const Service = styled(Link)`
 	line-height: 22px;
 	letter-spacing: -0.408px;
 	color: #696868;
-	margin-bottom: 15%;
+	margin-bottom: 9%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
