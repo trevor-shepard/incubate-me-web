@@ -54,7 +54,6 @@ const Tab = styled(Link)<TabIconProps>`
 	align-items: center;
 	text-decoration: none;
 	font-size: 10px;
-	${({ current }) => current === 'true' && 'border: 2px solid #e4bf7a'};
 	padding: 5px;
 	border-radius: 30px;
 	height: 36px;

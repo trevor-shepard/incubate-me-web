@@ -17,7 +17,7 @@ const ChatList: FunctionComponent = () => {
 		<Container>
 			<Logo />
 			<Header>
-				<HeaderTitle>Your experts</HeaderTitle>
+				<HeaderTitle>Your Chats</HeaderTitle>
 				<ChatLogo
 					src={GroupChat}
 					alt=""

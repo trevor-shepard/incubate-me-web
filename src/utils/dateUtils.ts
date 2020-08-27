@@ -3,22 +3,33 @@ export interface Timestamp {
 	nanoseconds: number
 }
 
-export const convertTimestampToDate = (timestamp: Timestamp) =>
-	new Date(timestamp.seconds * 1000)
+export const tToD = (timestamp: Timestamp) => new Date(timestamp.seconds * 1000)
 
-
-export const convertTimestampsToDates = (object: {[key: string]: any} ) => {
-	const val: {[key: string]: any} = {}
+export const convertTimestampsToDates = (object: { [key: string]: any }) => {
+	const obj: { [key: string]: any } = {}
 
 	for (const key of Object.keys(object)) {
 		const value = object[key]
 
-		if (typeof object[key] === 'object') {
-			val[key] = convertTimestampsToDates(value)
+		if (value.seconds) {
+			obj[key] = tToD(value as Timestamp)
+		} else if (typeof object[key] === 'object') {
+			obj[key] = convertTimestampsToDates(value)
+		} else {
+			obj[key] = value
 		}
-
-		if (value.second && value.nanoseconds) val[key]= convertTimestampToDate(value as Timestamp)
 	}
 
-	return val
-} 
+	return obj
+}
+
+export const convertParticipantSeenToDates = (participants: {
+	[id: string]: string
+}) => {
+	const newobj: { [id: string]: Date } = {}
+
+	for (const id of Object.keys(participants)) {
+		newobj[id] = new Date(participants[id])
+	}
+	return newobj
+}

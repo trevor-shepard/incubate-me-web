@@ -10,7 +10,6 @@ import {
 } from 'store/slices/conversationsSlice'
 import { seeChat } from 'store/slices/chatsSlice'
 
-import { convertTimestampToString, Timestamp } from 'utils/dateUtils'
 import { db } from 'utils/firebase'
 import ConversationComponent from 'components/chats/Conversation'
 import ChatInput from 'components/chats/ChatInput'
@@ -35,6 +34,9 @@ const Chat: FunctionComponent = () => {
 
 	const experts = useSelector((state: RootState) => state.experts)
 	const chat = useSelector((state: RootState) => state.chats[id])
+	const conversation = useSelector(
+		(state: RootState) => state.conversations[id]
+	)
 	const { uid } = useSelector((state: RootState) => state.user)
 
 	const [loading, setLoading] = useState(chat !== undefined)
@@ -42,9 +44,12 @@ const Chat: FunctionComponent = () => {
 	useEffect(() => {
 		if (chat !== undefined) {
 			setLoading(false)
-			dispatch(seeChat(id))
 		}
 	}, [id])
+
+	useEffect(() => {
+		dispatch(seeChat(id))
+	}, [conversation])
 
 	useEffect(() => {
 		const unsubscribe = db
@@ -57,18 +62,15 @@ const Chat: FunctionComponent = () => {
 					qureySnapsot.forEach(doc => {
 						const message = doc.data() as Message
 
-						conversation[message.id] = {
-							...message,
-							date: convertTimestampToString((message.date as unknown) as Timestamp)
-						}
+						conversation[message.id] = message
 					})
-				}
 
-				dispatch(
-					recieveConversation({
-						[id]: conversation
-					})
-				)
+					dispatch(
+						recieveConversation({
+							[id]: conversation
+						})
+					)
+				}
 			})
 
 		return unsubscribe
@@ -79,9 +81,9 @@ const Chat: FunctionComponent = () => {
 	const expertIDs = Object.keys(chat.participants)
 		.filter(i => i !== uid)
 		.sort((a, b) =>
-			chat.participants[a] > chat.participants[b]
+			new Date(chat.participants[a]) > new Date(chat.participants[b])
 				? -1
-				: chat.participants[a] < chat.participants[b]
+				:new Date(chat.participants[a]) < new Date(chat.participants[b])
 				? 1
 				: 0
 		)

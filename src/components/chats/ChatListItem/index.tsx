@@ -19,21 +19,17 @@ const ChatListItem: FunctionComponent<Props> = ({
 	const conversation = useSelector(
 		(state: RootState) => state.conversations[id]
 	)
-
+	
 	const lastSeen = participants[uid as string]
-
 	const unseen = Object.values(conversation).filter(
-		message => lastSeen < message.date
+		message => new Date(lastSeen) < new Date(message.date)
 	)
-
-	debugger
-
 	const expertIDs = Object.keys(participants)
 		.filter(i => i !== uid)
 		.sort((a, b) =>
-			participants[a] > participants[b]
+			new Date(participants[a]) > new Date(participants[b])
 				? -1
-				: participants[a] < participants[b]
+				:new Date(participants[a]) < new Date(participants[b])
 				? 1
 				: 0
 		)

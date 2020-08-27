@@ -10,77 +10,53 @@ interface Props {
 
 const ChatIcon: FunctionComponent<Props> = ({ expertIDs, height, unseen }) => {
 	if (expertIDs.length === 0) return null
-
 	if (expertIDs.length === 1)
 		return (
-			<ProfilePic
-				height={height}
-				unseen={unseen ? unseen : 0}
-				src={ExpertProfilePictures[expertIDs[0]]}
-				alt=""
-			/>
+			<Container height={height}>
+				<ProfilePic src={ExpertProfilePictures[expertIDs[0]]} alt="" />
+
+				{unseen && unseen > 0 ? <Unseen>{unseen}</Unseen> : null}
+			</Container>
 		)
 	return (
-		<MultiplePicContainer height={height} unseen={unseen ? unseen : 0}>
+		<Container height={height}>
 			<FrontPic src={ExpertProfilePictures[expertIDs[0]]} alt="" />
 			<BackPic src={ExpertProfilePictures[expertIDs[1]]} alt="" />
-		</MultiplePicContainer>
+			{unseen && unseen > 0 ? <Unseen>{unseen}</Unseen> : null}
+		</Container>
 	)
 }
 
 interface StyleProps {
 	height?: string
-	unseen?: number
 }
 
-const ProfilePic = styled.img<StyleProps>`
+const ProfilePic = styled.img`
 	border-radius: 50%;
-	height: ${({ height }) => (height ? height : '60px')};
-	width: ${({ height }) => (height ? height : '60px')};
-	&::after {
-		${({ unseen }) =>
-			unseen !== 0
-				? `
-		content:attr(${unseen});
-		position:absolute;
-		top:-10px;
-		right:-10px;
-		font-size:.7em;
-		background:green;
-		color:white;
-		width:18px;height:18px;
-		text-align:center;
-		line-height:18px;
-		border-radius:50%;
-		box-shadow:0 0 1px #333;`
-				: null}
-	}
+	height: 100%;
+	width: 100%;
 `
 
-const MultiplePicContainer = styled.div<StyleProps>`
+const Container = styled.div<StyleProps>`
 	position: relative;
 	height: ${({ height }) => (height ? height : '60px')};
 	width: ${({ height }) => (height ? height : '60px')};
-	&::after {
-		${({ unseen }) =>
-			unseen !== 0
-				? `
-		content:attr(${unseen});
-		position:absolute;
-		top:-10px;
-		right:-10px;
-		font-size:.7em;
-		background:green;
-		color:white;
-		width:10px;
-		height:10px;
-		text-align:center;
-		line-height:18px;
-		border-radius:50%;
-		box-shadow:0 0 1px #333;`
-				: null}
-	}
 `
+const Unseen = styled.div`
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	font-size: 0.7em;
+	background: green;
+	color: white;
+	width: 18px;
+	height: 18px;
+	text-align: center;
+	line-height: 18px;
+	border-radius: 50%;
+	box-shadow: 0 0 1px #333;
+`
+
 const FrontPic = styled.img`
 	position: absolute;
 	z-index: 20;

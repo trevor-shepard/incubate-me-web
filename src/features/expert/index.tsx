@@ -32,6 +32,12 @@ const MobileService: FunctionComponent = () => {
 
 	const photo = ExpertProfilePictures[state.id]
 
+	const handlePurchase = async () => {
+		await dispatch(addExpert(state.id))
+
+		history.push('/')
+	}
+
 	return (
 		<Container>
 			<Back />
@@ -51,7 +57,7 @@ const MobileService: FunctionComponent = () => {
 			<SubHeader>Expertise</SubHeader>
 			<ExpertExpertiseList>{expertiseTags}</ExpertExpertiseList>
 			{!expertIDs.includes(state.id) && (
-				<PurchaseButton onClick={() => dispatch(addExpert(state.id))}>
+				<PurchaseButton onClick={handlePurchase}>
 					Add to My Expert Team
 				</PurchaseButton>
 			)}
