@@ -12,7 +12,7 @@ const ChatList: FunctionComponent = () => {
 	const history = useHistory()
 	const chats = Object.values(
 		useSelector((state: RootState) => state.chats)
-	).map((chat, i) => <ChatListItem key={`${i}-key`} chat={chat} />)		
+	).map((chat, i) => <ChatListItem key={`${i}-key`} chat={chat} />)
 	return (
 		<Container>
 			<Logo />

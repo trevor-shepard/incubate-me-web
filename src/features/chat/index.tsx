@@ -8,9 +8,9 @@ import {
 	Conversation,
 	recieveConversation
 } from 'store/slices/conversationsSlice'
-import { seeChat } from "store/slices/chatsSlice";
+import { seeChat } from 'store/slices/chatsSlice'
 
-import { convertTimestamp, Timestamp } from 'utils/dateUtils'
+import { convertTimestampToString, Timestamp } from 'utils/dateUtils'
 import { db } from 'utils/firebase'
 import ConversationComponent from 'components/chats/Conversation'
 import ChatInput from 'components/chats/ChatInput'
@@ -46,8 +46,6 @@ const Chat: FunctionComponent = () => {
 		}
 	}, [id])
 
-	
-
 	useEffect(() => {
 		const unsubscribe = db
 			.collection('chats')
@@ -61,7 +59,7 @@ const Chat: FunctionComponent = () => {
 
 						conversation[message.id] = {
 							...message,
-							date: convertTimestamp((message.date as unknown) as Timestamp)
+							date: convertTimestampToString((message.date as unknown) as Timestamp)
 						}
 					})
 				}

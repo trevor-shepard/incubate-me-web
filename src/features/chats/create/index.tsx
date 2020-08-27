@@ -1,8 +1,4 @@
-import React, {
-	FunctionComponent,
-	useState,
-	ChangeEvent,
-} from 'react'
+import React, { FunctionComponent, useState, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'

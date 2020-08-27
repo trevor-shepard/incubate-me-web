@@ -15,7 +15,7 @@ interface LocationState {
 }
 
 const MobileService: FunctionComponent = () => {
-	const { services } = useSelector((state:RootState) => state.user)
+	const { services } = useSelector((state: RootState) => state.user)
 	const allExperts = useSelector((state: RootState) => state.experts)
 	const history = useHistory()
 	const { state } = useLocation() as LocationState
@@ -56,7 +56,9 @@ const MobileService: FunctionComponent = () => {
 				<ExpertsHeader>Recommended Accounting Service Experts</ExpertsHeader>
 				<ExpertsDisplay experts={experts} />
 			</ExpertsContainer>
-			{ !services[service as 'accounting' | 'humanResource' | 'stratigicFinance'] &&  <ChargeBee subscriptionPlan={plan}>Purchase</ChargeBee>}
+			{!services[
+				service as 'accounting' | 'humanResource' | 'stratigicFinance'
+			] && <ChargeBee subscriptionPlan={plan}>Purchase</ChargeBee>}
 		</Container>
 	)
 }

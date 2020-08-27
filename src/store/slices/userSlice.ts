@@ -320,11 +320,14 @@ export const update = (
 	}
 }
 
-export const subscribe = (
-	serviceName: string
-): AppThunk => async (dispatch, getState) => {
+export const subscribe = (serviceName: string): AppThunk => async (
+	dispatch,
+	getState
+) => {
 	try {
-		const {user :{uid, services}} = getState()
+		const {
+			user: { uid, services }
+		} = getState()
 		await db
 			.collection('users')
 			.doc(uid as string)
@@ -334,12 +337,14 @@ export const subscribe = (
 					[serviceName]: true
 				}
 			})
-		dispatch(updateUser({
-			services: {
-				...services,
-				[serviceName]: true
-			}
-		}))
+		dispatch(
+			updateUser({
+				services: {
+					...services,
+					[serviceName]: true
+				}
+			})
+		)
 	} catch (error) {
 		dispatch(userError(error.message))
 	}
@@ -351,4 +356,3 @@ export const logout = (): AppThunk => async dispatch => {
 	dispatch(clearConversations())
 	dispatch(clearExperts())
 }
-

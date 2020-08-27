@@ -26,6 +26,8 @@ const ChatListItem: FunctionComponent<Props> = ({
 		message => lastSeen < message.date
 	)
 
+	debugger
+
 	const expertIDs = Object.keys(participants)
 		.filter(i => i !== uid)
 		.sort((a, b) =>

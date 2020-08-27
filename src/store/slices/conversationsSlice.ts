@@ -1,13 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '..'
 import { db } from 'utils/firebase'
-
+import { convertTimestampToString, Timestamp } from 'utils/dateUtils'
 export interface Message {
 	senderID: string
 	text: string
-	date: Date
+	date: string
 	id: string
 }
+export interface DatabaseMessage {
+	senderID: string
+	text: string
+	date: Timestamp
+	id: string
+}
+
 
 export interface Conversation {
 	[id: string]: Message
@@ -47,9 +54,12 @@ export const fetchConversation = (
 			const messages: { [id: string]: Message } = {}
 			if (qureySnapsot.docs.length > 0) {
 				qureySnapsot.forEach(doc => {
-					const message = doc.data() as Message
+					const message = doc.data() as DatabaseMessage
 
-					messages[message.id] = message
+					messages[message.id] = {
+						...message,
+						date: convertTimestampToString(message.date)
+					}
 				})
 			}
 

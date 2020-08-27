@@ -26,8 +26,6 @@ const ChatIcon: FunctionComponent<Props> = ({ expertIDs, height, unseen }) => {
 			<BackPic src={ExpertProfilePictures[expertIDs[1]]} alt="" />
 		</MultiplePicContainer>
 	)
-
-	
 }
 
 interface StyleProps {

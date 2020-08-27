@@ -12,19 +12,27 @@ interface LocationSearch {
 const Success: FunctionComponent = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
-	const location = useLocation() 
+	const location = useLocation()
 
-	const {plan} = location.search.slice(1).split("&").reduce((acc, curr) => {
-		const [key, value] = curr.split("=")
-		return {
-			...acc,
-			[key]: key === "plan" ? value.split("%20").join("").toLocaleLowerCase() : value
-		}
-	},{}) as LocationSearch
-
+	const { plan } = location.search
+		.slice(1)
+		.split('&')
+		.reduce((acc, curr) => {
+			const [key, value] = curr.split('=')
+			return {
+				...acc,
+				[key]:
+					key === 'plan'
+						? value
+								.split('%20')
+								.join('')
+								.toLocaleLowerCase()
+						: value
+			}
+		}, {}) as LocationSearch
 
 	const { name } = plans[plan]
-	
+
 	useEffect(() => {
 		const handleSubscribe = async () => {
 			await dispatch(subscribe(name))
@@ -32,7 +40,6 @@ const Success: FunctionComponent = () => {
 		}
 		handleSubscribe()
 	}, [dispatch, history, name])
-
 
 	return <> loading </>
 }
