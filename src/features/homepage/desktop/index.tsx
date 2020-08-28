@@ -14,7 +14,6 @@ const DesktopHomepage: FunctionComponent = () => {
 
 	return (
 		<Container>
-			<Logout />
 			<Header>
 				Hi {username}, select the service&#40;s&#41; you would like to have
 			</Header>

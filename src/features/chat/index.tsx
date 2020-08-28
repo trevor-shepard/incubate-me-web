@@ -83,7 +83,7 @@ const Chat: FunctionComponent = () => {
 		.sort((a, b) =>
 			new Date(chat.participants[a]) > new Date(chat.participants[b])
 				? -1
-				:new Date(chat.participants[a]) < new Date(chat.participants[b])
+				: new Date(chat.participants[a]) < new Date(chat.participants[b])
 				? 1
 				: 0
 		)

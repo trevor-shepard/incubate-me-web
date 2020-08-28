@@ -13,7 +13,13 @@ const Conversation: FunctionComponent<Props> = ({ chatID }) => {
 		(state: RootState) => state.conversations[chatID]
 	)
 	const messages = Object.values(conversation)
-		.sort((a, b) => (new Date(a.date) < new Date(b.date) ? -1 : new Date(a.date) > new Date(b.date) ? 1 : 0))
+		.sort((a, b) =>
+			new Date(a.date) < new Date(b.date)
+				? -1
+				: new Date(a.date) > new Date(b.date)
+				? 1
+				: 0
+		)
 		.map((message, i) => (
 			<MessageComponent key={`message-${i}`} message={message} />
 		))
