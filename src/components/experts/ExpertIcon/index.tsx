@@ -29,7 +29,7 @@ const ExpertIconContainer = styled.div`
 	justify-content: space-between;
 	flex-direction: column;
 	align-items: center;
-	
+
 	font-family: Open Sans;
 	font-style: normal;
 	font-weight: normal;

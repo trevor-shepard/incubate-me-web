@@ -58,6 +58,7 @@ const Input = styled.input<InputProps>`
 	line-height: normal;
 	box-sizing: border-box;
 	border-radius: 2px;
+	padding: 5px;
 	/* &:focus ~ .floating-label{
         top: 8px;
         bottom: 10px;

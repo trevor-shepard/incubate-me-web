@@ -1,18 +1,30 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import ExpertIcon from 'components/experts/ExpertListItem'
+import ExpertIconMobile from 'components/experts/ExpertListItemMobile'
+import ExpertIconDesktop from 'components/experts/ExpertListItemDesktop'
 import { Expert } from 'store/slices/expertsSlice'
+import { useMediaQuery } from 'react-responsive'
 
 interface ExpertsDisplayProps {
 	experts: Expert[]
+	handleSelect?: (id: string) => () => void
 }
 
-const Feature: FunctionComponent<ExpertsDisplayProps> = ({ experts }) => {
+const Feature: FunctionComponent<ExpertsDisplayProps> = ({ experts, handleSelect }) => {
+	const isTabletOrMobileDevice = useMediaQuery({
+		query: '(max-device-width: 1224px)'
+	})
 	return (
 		<ExpertsContainer>
-			{experts.slice(0, 3).map((expert, i) => (
-				<ExpertIcon key={`${i}-expert-icon`} expert={expert} />
-			))}
+			{experts
+				.slice(0, 3)
+				.map((expert, i) =>
+					isTabletOrMobileDevice ? (
+						<ExpertIconMobile key={`${i}-expert-icon`} expert={expert} />
+					) : (
+						<ExpertIconDesktop handleSelect={handleSelect ? (handleSelect(expert.id)) : () => console.log('not gunna happen')} key={`${i}-expert-icon`} expert={expert}  />
+					)
+				)}
 		</ExpertsContainer>
 	)
 }

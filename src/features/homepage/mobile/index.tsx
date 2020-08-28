@@ -66,7 +66,9 @@ const MobileHomepage: FunctionComponent = () => {
 					>
 						Online Strategic Finance Service
 					</Service>
-					<Service to='/'>Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon></Service>
+					<Service to="/">
+						Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon>
+					</Service>
 				</ServicesContainer>
 			</ServicesProgressContainer>
 			<ExpertsContainer>
@@ -196,12 +198,12 @@ const ExpertsEmptyMessage = styled.div`
 `
 
 const ComingSoon = styled.div`
-	content: "Coming Soon";
+	content: 'Coming Soon';
 	width: 72px;
 	height: 28px;
 	left: 208px;
 	top: 11px;
-	border: 1px solid #5A5A5A;
+	border: 1px solid #5a5a5a;
 	box-sizing: border-box;
 	text-align: center;
 	font-size: 10px;

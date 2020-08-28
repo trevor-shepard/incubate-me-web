@@ -1,46 +1,39 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import { useLocation, useHistory } from 'react-router-dom'
+import {useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import Back from 'components/navigation/Back'
 import ExpertProfilePictures from 'assets/images/experts'
 import { addExpert } from 'store/slices/expertsSlice'
-interface LocationState {
-	state: {
-		id: string
-	}
+interface Props {
+	id: string
 }
 
-const Expert: FunctionComponent = () => {
+const MobileService: FunctionComponent<Props> = ({ id }) => {
 	const allExperts = useSelector((state: RootState) => state.experts)
 	const dispatch = useDispatch()
 	const { expertIDs } = useSelector((state: RootState) => state.user)
 	const history = useHistory()
-	const { state } = useLocation() as LocationState
-
-	if (!state || !state.id || !Object.keys(allExperts).includes(state.id))
-		history.push('/')
 
 	const { name, title, location, bio, linkedInProfile, expertise } = allExperts[
-		state.id
+		id
 	]
 
 	const expertiseTags = expertise.map((expertise, i) => (
 		<ExpertExpertise key={`${i}- key`}>{expertise}</ExpertExpertise>
 	))
 
-	const photo = ExpertProfilePictures[state.id]
+	const photo = ExpertProfilePictures[id]
 
 	const handlePurchase = async () => {
-		await dispatch(addExpert(state.id))
+		await dispatch(addExpert(id))
 
 		history.push('/')
 	}
 
 	return (
 		<Container>
-			<Back />
 			<ExpertDisplay>
 				<ProfilePic src={photo} alt="" />
 
@@ -56,7 +49,7 @@ const Expert: FunctionComponent = () => {
 			)}
 			<SubHeader>Expertise</SubHeader>
 			<ExpertExpertiseList>{expertiseTags}</ExpertExpertiseList>
-			{!expertIDs.includes(state.id) && (
+			{!expertIDs.includes(id) && (
 				<PurchaseButton onClick={handlePurchase}>
 					Add to My Expert Team
 				</PurchaseButton>
@@ -196,4 +189,4 @@ const PurchaseButton = styled.div`
 	margin-top: 25px;
 `
 
-export default Expert
+export default MobileService

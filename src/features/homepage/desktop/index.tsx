@@ -31,21 +31,22 @@ const DesktopHomepage: FunctionComponent = () => {
 						<Service>Online Accounting Service</Service>
 						<Service>Online Human Resources Service</Service>
 						<Service>Online Strategic Finance Service</Service>
-						<Service>Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon></Service>
+						<Service>
+							Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon>
+						</Service>
 					</ServicesContainer>
 				</ServicesProgressContainer>
 			</Left>
 			<Right>
-				
-					<ExpertsHeader>Your Team of Experts</ExpertsHeader>
-					{experts.length ? (
-						<ExpertsDisplay experts={experts} />
-					) : (
-						<ExpertsEmptyMessage>
-							You haven’t hired any experts for your business yet. Make your
-							first hire!
-						</ExpertsEmptyMessage>
-					)}
+				<ExpertsHeader>Your Team of Experts</ExpertsHeader>
+				{experts.length ? (
+					<ExpertsDisplay experts={experts} />
+				) : (
+					<ExpertsEmptyMessage>
+						You haven’t hired any experts for your business yet. Make your first
+						hire!
+					</ExpertsEmptyMessage>
+				)}
 			</Right>
 		</Container>
 	)
@@ -65,7 +66,6 @@ const Left = styled.div`
 	padding-top: 5%;
 	padding-left: 5%;
 `
-
 
 const Header = styled.div`
 	font-family: Open Sans;
@@ -170,12 +170,12 @@ const ExpertsEmptyMessage = styled.div`
 `
 
 const ComingSoon = styled.div`
-	content: "Coming Soon";
+	content: 'Coming Soon';
 	width: 72px;
 	height: 28px;
 	left: 208px;
 	top: 11px;
-	border: 1px solid #5A5A5A;
+	border: 1px solid #5a5a5a;
 	box-sizing: border-box;
 	text-align: center;
 	font-size: 10px;
