@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
-import Logout from 'components/Logout'
 import ExpertsDisplay from 'components/experts/ExpertsDisplay'
 import { Expert } from 'store/slices/expertsSlice'
 const DesktopHomepage: FunctionComponent = () => {
@@ -14,45 +13,59 @@ const DesktopHomepage: FunctionComponent = () => {
 
 	return (
 		<Container>
-			<Header>
-				Hi {username}, select the service&#40;s&#41; you would like to have
-			</Header>
-			<ServicesProgressContainer>
-				<ProgressContainer>
-					<ProgressIndicator registered={services.accounting} />
-					<ProgressSeperator />
-					<ProgressIndicator registered={services.humanResource} />
-					<ProgressSeperator />
-					<ProgressIndicator registered={services.stratigicFinance} />
-					<ProgressSeperator />
-					<ProgressIndicator registered={false} />
-				</ProgressContainer>
-				<ServicesContainer>
-					<Service>Online Accounting Service</Service>
-					<Service>Online Human Resources Service</Service>
-					<Service>Online Strategic Finance Service</Service>
-					<Service>Online Accounting Service</Service>
-				</ServicesContainer>
-			</ServicesProgressContainer>
-			<ExpertsContainer>
-				<ExpertsHeader>Your Team of Experts</ExpertsHeader>
-				{experts.length ? (
-					<ExpertsDisplay experts={experts} />
-				) : (
-					<ExpertsEmptyMessage>
-						You haven’t hired any experts for your business yet. Make your first
-						hire!
-					</ExpertsEmptyMessage>
-				)}
-			</ExpertsContainer>
+			<Left>
+				<Header>
+					Hi {username}, select the service&#40;s&#41; you would like to have
+				</Header>
+				<ServicesProgressContainer>
+					<ProgressContainer>
+						<ProgressIndicator registered={services.accounting} />
+						<ProgressSeperator />
+						<ProgressIndicator registered={services.humanResource} />
+						<ProgressSeperator />
+						<ProgressIndicator registered={services.stratigicFinance} />
+						<ProgressSeperator />
+						<ProgressIndicator registered={false} />
+					</ProgressContainer>
+					<ServicesContainer>
+						<Service>Online Accounting Service</Service>
+						<Service>Online Human Resources Service</Service>
+						<Service>Online Strategic Finance Service</Service>
+						<Service>Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon></Service>
+					</ServicesContainer>
+				</ServicesProgressContainer>
+			</Left>
+			<Right>
+				
+					<ExpertsHeader>Your Team of Experts</ExpertsHeader>
+					{experts.length ? (
+						<ExpertsDisplay experts={experts} />
+					) : (
+						<ExpertsEmptyMessage>
+							You haven’t hired any experts for your business yet. Make your
+							first hire!
+						</ExpertsEmptyMessage>
+					)}
+			</Right>
 		</Container>
 	)
 }
 
 const Container = styled.div`
 	height: calc(100vh - 60px);
-	overflow: scroll;
+	overflow: none;
+	display: flex;
+	flex-direction: row;
 `
+const Left = styled.div`
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-top: 5%;
+	padding-left: 5%;
+`
+
 
 const Header = styled.div`
 	font-family: Open Sans;
@@ -65,7 +78,6 @@ const Header = styled.div`
 	width: 90%;
 	padding: 16px;
 	text-align: left;
-	margin-top: 10%;
 `
 const Service = styled.div`
 	width: 100%;
@@ -90,6 +102,7 @@ const Service = styled.div`
 
 const ServicesProgressContainer = styled.div`
 	display: flex;
+	width: 80%;
 `
 const ServicesContainer = styled.div`
 	display: flex;
@@ -125,10 +138,13 @@ const ProgressSeperator = styled.div`
 	margin-bottom: 2.5px;
 `
 
-const ExpertsContainer = styled.div`
-	width: 100%;
-	text-align: left;
-	padding: 16px;
+const Right = styled.div`
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-top: 10%;
+	padding-left: 10%;
 `
 
 const ExpertsHeader = styled.div`
@@ -139,6 +155,7 @@ const ExpertsHeader = styled.div`
 	line-height: 22px;
 	color: #696868;
 	margin-bottom: 20px;
+	padding-left: 2%;
 `
 
 const ExpertsEmptyMessage = styled.div`
@@ -150,6 +167,20 @@ const ExpertsEmptyMessage = styled.div`
 	letter-spacing: -0.408px;
 	color: #696868;
 	padding-right: 20px;
+`
+
+const ComingSoon = styled.div`
+	content: "Coming Soon";
+	width: 72px;
+	height: 28px;
+	left: 208px;
+	top: 11px;
+	border: 1px solid #5A5A5A;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 10px;
+	line-height: 26px;
+	margin-left: 13px;
 `
 
 export default DesktopHomepage

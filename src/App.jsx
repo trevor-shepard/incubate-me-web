@@ -22,7 +22,7 @@ import { AuthRoute, ProtectedRoute } from './utils/routeUtils'
 // import LinkedInPopUp from 'components/LinkedIn/LinkedInPopUp'
 
 import MobileNav from 'features/navbar/mobile'
-import DesktopNav  from 'features/navbar/desktop'
+import DesktopNav from 'features/navbar/desktop'
 
 export const persistor = persistStore(store)
 
@@ -35,7 +35,9 @@ function App() {
 			<Provider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<Router>
-						{ !isTabletOrMobileDevice && <ProtectedRoute component={DesktopNav} />}
+						{!isTabletOrMobileDevice && (
+							<ProtectedRoute component={DesktopNav} />
+						)}
 						<Switch>
 							{/* <Route path="/linkedin" component={LinkedInPopUp} /> */}
 							<AuthRoute path="/signup" component={SignUp} />
@@ -53,7 +55,7 @@ function App() {
 							<ProtectedRoute path="/chat" exact component={Chat} />
 							<ProtectedRoute path="/" component={Homepage} />
 						</Switch>
-						{ isTabletOrMobileDevice && <ProtectedRoute component={MobileNav} />}
+						{isTabletOrMobileDevice && <ProtectedRoute component={MobileNav} />}
 					</Router>
 				</PersistGate>
 			</Provider>

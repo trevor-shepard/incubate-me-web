@@ -20,8 +20,9 @@ const Feature: FunctionComponent<ExpertsDisplayProps> = ({ experts }) => {
 const ExpertsContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
+	width: 70%;
 `
 
 export default Feature

@@ -45,11 +45,11 @@ const Chat: FunctionComponent = () => {
 		if (chat !== undefined) {
 			setLoading(false)
 		}
-	}, [id])
+	}, [chat])
 
 	useEffect(() => {
 		dispatch(seeChat(id))
-	}, [conversation])
+	}, [conversation, id, dispatch])
 
 	useEffect(() => {
 		const unsubscribe = db

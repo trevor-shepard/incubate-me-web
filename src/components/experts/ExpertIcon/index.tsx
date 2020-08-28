@@ -27,16 +27,20 @@ const ExpertIconContainer = styled.div`
 	width: 90px;
 	display: flex;
 	justify-content: space-between;
-	font-family: Open Sans;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 10px;
-	line-height: 15px;
-	text-align: center;
-	letter-spacing: -0.408px;
-	color: #000000;
 	flex-direction: column;
 	align-items: center;
+	
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10px;
+	line-height: 15px;
+	/* or 150% */
+
+	text-align: center;
+	letter-spacing: -0.408px;
+
+	color: #000000;
 `
 
 const ProfilePic = styled.img`
