@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '..'
 import { db } from 'utils/firebase'
 import { createChat } from 'store/slices/chatsSlice'
+import { recieveUser, User } from 'store/slices/userSlice'
 export interface Expert {
 	bio: string
 	id: string
@@ -61,11 +62,11 @@ export const addExpert = (id: string): AppThunk => async (
 ) => {
 	try {
 		const {
-			user: { expertIDs, uid },
+			user,
 			experts
 		} = getState()
-
-		const expert = experts[id]
+		const { expertIDs, uid } = user
+ 		const expert = experts[id]
 
 		await db
 			.collection('users')
@@ -73,7 +74,10 @@ export const addExpert = (id: string): AppThunk => async (
 			.update({
 				expertIDs: [...expertIDs, id]
 			})
-
+		dispatch(recieveUser({
+			...user as User,
+			expertIDs: [...expertIDs, id]
+		}))
 		await dispatch(createChat([expert]))
 	} catch (error) {}
 }

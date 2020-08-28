@@ -1,27 +1,20 @@
 import React, { FunctionComponent, useState } from 'react'
 import styled from '@emotion/styled'
-import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { sendMessage } from 'store/slices/conversationsSlice'
-interface LocationState {
-	state: {
+interface Props {
+	
 		id: string
-	}
+	
 }
 
-const ChatInput: FunctionComponent = () => {
-	const { state } = useLocation() as LocationState
-	const history = useHistory()
+const ChatInput: FunctionComponent<Props> = ({ id }) => {
 	const dispatch = useDispatch()
 	const [message, setMessage] = useState('')
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setMessage(e.target.value)
 	}
-
-	if (!state || !state.id) history.goBack()
-
-	const { id } = state
 
 	const handleSubmit = () => {
 		if (message.length > 0) dispatch(sendMessage(id, message))
@@ -42,6 +35,7 @@ const ChatInput: FunctionComponent = () => {
 }
 
 const Container = styled.div`
+	width: 100%;
 	height: 50px;
 	display: flex;
 	flex-direction: row;

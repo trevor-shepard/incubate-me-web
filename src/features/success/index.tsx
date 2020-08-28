@@ -33,8 +33,6 @@ const Success: FunctionComponent = () => {
 
 	const { name } = plans[plan]
 
-	debugger
-
 	useEffect(() => {
 		const handleSubscribe = async () => {
 			await dispatch(subscribe(name))

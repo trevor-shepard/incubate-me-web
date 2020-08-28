@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import ExpertsDisplay from 'components/experts/ExpertsDisplay'
 import { Expert } from 'store/slices/expertsSlice'
+import { Link } from 'react-router-dom'
+
 const DesktopHomepage: FunctionComponent = () => {
 	const { username, services } = useSelector((state: RootState) => state.user)
 
@@ -28,12 +30,39 @@ const DesktopHomepage: FunctionComponent = () => {
 						<ProgressIndicator registered={false} />
 					</ProgressContainer>
 					<ServicesContainer>
-						<Service>Online Accounting Service</Service>
-						<Service>Online Human Resources Service</Service>
-						<Service>Online Strategic Finance Service</Service>
-						<Service>
-							Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon>
-						</Service>
+					<Service
+						to={{
+							pathname: '/service',
+							state: {
+								service: 'accounting'
+							}
+						}}
+					>
+						Online Accounting Service
+					</Service>
+					<Service
+						to={{
+							pathname: '/service',
+							state: {
+								service: 'humanResource'
+							}
+						}}
+					>
+						Online Human Resources Service
+					</Service>
+					<Service
+						to={{
+							pathname: '/service',
+							state: {
+								service: 'stratigicFinance'
+							}
+						}}
+					>
+						Online Strategic Finance Service
+					</Service>
+					<Service to="/">
+						Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon>
+					</Service>
 					</ServicesContainer>
 				</ServicesProgressContainer>
 			</Left>
@@ -79,7 +108,7 @@ const Header = styled.div`
 	padding: 16px;
 	text-align: left;
 `
-const Service = styled.div`
+const Service = styled(Link)`
 	width: 100%;
 	height: 51px;
 	background: #ffffff;
@@ -98,6 +127,8 @@ const Service = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-decoration: none;
+
 `
 
 const ServicesProgressContainer = styled.div`

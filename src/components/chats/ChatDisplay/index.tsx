@@ -1,6 +1,5 @@
 import React, { useEffect, FunctionComponent, useState } from 'react'
 import styled from '@emotion/styled'
-import { useHistory, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import {
@@ -13,25 +12,16 @@ import { seeChat } from 'store/slices/chatsSlice'
 import { db } from 'utils/firebase'
 import ConversationComponent from 'components/chats/Conversation'
 import ChatInput from 'components/chats/ChatInput'
-import Logo from 'components/Logo'
 import Back from 'components/navigation/Back'
 import ChatIcon from 'components/chats/ChatIcon'
 
-interface LocationState {
-	state: {
-		id: string
-	}
+interface Props {
+    id: string
+	
 }
 
-const Chat: FunctionComponent = () => {
+const ChatDisplay: FunctionComponent<Props> = ({ id}) => {
 	const dispatch = useDispatch()
-	// do not render if no id provided
-	const history = useHistory()
-	const { state } = useLocation() as LocationState
-	if (!state || !state.id) history.goBack()
-
-	const { id } = state
-
 	const experts = useSelector((state: RootState) => state.experts)
 	const chat = useSelector((state: RootState) => state.chats[id])
 	const conversation = useSelector(
@@ -99,7 +89,6 @@ const Chat: FunctionComponent = () => {
 
 	return (
 		<Container>
-			<Logo />
 			<Header>
 				<Back absolute={false} text={false} />
 				<ChatIcon height={'30px'} expertIDs={expertIDs} />
@@ -112,8 +101,14 @@ const Chat: FunctionComponent = () => {
 }
 
 const Container = styled.div`
-	height: calc(100vh - 60px);
-	overflow: scroll;
+	overflow: none;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	z-index: -1;
+
 `
 const Header = styled.div`
 	height: 10%;
@@ -121,7 +116,9 @@ const Header = styled.div`
 	flex-direction: row;
 	align-items: flex-end;
 	border-bottom: 1px solid #c4c4c4;
-	padding: 2%;
+	padding: 15px;
+	margin-left: 2%;
+
 `
 
 const ExpertInfo = styled.div`
@@ -136,4 +133,4 @@ const ExpertInfo = styled.div`
 	padding-bottom: 4px;
 `
 
-export default Chat
+export default ChatDisplay

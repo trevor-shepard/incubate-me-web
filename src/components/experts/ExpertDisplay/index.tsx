@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import {useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'store/rootReducer'
-import Back from 'components/navigation/Back'
 import ExpertProfilePictures from 'assets/images/experts'
 import { addExpert } from 'store/slices/expertsSlice'
 interface Props {
