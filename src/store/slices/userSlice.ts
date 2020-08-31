@@ -4,7 +4,7 @@ import { AppThunk } from '..'
 
 import firebase, { auth, db } from 'utils/firebase'
 import { fetchExperts, clearExperts } from './expertsSlice'
-import { fetchChats, clearChats } from './chatsSlice'
+import { fetchChats, fetchUserExpertChats, clearChats } from './chatsSlice'
 import { clearConversations } from './conversationsSlice'
 
 export interface UserState {
@@ -46,6 +46,7 @@ export interface UserState {
 	expertIDs: string[]
 	chatIDs: string[]
 	error: string | null
+	expert: boolean
 }
 
 export interface User {
@@ -78,6 +79,13 @@ export interface User {
 		healthcareManagment: boolean
 	}
 	expertIDs: string[]
+	chatIDs: string[]
+}
+
+export interface ExpertUser {
+	username: string
+	uid: string
+	email: string
 	chatIDs: string[]
 }
 
@@ -178,7 +186,8 @@ const initialState: UserState = {
 		healthcareManagment: false
 	},
 	chatIDs: [],
-	expertIDs: []
+	expertIDs: [],
+	expert: false
 }
 
 const user = createSlice({
@@ -188,7 +197,47 @@ const user = createSlice({
 		recieveUser(state, action: PayloadAction<User>) {
 			return {
 				...action.payload,
-				error: null
+				error: null,
+				expert: false
+			}
+		},
+		recieveUserExpert(state, action: PayloadAction<ExpertUser>) {
+			const { username, email, uid, chatIDs } = action.payload
+
+			return {
+				username,
+				email,
+				uid,
+				chatIDs,
+				error: null,
+				linkedIn: null,
+				companyUrl: null,
+				fundingStage: null,
+				services: {
+					accounting: false,
+					humanResource: false,
+					stratigicFinance: false
+				},
+				neededExpertise: {
+					bookKeeping: false,
+					accounting: false,
+					cpa: false,
+					tresauryManagment: false,
+					paymentManagement: false,
+					receivablesManagment: false,
+					fluxAnalysisOfMonthlyFinancialStatements: false,
+					budgetingPlanning: false,
+					financialModeling: false,
+					alternativeFinancingGovFinancing: false,
+					CFOAdvisory: false,
+					Management1099: false,
+					w2Onboarding: false,
+					payrollManagment: false,
+					healthcareManagment: false
+				},
+
+				expertIDs: [],
+				expert: true
 			}
 		},
 		clear() {
@@ -224,7 +273,8 @@ const user = createSlice({
 					healthcareManagment: false
 				},
 				expertIDs: [],
-				chatIDs: []
+				chatIDs: [],
+				expert: false
 			}
 		},
 		updateUser(state, action: PayloadAction<UserUpdate>) {
@@ -240,14 +290,20 @@ const user = createSlice({
 	}
 })
 
-export const { recieveUser, userError, clear, updateUser } = user.actions
+export const {
+	recieveUser,
+	userError,
+	clear,
+	updateUser,
+	recieveUserExpert
+} = user.actions
 
 export default user.reducer
 
-export const login = (
-	email: string,
-	password: string
-): AppThunk => async dispatch => {
+export const login = (email: string, password: string): AppThunk => async (
+	dispatch,
+	getState
+) => {
 	try {
 		const uid = await auth
 			.signInWithEmailAndPassword(email, password)
@@ -258,15 +314,33 @@ export const login = (
 					return resp.user.uid
 				}
 			})
-		dispatch(fetchExperts())
-		const user = (await db
-			.collection('users')
-			.doc(uid)
-			.get()
-			.then(doc => doc.data())) as User
 
-		dispatch(fetchChats(user.chatIDs))
-		dispatch(recieveUser(user))
+		await dispatch(fetchExperts())
+
+		const { experts } = getState()
+
+		if (Object.keys(experts).includes(uid)) {
+			const { name, chatIDs, email } = experts[uid]
+			await dispatch(fetchUserExpertChats(chatIDs))
+			
+			dispatch(
+				recieveUserExpert({
+					username: name,
+					chatIDs,
+					email,
+					uid
+				})
+			)
+		} else {
+			const user = (await db
+				.collection('users')
+				.doc(uid)
+				.get()
+				.then(doc => doc.data())) as User
+
+			dispatch(fetchChats(user.chatIDs))
+			dispatch(recieveUser(user))
+		}
 	} catch (error) {
 		dispatch(userError(error.message))
 	}

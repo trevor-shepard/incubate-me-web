@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '..'
 import { db } from 'utils/firebase'
-import { Expert } from 'store/slices/expertsSlice'
+import { Expert, fetchUserAsExpert } from 'store/slices/expertsSlice'
 import {
 	recieveConversation,
 	fetchConversation
@@ -76,6 +76,43 @@ export const fetchChats = (chatIDs: string[]): AppThunk => async dispatch => {
 					dispatch(recieveChat(chat))
 				})
 			})
+	} catch (error) {
+		console.log('error', error)
+	}
+}
+
+export const fetchUserExpertChats = (chatIDs: string[]): AppThunk => async (
+	dispatch,
+	getState
+) => {
+	try {
+		const { experts } = getState()
+		const expertIDs = Object.keys(experts)
+		if (chatIDs.length === 0) return
+		const chats: Chat[] = await db
+			.collection('chats')
+			.where('id', 'in', chatIDs)
+			.get()
+			.then(querySnapshot => {
+				const values:Chat[] = []
+				querySnapshot.forEach(async doc => {
+					const chat = doc.data() as Chat
+					values.push(chat)
+				})
+				return values
+			})
+		for (const chat of chats) {
+			const { participants } = chat
+
+			for (const participantID of Object.keys(participants)) {
+				if (!expertIDs.includes(participantID))
+					
+					await dispatch(fetchUserAsExpert(participantID))
+			}
+
+			dispatch(fetchConversation(chat.id))
+			dispatch(recieveChat(chat))
+		}
 	} catch (error) {
 		console.log('error', error)
 	}

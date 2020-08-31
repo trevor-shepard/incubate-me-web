@@ -28,13 +28,20 @@ const experts = createSlice({
 		recieveExperts(state, action: PayloadAction<ExpertState>) {
 			return action.payload
 		},
+		recieveExpert(state, action: PayloadAction<Expert>) {
+			const expert = action.payload
+			return {
+				...state,
+				[expert.id]: expert
+			}
+		},
 		clearExperts() {
 			return {}
 		}
 	}
 })
 
-export const { recieveExperts, clearExperts } = experts.actions
+export const { recieveExperts, recieveExpert, clearExperts } = experts.actions
 
 export const fetchExperts = (): AppThunk => async dispatch => {
 	try {
@@ -61,12 +68,9 @@ export const addExpert = (id: string): AppThunk => async (
 	getState
 ) => {
 	try {
-		const {
-			user,
-			experts
-		} = getState()
+		const { user, experts } = getState()
 		const { expertIDs, uid } = user
- 		const expert = experts[id]
+		const expert = experts[id]
 
 		await db
 			.collection('users')
@@ -74,11 +78,44 @@ export const addExpert = (id: string): AppThunk => async (
 			.update({
 				expertIDs: [...expertIDs, id]
 			})
-		dispatch(recieveUser({
-			...user as User,
-			expertIDs: [...expertIDs, id]
-		}))
+		dispatch(
+			recieveUser({
+				...(user as User),
+				expertIDs: [...expertIDs, id]
+			})
+		)
 		await dispatch(createChat([expert]))
+	} catch (error) {}
+}
+
+export const fetchUserAsExpert = (uid: string): AppThunk => async (
+	dispatch,
+	getState
+) => {
+	try {
+		const { experts } = getState()
+
+		if (experts[uid] !== undefined) return null
+
+		const { username, email, chatIDs } = (await db
+			.collection('users')
+			.doc(uid)
+			.get()
+			.then(doc => doc.data())) as User
+		
+		dispatch(
+			recieveExpert({
+				bio: '',
+				id: uid,
+				name: username,
+				email,
+				title: '',
+				linkedInProfile: '',
+				location: '',
+				expertise: [],
+				chatIDs
+			})
+		)
 	} catch (error) {}
 }
 

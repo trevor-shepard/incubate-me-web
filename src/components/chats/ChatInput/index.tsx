@@ -3,9 +3,7 @@ import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux'
 import { sendMessage } from 'store/slices/conversationsSlice'
 interface Props {
-	
-		id: string
-	
+	id: string
 }
 
 const ChatInput: FunctionComponent<Props> = ({ id }) => {
@@ -22,11 +20,15 @@ const ChatInput: FunctionComponent<Props> = ({ id }) => {
 	}
 
 	return (
-		<Container>
+		<Container >
 			<Input
 				value={message}
 				onChange={handleInput}
 				placeholder="Write your message here"
+				ref={input => input && input.focus()}
+				onKeyPress={(e) => {
+					if (e.key === 'Enter' && message !== '') handleSubmit()
+				}}
 			/>
 
 			<Submit onClick={handleSubmit}>Submit</Submit>
@@ -43,6 +45,7 @@ const Container = styled.div`
 	align-self: flex-end;
 	background: #ffffff;
 	box-shadow: 0px -3px 4px rgba(202, 202, 202, 0.25);
+	z-index: 100;
 `
 
 const Input = styled.input`
@@ -50,12 +53,18 @@ const Input = styled.input`
 	width: 80%;
 	text-align: center;
 	font-size: 16px;
+	
 	&:hover {
 		outline: none;
 	}
 	&:focus::-webkit-input-placeholder {
 		color: transparent;
+		
 	}
+	&:focus {
+		outline: none;
+	}
+
 `
 
 const Submit = styled.div`

@@ -33,7 +33,6 @@ const ChargeBee: FunctionComponent<{ subscriptionPlan: string }> = ({
 	const handleSubmit = (e: MouseEvent) => {
 		e.preventDefault()
 	}
-
 	return (
 		<Submit
 			onClick={handleSubmit}

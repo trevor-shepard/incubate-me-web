@@ -10,7 +10,10 @@ interface ExpertsDisplayProps {
 	handleSelect?: (id: string) => () => void
 }
 
-const Feature: FunctionComponent<ExpertsDisplayProps> = ({ experts, handleSelect }) => {
+const Feature: FunctionComponent<ExpertsDisplayProps> = ({
+	experts,
+	handleSelect
+}) => {
 	const isTabletOrMobileDevice = useMediaQuery({
 		query: '(max-device-width: 1224px)'
 	})
@@ -22,7 +25,15 @@ const Feature: FunctionComponent<ExpertsDisplayProps> = ({ experts, handleSelect
 					isTabletOrMobileDevice ? (
 						<ExpertIconMobile key={`${i}-expert-icon`} expert={expert} />
 					) : (
-						<ExpertIconDesktop handleSelect={handleSelect ? (handleSelect(expert.id)) : () => console.log('not gunna happen')} key={`${i}-expert-icon`} expert={expert}  />
+						<ExpertIconDesktop
+							handleSelect={
+								handleSelect
+									? handleSelect(expert.id)
+									: () => console.log('not gunna happen')
+							}
+							key={`${i}-expert-icon`}
+							expert={expert}
+						/>
 					)
 				)}
 		</ExpertsContainer>

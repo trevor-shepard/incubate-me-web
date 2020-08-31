@@ -28,6 +28,9 @@ const BackArrow = styled.div<StyleProps>`
 	position: ${props => (props.absolute ? 'absolute' : 'relative')};
 	${props => (props.absolute ? 'left: 15px;' : null)}
 	${props => (props.absolute ? 'top: 20px;' : null)}
+	&:hover {
+		cursor: pointer;
+	}
 `
 
 const Picture = styled.img`

@@ -46,7 +46,7 @@ const CreateGroupChat: FunctionComponent = () => {
 	}
 
 	return (
-		<Container onClick={(e) => e.stopPropagation()}>
+		<Container onClick={e => e.stopPropagation()}>
 			<Header>
 				<HeaderTitle>Your experts</HeaderTitle>
 				<ChatStart onClick={handleCreate}>Create Chat</ChatStart>
@@ -57,21 +57,20 @@ const CreateGroupChat: FunctionComponent = () => {
 }
 
 const Container = styled.div`
-    position: absolute; 
-	background: #FFFFFF;
-	border: 1px solid #F0F0F0;
+	position: absolute;
+	background: #ffffff;
+	border: 1px solid #f0f0f0;
 	box-sizing: border-box;
 	box-shadow: 0px 2px 4px rgba(183, 178, 178, 0.25);
 	border-radius: 3px;
-    left: 0; 
-    right: 0; 
+	left: 0;
+	right: 0;
 	top: 10%;
-    margin-left: auto; 
-    margin-right: auto; 
+	margin-left: auto;
+	margin-right: auto;
 	width: 449px;
-    height: 416px;
-    z-index: 100;
-
+	height: 416px;
+	z-index: 100;
 `
 const Header = styled.div`
 	height: 10%;

@@ -148,14 +148,11 @@ const Profile: FunctionComponent = () => {
 		{ value: 'seed', display: 'Seed Funded' },
 		{ value: 'series-a', display: 'Series A Funded' },
 		{ value: 'other', display: 'Other' }
-    ]
-    
-   
-    
+	]
 
 	return (
 		<Container>
-            <LogoutButton />
+			<LogoutButton />
 			<Header>Update your profile</Header>
 			<SubHeader>
 				Create your profile to make yourself discoverable by experts
@@ -293,9 +290,9 @@ const Container = styled.div`
 	padding: 20px;
 	overflow: scroll;
 	color: #696868;
-    padding-left: 2%;
-    height: 100%;
-    display: relative;
+	padding-left: 2%;
+	height: 100%;
+	display: relative;
 `
 const Error = styled.div`
 	border-radius: 2px;
@@ -374,28 +371,26 @@ const SubmitContainer = styled.div`
 	justify-content: flex-start;
 	margin-top: 20px;
 	padding-bottom: 20px;
-    margin-bottom: 5%;
+	margin-bottom: 5%;
 `
 
-
 const LogoutButton: FunctionComponent = () => {
-    const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
-    const handleLogout = () => {
-        dispatch(logout())
-    }
-    return <Logout onClick={handleLogout}>logout</Logout>
+	const handleLogout = () => {
+		dispatch(logout())
+	}
+	return <Logout onClick={handleLogout}>logout</Logout>
 }
 
 const Logout = styled.div`
-    margin-left: 90%;
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 22px;
-    letter-spacing: -0.408px;
-    color: #00000;
+	margin-left: 90%;
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 22px;
+	letter-spacing: -0.408px;
+	color: #00000;
 `
-
 export default Profile

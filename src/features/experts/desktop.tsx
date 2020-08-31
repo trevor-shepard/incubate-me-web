@@ -7,13 +7,10 @@ import Select from 'components/inputs/select'
 import ExpertList from 'components/experts/ExpertsList'
 import ExpertDisplay from 'components/experts/ExpertDisplay'
 
-
 const Experts: FunctionComponent = () => {
 	const [serviceName, setService] = useState('accounting')
-	const [selectedExpert, setSelectedExpert ] = useState('')
-	const allExperts = useSelector(
-		(state: RootState) => state.experts
-	)
+	const [selectedExpert, setSelectedExpert] = useState('')
+	const allExperts = useSelector((state: RootState) => state.experts)
 
 	const handleSelect = (expertID: string) => () => {
 		setSelectedExpert(expertID)
@@ -53,7 +50,9 @@ const Experts: FunctionComponent = () => {
 				<ExpertList handleSelect={handleSelect} experts={experts} />
 			</Left>
 			<Right>
-				{ allExperts[selectedExpert] !== undefined && <ExpertDisplay id={selectedExpert} />}
+				{allExperts[selectedExpert] !== undefined && (
+					<ExpertDisplay id={selectedExpert} />
+				)}
 			</Right>
 		</Container>
 	)

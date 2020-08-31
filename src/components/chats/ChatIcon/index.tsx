@@ -12,8 +12,12 @@ const ChatIcon: FunctionComponent<Props> = ({ expertIDs, height, unseen }) => {
 	if (expertIDs.length === 0) return null
 	if (expertIDs.length === 1)
 		return (
-			<Container >
-				<ProfilePic height={height} src={ExpertProfilePictures[expertIDs[0]]} alt="" />
+			<Container>
+				<ProfilePic
+					height={height}
+					src={ExpertProfilePictures[expertIDs[0]]}
+					alt=""
+				/>
 
 				{unseen && unseen > 0 ? <Unseen>{unseen}</Unseen> : null}
 			</Container>
@@ -34,15 +38,13 @@ interface StyleProps {
 const ProfilePic = styled.img<StyleProps>`
 	border-radius: 50%;
 	height: 100%;
-	/* width: 100%; */
-	/* height: ${({ height }) => (height ? height : '60px')};
-	width: ${({ height }) => (height ? height : '60px')}; */
+	width: 100%; 
+	height: ${({ height }) => (height ? height : '60px')};
+	width: ${({ height }) => (height ? height : '60px')};
 `
 
 const Container = styled.div<StyleProps>`
 	position: relative;
-	height: ${({ height }) => (height ? height : '60px')};
-	width: ${({ height }) => (height ? height : '60px')};
 `
 const Unseen = styled.div`
 	position: absolute;

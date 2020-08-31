@@ -23,7 +23,7 @@ export const accounting: Service = {
 	expertIDs: [
 		'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
 		'Q47HpkjiSmUoi0RLtzuVgSLpCtR2',
-		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2'
+		'sN8IbYDXo3ZbyNWdyPtAhX8lEKz2'
 	]
 }
 
@@ -42,7 +42,7 @@ export const humanResource: Service = {
 		'On-demand chat with your expert team',
 		'One hour per month video session with your expert team'
 	],
-	expertIDs: ['Z39gavNVVDY3pb2p5J8tz9I3Xva2', 'TGJ3tIDZn9dC84rKRYTfn6uyNYv2']
+	expertIDs: ['Z39gavNVVDY3pb2p5J8tz9I3Xva2', 'sN8IbYDXo3ZbyNWdyPtAhX8lEKz2']
 }
 export const stratigicFinance: Service = {
 	name: 'stratigicFinance',
@@ -60,7 +60,7 @@ export const stratigicFinance: Service = {
 		'One hour per month video session with your expert team'
 	],
 	expertIDs: [
-		'TGJ3tIDZn9dC84rKRYTfn6uyNYv2',
+		'sN8IbYDXo3ZbyNWdyPtAhX8lEKz2',
 		'Lbgz8QodrFNZDNMiOmRiVXZjZtZ2',
 		'Q47HpkjiSmUoi0RLtzuVgSLpCtR2'
 	]

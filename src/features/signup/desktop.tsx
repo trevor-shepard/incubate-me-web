@@ -6,6 +6,7 @@ import TextInput from 'components/inputs/text'
 import SelectInput from 'components/inputs/select'
 import Checkbox from 'components/inputs/checkbox'
 import { IncubateMeLogo } from 'assets/images'
+import Login from 'features/login'
 
 const SignUp: FunctionComponent = () => {
 	const dispatch = useDispatch()
@@ -40,6 +41,7 @@ const SignUp: FunctionComponent = () => {
 	const [w2Onboarding, w2OnboardingSet] = useState(false)
 	const [payrollManagment, payrollManagmentSet] = useState(false)
 	const [healthcareManagment, healthcareManagmentSet] = useState(false)
+	const [login, setLogin] = useState(false)
 
 	const [error, setError] = useState('')
 	const handleSignUp = () => {
@@ -95,6 +97,9 @@ const SignUp: FunctionComponent = () => {
 	return (
 		<Container>
 			<Logo src={IncubateMeLogo} />
+			<LoginButton onClick={() => setLogin(true)}>Login</LoginButton>
+			{login && <Grey onClick={() => setLogin(false)} />}
+			{login && <Login />}
 			<Content>
 				<Left>
 					<Header>
@@ -365,6 +370,24 @@ const SubmitContainer = styled.div`
 	justify-content: flex-start;
 	margin-top: 20px;
 	margin-bottom: 20px;
+`
+const Grey = styled.div`
+	height: 100vh;
+	width: 100vw;
+	z-index: 50;
+	opacity: 0.6;
+	background-color: #777375;
+	position: absolute;
+	left: 0;
+	top: 0;
+`
+
+const LoginButton = styled.div`
+	position: absolute;
+	width: 87px;
+	height: 17px;
+	left: 90%;
+	top: 4%;
 `
 
 export default SignUp

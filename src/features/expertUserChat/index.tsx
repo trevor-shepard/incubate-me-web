@@ -2,25 +2,18 @@ import React, { FunctionComponent, useState } from 'react'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
-import ChatListItem from 'components/chats/ChatListItemDesktop'
-import ChatDisplay from 'components/chats/ChatDisplay'
-import CreateGroupChat from 'components/chats/CreateGroupChat'
-import { GroupChat } from 'assets/icons'
-const ChatList: FunctionComponent = () => {
+import ChatListItem from 'components/ExpertUserComponents/ChatListItem'
+import ChatDisplay from 'components/ExpertUserComponents/ChatDisplay'
+const ExpertUserChat: FunctionComponent = () => {
 	const [chatID, setChatID] = useState('')
-	const [showCreate, setShowCreate] = useState(false)
 
 	const selectChat = (chatID: string) => {
 		return () => {
 			setChatID(chatID)
 		}
 	}
-
-	const hideCreate = () => {
-		if (showCreate) setShowCreate(false)
-	}
-
 	const chats = useSelector((state: RootState) => state.chats)
+
 	const ChatListItems = Object.values(chats).map((chat, i) => (
 		<ChatListItem
 			selected={chatID === chat.id}
@@ -32,19 +25,13 @@ const ChatList: FunctionComponent = () => {
 
 	return (
 		<Container>
-			<Sidebar onClick={hideCreate}>
+			<Sidebar>
 				<Header>
 					<HeaderTitle>Your Chats</HeaderTitle>
-					<ChatLogo
-						src={GroupChat}
-						alt=""
-						onClick={() => setShowCreate(true)}
-					/>
 				</Header>
 				<List>{ChatListItems}</List>
 			</Sidebar>
-			<ChatContainer onClick={hideCreate}>
-				{showCreate && <CreateGroupChat />}
+			<ChatContainer>
 				{chats[chatID] !== undefined && <ChatDisplay id={chatID} />}
 			</ChatContainer>
 		</Container>
@@ -94,9 +81,4 @@ const List = styled.div`
 	flex-direction: column;
 `
 
-const ChatLogo = styled.img`
-	height: 26px;
-	width: 26px;
-`
-
-export default ChatList
+export default ExpertUserChat

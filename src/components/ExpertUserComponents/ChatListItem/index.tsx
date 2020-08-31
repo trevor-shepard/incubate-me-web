@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store/rootReducer'
 import { Chat } from 'store/slices/chatsSlice'
-import ChatIcon from '../ChatIcon'
+
 interface Props {
 	chat: Chat
 	handleSelect: () => void
@@ -19,14 +19,16 @@ const ChatListItem: FunctionComponent<Props> = ({
 
 	const experts = useSelector((state: RootState) => state.experts)
 
-	const conversation = useSelector(
-		(state: RootState) => state.conversations[id]
+	const conversation = useSelector((state: RootState) =>
+		state.conversations[id] ? state.conversations[id] : {}
 	)
 
 	const lastSeen = participants[uid as string]
-	const unseen = conversation ? Object.values(conversation).filter(
+
+	const unseen = Object.values(conversation).filter(
 		message => new Date(lastSeen) < new Date(message.date)
-	) : []
+	)
+
 	const expertIDs = Object.keys(participants)
 		.filter(i => i !== uid)
 		.sort((a, b) =>
@@ -48,7 +50,6 @@ const ChatListItem: FunctionComponent<Props> = ({
 			  )
 	return (
 		<Container onClick={handleSelect} selected={selected}>
-			<ChatIcon expertIDs={expertIDs} unseen={unseen.length} />
 			<ExpertInfo>{expertsInfo}</ExpertInfo>
 		</Container>
 	)

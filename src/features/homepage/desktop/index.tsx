@@ -30,39 +30,39 @@ const DesktopHomepage: FunctionComponent = () => {
 						<ProgressIndicator registered={false} />
 					</ProgressContainer>
 					<ServicesContainer>
-					<Service
-						to={{
-							pathname: '/service',
-							state: {
-								service: 'accounting'
-							}
-						}}
-					>
-						Online Accounting Service
-					</Service>
-					<Service
-						to={{
-							pathname: '/service',
-							state: {
-								service: 'humanResource'
-							}
-						}}
-					>
-						Online Human Resources Service
-					</Service>
-					<Service
-						to={{
-							pathname: '/service',
-							state: {
-								service: 'stratigicFinance'
-							}
-						}}
-					>
-						Online Strategic Finance Service
-					</Service>
-					<Service to="/">
-						Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon>
-					</Service>
+						<Service
+							to={{
+								pathname: '/service',
+								state: {
+									service: 'accounting'
+								}
+							}}
+						>
+							Online Accounting Service
+						</Service>
+						<Service
+							to={{
+								pathname: '/service',
+								state: {
+									service: 'humanResource'
+								}
+							}}
+						>
+							Online Human Resources Service
+						</Service>
+						<Service
+							to={{
+								pathname: '/service',
+								state: {
+									service: 'stratigicFinance'
+								}
+							}}
+						>
+							Online Strategic Finance Service
+						</Service>
+						<Service to="/">
+							Online Mentoring Service <ComingSoon>Coming Soon</ComingSoon>
+						</Service>
 					</ServicesContainer>
 				</ServicesProgressContainer>
 			</Left>
@@ -128,7 +128,6 @@ const Service = styled(Link)`
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-
 `
 
 const ServicesProgressContainer = styled.div`

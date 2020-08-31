@@ -4,20 +4,18 @@ import { Expert } from 'store/slices/expertsSlice'
 import ExpertProfilePictures from 'assets/images/experts'
 
 interface ExpertIconProps {
-    expert: Expert
-    handleSelect: () => void
+	expert: Expert
+	handleSelect: () => void
 }
 
 const ExpertIcon: FunctionComponent<ExpertIconProps> = ({
-    expert: { id, name, title },
-    handleSelect
+	expert: { id, name, title },
+	handleSelect
 }) => {
 	const photo = ExpertProfilePictures[id]
 
 	return (
-		<ExpertListItemContainer
-			onClick={handleSelect}
-		>
+		<ExpertListItemContainer onClick={handleSelect}>
 			<ProfilePic src={photo} alt="" />
 			<ExpertInfo>
 				<ExpertName>{name}</ExpertName>
