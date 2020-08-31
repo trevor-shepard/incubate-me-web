@@ -7,11 +7,13 @@ import { Expert } from 'store/slices/expertsSlice'
 import { Link } from 'react-router-dom'
 
 const DesktopHomepage: FunctionComponent = () => {
-	const { username, services } = useSelector((state: RootState) => state.user)
+	const { username, services, expertIDs } = useSelector((state: RootState) => state.user)
 
 	const experts = useSelector(
 		(state: RootState) => Object.values(state.experts) as Expert[]
 	)
+
+	const userExperts = experts.filter(expert => expertIDs.includes(expert.id))
 
 	return (
 		<Container>
@@ -69,7 +71,7 @@ const DesktopHomepage: FunctionComponent = () => {
 			<Right>
 				<ExpertsHeader>Your Team of Experts</ExpertsHeader>
 				{experts.length ? (
-					<ExpertsDisplay experts={experts} />
+					<ExpertsDisplay experts={userExperts} />
 				) : (
 					<ExpertsEmptyMessage>
 						You haven’t hired any experts for your business yet. Make your first

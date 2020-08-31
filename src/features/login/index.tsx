@@ -72,6 +72,7 @@ const Input = styled.input`
 	font-family: Poppins;
 	font-size: 13px;
 	line-height: 22px;
+	padding: 5px;
 `
 
 const SubmitButton = styled.button`

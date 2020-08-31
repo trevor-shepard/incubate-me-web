@@ -388,6 +388,9 @@ const LoginButton = styled.div`
 	height: 17px;
 	left: 90%;
 	top: 4%;
+	&:hover {
+		cursor: pointer;
+	}
 `
 
 export default SignUp
