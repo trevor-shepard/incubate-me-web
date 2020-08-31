@@ -391,6 +391,9 @@ const Logout = styled.div`
 	font-size: 13px;
 	line-height: 22px;
 	letter-spacing: -0.408px;
-	color: #00000;
+	&:hover {
+		cursor: pointer;
+	}
+	color: '#00000';
 `
 export default Profile

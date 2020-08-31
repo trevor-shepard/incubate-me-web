@@ -51,6 +51,7 @@ const ChatListItem: FunctionComponent<Props> = ({
 	return (
 		<Container onClick={handleSelect} selected={selected}>
 			<ExpertInfo>{expertsInfo}</ExpertInfo>
+			{ unseen.length > 0 ? <Unseen>{unseen.length}</Unseen> : null}
 		</Container>
 	)
 }
@@ -60,6 +61,7 @@ interface StyleProps {
 }
 
 const Container = styled.div<StyleProps>`
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -82,6 +84,21 @@ const ExpertInfo = styled.div`
 	letter-spacing: -0.408px;
 	color: #000000;
 	margin-left: 5%;
+`
+
+const Unseen = styled.div`
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	font-size: 0.7em;
+	background: green;
+	color: white;
+	width: 18px;
+	height: 18px;
+	text-align: center;
+	line-height: 18px;
+	border-radius: 50%;
+	box-shadow: 0 0 1px #333;
 `
 
 export default ChatListItem

@@ -25,10 +25,9 @@ const MessageComponent: FunctionComponent<Props> = ({
 	if (!expert) return null
 
 	const photo = ExpertProfilePictures[expert.id]
-
 	return (
 		<ExpertMessageContainer>
-			<ProfilePic src={photo} alt="" />
+			{photo && <ProfilePic src={photo} alt="" />}
 			<ExpertMessage> {text} </ExpertMessage>
 		</ExpertMessageContainer>
 	)
@@ -79,6 +78,7 @@ const ExpertMessage = styled.div`
 	display: flex;
 	align-items: center;
 	margin-left: 4%;
+	min-height: 40px;
 `
 const ProfilePic = styled.img`
 	border-radius: 50%;

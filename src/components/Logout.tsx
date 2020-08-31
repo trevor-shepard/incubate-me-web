@@ -18,6 +18,9 @@ const Logout = styled.div`
 	height: 17px;
 	left: 78%;
 	top: 2%;
+	&:hover {
+		cursor: pointer;
+	}
 `
 
 export default Button
