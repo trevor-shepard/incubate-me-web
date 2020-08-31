@@ -81,7 +81,7 @@ const Right = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	padding-right: 5%;
-	padding-top: 5%;
+	padding-top: 2%;
 `
 
 const Header = styled.div`

@@ -63,6 +63,7 @@ const Container = styled.div`
 	text-align: left;
 	padding-top: 18;
 	position: relative;
+	margin-bottom: 20px;
 `
 const SubHeader = styled.div`
 	font-family: Open Sans;
@@ -73,6 +74,7 @@ const SubHeader = styled.div`
 	letter-spacing: -0.408px;
 	color: #696868;
 	margin: 3%;
+	margin-bottom: 1%;
 `
 
 const ProfilePic = styled.img`
