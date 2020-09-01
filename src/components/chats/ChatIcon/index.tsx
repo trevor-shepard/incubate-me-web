@@ -15,7 +15,7 @@ const ChatIcon: FunctionComponent<Props> = ({ experts, height, unseen }) => {
 			<Container>
 				<ProfilePic
 					height={height}
-					src={ExpertProfilePictures[experts[0].image]}
+					src={experts[0].image}
 					alt=""
 				/>
 
@@ -24,8 +24,8 @@ const ChatIcon: FunctionComponent<Props> = ({ experts, height, unseen }) => {
 		)
 	return (
 		<Container height={height}>
-			<FrontPic src={ExpertProfilePictures[experts[0].image]} alt="" />
-			<BackPic src={ExpertProfilePictures[experts[1].image]} alt="" />
+			<FrontPic src={experts[0].image} alt="" />
+			<BackPic src={experts[1].image} alt="" />
 			{unseen && unseen > 0 ? <Unseen>{unseen}</Unseen> : null}
 		</Container>
 	)
