@@ -1,21 +1,21 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import ExpertProfilePictures from 'assets/images/experts'
-
+import { Expert } from 'store/slices/expertsSlice'
 interface Props {
-	expertIDs: string[]
+	experts: Expert[]
 	height?: string
 	unseen?: number
 }
 
-const ChatIcon: FunctionComponent<Props> = ({ expertIDs, height, unseen }) => {
-	if (expertIDs.length === 0) return null
-	if (expertIDs.length === 1)
+const ChatIcon: FunctionComponent<Props> = ({ experts, height, unseen }) => {
+	if (experts.length === 0) return null
+	if (experts.length === 1)
 		return (
 			<Container>
 				<ProfilePic
 					height={height}
-					src={ExpertProfilePictures[expertIDs[0]]}
+					src={ExpertProfilePictures[experts[0].image]}
 					alt=""
 				/>
 
@@ -24,8 +24,8 @@ const ChatIcon: FunctionComponent<Props> = ({ expertIDs, height, unseen }) => {
 		)
 	return (
 		<Container height={height}>
-			<FrontPic src={ExpertProfilePictures[expertIDs[0]]} alt="" />
-			<BackPic src={ExpertProfilePictures[expertIDs[1]]} alt="" />
+			<FrontPic src={ExpertProfilePictures[experts[0].image]} alt="" />
+			<BackPic src={ExpertProfilePictures[experts[1].image]} alt="" />
 			{unseen && unseen > 0 ? <Unseen>{unseen}</Unseen> : null}
 		</Container>
 	)

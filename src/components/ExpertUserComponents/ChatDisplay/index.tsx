@@ -90,7 +90,7 @@ const ChatDisplay: FunctionComponent<Props> = ({ id }) => {
 		<Container>
 			<Header>
 				<Back absolute={false} text={false} />
-				<ChatIcon height={'30px'} expertIDs={expertIDs} />
+				<ChatIcon height={'30px'} experts={chatExperts} />
 				<ExpertInfo>{expertsInfo}</ExpertInfo>
 			</Header>
 			<ConversationComponent chatID={id} />

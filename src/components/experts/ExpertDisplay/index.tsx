@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'store/rootReducer'
-import ExpertProfilePictures from 'assets/images/experts'
 import { addExpert } from 'store/slices/expertsSlice'
 interface Props {
 	id: string
@@ -15,7 +14,7 @@ const MobileService: FunctionComponent<Props> = ({ id }) => {
 	const { expertIDs } = useSelector((state: RootState) => state.user)
 	const history = useHistory()
 
-	const { name, title, location, bio, linkedInProfile, expertise } = allExperts[
+	const { name, title, location, bio, linkedInProfile, expertise, image } = allExperts[
 		id
 	]
 
@@ -23,7 +22,7 @@ const MobileService: FunctionComponent<Props> = ({ id }) => {
 		<ExpertExpertise key={`${i}- key`}>{expertise}</ExpertExpertise>
 	))
 
-	const photo = ExpertProfilePictures[id]
+	const photo = image
 
 	const handlePurchase = async () => {
 		await dispatch(addExpert(id))

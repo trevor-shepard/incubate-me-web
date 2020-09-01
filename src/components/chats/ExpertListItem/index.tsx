@@ -15,14 +15,16 @@ const ChatListItem: FunctionComponent<Props> = ({
 	selected,
 	onCheckboxChange
 }) => {
-	const experts = useSelector((state: RootState) => state.experts)
+	const expert = useSelector((state: RootState) => state.experts[expertID])
 
-	const expertsInfo = `${experts[expertID].name} ${experts[expertID].title}`
+	if (!expert) return null
+
+	const expertsInfo = `${expert.name} ${expert.title}`
 
 	return (
 		<Container>
 			<ExpertInfoContainer>
-				<ChatIcon expertIDs={[expertID]} />
+				<ChatIcon experts={[expert]} />
 				<ExpertInfo>{expertsInfo}</ExpertInfo>
 			</ExpertInfoContainer>
 

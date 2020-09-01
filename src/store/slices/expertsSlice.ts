@@ -13,6 +13,7 @@ export interface Expert {
 	location: string
 	expertise: string[]
 	chatIDs: string[]
+	image: string
 }
 
 export interface ExpertState {
@@ -113,7 +114,8 @@ export const fetchUserAsExpert = (uid: string): AppThunk => async (
 				linkedInProfile: '',
 				location: '',
 				expertise: [],
-				chatIDs
+				chatIDs,
+				image: ""
 			})
 		)
 	} catch (error) {}

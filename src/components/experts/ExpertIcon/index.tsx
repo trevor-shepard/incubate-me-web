@@ -2,16 +2,14 @@ import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { Expert } from 'store/slices/expertsSlice'
 
-import ExpertProfilePictures from 'assets/images/experts'
-
 interface ExpertIconProps {
 	expert: Expert
 }
 
 const ExpertIcon: FunctionComponent<ExpertIconProps> = ({
-	expert: { id, name, title }
+	expert: { id, name, title, image }
 }) => {
-	const photo = ExpertProfilePictures[id]
+	const photo = image
 
 	return (
 		<ExpertIconContainer>

@@ -52,7 +52,7 @@ const ChatListItem: FunctionComponent<Props> = ({
 				}
 			}}
 		>
-			<ChatIcon expertIDs={expertIDs} unseen={unseen.length} />
+			<ChatIcon experts={chatExperts} unseen={unseen.length} />
 			<ExpertInfo>{expertsInfo}</ExpertInfo>
 		</Container>
 	)

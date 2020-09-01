@@ -48,7 +48,7 @@ const ChatListItem: FunctionComponent<Props> = ({
 			  )
 	return (
 		<Container onClick={handleSelect} selected={selected}>
-			<ChatIcon expertIDs={expertIDs} unseen={unseen.length} />
+			<ChatIcon experts={chatExperts} unseen={unseen.length} />
 			<ExpertInfo>{expertsInfo}</ExpertInfo>
 		</Container>
 	)
