@@ -24,15 +24,15 @@ export interface UserState {
 	services: {
 		accounting: boolean
 		humanResource: boolean
-		stratigicFinance: boolean
+		strategicFinance: boolean
 	}
 	neededExpertise: {
 		bookKeeping: boolean
 		accounting: boolean
 		cpa: boolean
-		tresauryManagment: boolean
+		treasuryManagement: boolean
 		paymentManagement: boolean
-		receivablesManagment: boolean
+		receivablesManagement: boolean
 		fluxAnalysisOfMonthlyFinancialStatements: boolean
 		budgetingPlanning: boolean
 		financialModeling: boolean
@@ -40,8 +40,8 @@ export interface UserState {
 		CFOAdvisory: boolean
 		Management1099: boolean
 		w2Onboarding: boolean
-		payrollManagment: boolean
-		healthcareManagment: boolean
+		payrollManagement: boolean
+		healthcareManagement: boolean
 	}
 	expertIDs: string[]
 	chatIDs: string[]
@@ -59,15 +59,15 @@ export interface User {
 	services: {
 		accounting: boolean
 		humanResource: boolean
-		stratigicFinance: boolean
+		strategicFinance: boolean
 	}
 	neededExpertise: {
 		bookKeeping: boolean
 		accounting: boolean
 		cpa: boolean
-		tresauryManagment: boolean
+		treasuryManagement: boolean
 		paymentManagement: boolean
-		receivablesManagment: boolean
+		receivablesManagement: boolean
 		fluxAnalysisOfMonthlyFinancialStatements: boolean
 		budgetingPlanning: boolean
 		financialModeling: boolean
@@ -75,8 +75,8 @@ export interface User {
 		CFOAdvisory: boolean
 		Management1099: boolean
 		w2Onboarding: boolean
-		payrollManagment: boolean
-		healthcareManagment: boolean
+		payrollManagement: boolean
+		healthcareManagement: boolean
 	}
 	expertIDs: string[]
 	chatIDs: string[]
@@ -98,15 +98,15 @@ interface UserWithoutId {
 	services: {
 		accounting: boolean
 		humanResource: boolean
-		stratigicFinance: boolean
+		strategicFinance: boolean
 	}
 	neededExpertise: {
 		bookKeeping: boolean
 		accounting: boolean
 		cpa: boolean
-		tresauryManagment: boolean
+		treasuryManagement: boolean
 		paymentManagement: boolean
-		receivablesManagment: boolean
+		receivablesManagement: boolean
 		fluxAnalysisOfMonthlyFinancialStatements: boolean
 		budgetingPlanning: boolean
 		financialModeling: boolean
@@ -114,8 +114,8 @@ interface UserWithoutId {
 		CFOAdvisory: boolean
 		Management1099: boolean
 		w2Onboarding: boolean
-		payrollManagment: boolean
-		healthcareManagment: boolean
+		payrollManagement: boolean
+		healthcareManagement: boolean
 	}
 	chatIDs: string[]
 	expertIDs: string[]
@@ -135,9 +135,9 @@ interface UserUpdate {
 		bookKeeping: boolean
 		accounting: boolean
 		cpa: boolean
-		tresauryManagment: boolean
+		treasuryManagement: boolean
 		paymentManagement: boolean
-		receivablesManagment: boolean
+		receivablesManagement: boolean
 		fluxAnalysisOfMonthlyFinancialStatements: boolean
 		budgetingPlanning: boolean
 		financialModeling: boolean
@@ -145,13 +145,13 @@ interface UserUpdate {
 		CFOAdvisory: boolean
 		Management1099: boolean
 		w2Onboarding: boolean
-		payrollManagment: boolean
-		healthcareManagment: boolean
+		payrollManagement: boolean
+		healthcareManagement: boolean
 	}
 	services?: {
 		accounting: boolean
 		humanResource: boolean
-		stratigicFinance: boolean
+		strategicFinance: boolean
 	}
 }
 
@@ -166,15 +166,15 @@ const initialState: UserState = {
 	services: {
 		accounting: false,
 		humanResource: false,
-		stratigicFinance: false
+		strategicFinance: false
 	},
 	neededExpertise: {
 		bookKeeping: false,
 		accounting: false,
 		cpa: false,
-		tresauryManagment: false,
+		treasuryManagement: false,
 		paymentManagement: false,
-		receivablesManagment: false,
+		receivablesManagement: false,
 		fluxAnalysisOfMonthlyFinancialStatements: false,
 		budgetingPlanning: false,
 		financialModeling: false,
@@ -182,8 +182,8 @@ const initialState: UserState = {
 		CFOAdvisory: false,
 		Management1099: false,
 		w2Onboarding: false,
-		payrollManagment: false,
-		healthcareManagment: false
+		payrollManagement: false,
+		healthcareManagement: false
 	},
 	chatIDs: [],
 	expertIDs: [],
@@ -216,15 +216,15 @@ const user = createSlice({
 				services: {
 					accounting: false,
 					humanResource: false,
-					stratigicFinance: false
+					strategicFinance: false
 				},
 				neededExpertise: {
 					bookKeeping: false,
 					accounting: false,
 					cpa: false,
-					tresauryManagment: false,
+					treasuryManagement: false,
 					paymentManagement: false,
-					receivablesManagment: false,
+					receivablesManagement: false,
 					fluxAnalysisOfMonthlyFinancialStatements: false,
 					budgetingPlanning: false,
 					financialModeling: false,
@@ -232,8 +232,8 @@ const user = createSlice({
 					CFOAdvisory: false,
 					Management1099: false,
 					w2Onboarding: false,
-					payrollManagment: false,
-					healthcareManagment: false
+					payrollManagement: false,
+					healthcareManagement: false
 				},
 
 				expertIDs: [],
@@ -253,15 +253,15 @@ const user = createSlice({
 				services: {
 					accounting: false,
 					humanResource: false,
-					stratigicFinance: false
+					strategicFinance: false
 				},
 				neededExpertise: {
 					bookKeeping: false,
 					accounting: false,
 					cpa: false,
-					tresauryManagment: false,
+					treasuryManagement: false,
 					paymentManagement: false,
-					receivablesManagment: false,
+					receivablesManagement: false,
 					fluxAnalysisOfMonthlyFinancialStatements: false,
 					budgetingPlanning: false,
 					financialModeling: false,
@@ -269,8 +269,8 @@ const user = createSlice({
 					CFOAdvisory: false,
 					Management1099: false,
 					w2Onboarding: false,
-					payrollManagment: false,
-					healthcareManagment: false
+					payrollManagement: false,
+					healthcareManagement: false
 				},
 				expertIDs: [],
 				chatIDs: [],

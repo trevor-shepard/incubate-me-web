@@ -24,15 +24,15 @@
         services: {
             accounting: boolean
             humanResource: boolean
-            stratigicFinance: boolean
+            strategicFinance: boolean
         }
         neededExpertise: {
             bookKeeping: boolean
             accounting: boolean
             cpa: boolean
-            tresauryManagment: boolean
+            treasuryManagement: boolean
             paymentManagement: boolean
-            receivablesManagment: boolean
+            receivablesManagement: boolean
             fluxAnalysisOfMonthlyFinancialStatements: boolean
             budgetingPlanning: boolean
             financialModeling: boolean
@@ -40,8 +40,8 @@
             CFOAdvisory: boolean
             Management1099: boolean
             w2Onboarding: boolean
-            payrollManagment: boolean
-            healthcareManagment: boolean
+            payrollManagement: boolean
+            healthcareManagement: boolean
         }
         expertIDs: string[]
 * Experts
@@ -72,7 +72,7 @@
         }
 
 ## To Add an Expert
-* Add an authentication user in the admin pannel 
+* Add an authentication user in the admin panel 
   * ![alt text](./src/assets/readme/add_user.png "Logo Title")
 * Copy Auth user Uid  
   * ![alt text](./src/assets/readme/copy_uid.png "Logo Title")

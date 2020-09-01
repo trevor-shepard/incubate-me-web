@@ -19,7 +19,7 @@ const Experts: FunctionComponent = () => {
 	const SERVICES = [
 		{ value: 'accounting', display: 'Accounting experts' },
 		{ value: 'humanResource', display: 'Human Resource experts' },
-		{ value: 'stratigicFinance', display: 'Stratigic Finance experts' }
+		{ value: 'strategicFinance', display: 'Stratigic Finance experts' }
 	]
 
 	const { expertIDs, displayName } = SERVICE_DETAILS[serviceName]
@@ -38,7 +38,7 @@ const Experts: FunctionComponent = () => {
 							e.target.value as
 								| 'accounting'
 								| 'humanResource'
-								| 'stratigicFinance'
+								| 'strategicFinance'
 						)
 					}
 					value={serviceName}

@@ -44,8 +44,8 @@ export const humanResource: Service = {
 	],
 	expertIDs: ['Z39gavNVVDY3pb2p5J8tz9I3Xva2', 'sN8IbYDXo3ZbyNWdyPtAhX8lEKz2']
 }
-export const stratigicFinance: Service = {
-	name: 'stratigicFinance',
+export const strategicFinance: Service = {
+	name: 'strategicFinance',
 	displayName: 'Stratigic Finance',
 	plan: 'online-stratigic-finance-service',
 	price: '$250 per month',
@@ -73,13 +73,13 @@ interface ServiceLibary {
 const library: ServiceLibary = {
 	accounting,
 	humanResource,
-	stratigicFinance
+	strategicFinance
 }
 
 export const plans: ServiceLibary = {
 	onlineaccountingservice: accounting,
 	onlinehumanresourceservice: humanResource,
-	onlinestratigicfinanceservice: stratigicFinance
+	onlinestrategicFinanceservice: strategicFinance
 }
 
 export default library

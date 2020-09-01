@@ -31,7 +31,7 @@ const MobileHomepage: FunctionComponent = () => {
 					<ProgressSeperator />
 					<ProgressIndicator registered={services.humanResource} />
 					<ProgressSeperator />
-					<ProgressIndicator registered={services.stratigicFinance} />
+					<ProgressIndicator registered={services.strategicFinance} />
 					<ProgressSeperator />
 					<ProgressIndicator registered={false} />
 				</ProgressContainer>
@@ -60,7 +60,7 @@ const MobileHomepage: FunctionComponent = () => {
 						to={{
 							pathname: '/service',
 							state: {
-								service: 'stratigicFinance'
+								service: 'strategicFinance'
 							}
 						}}
 					>

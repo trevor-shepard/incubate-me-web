@@ -25,14 +25,14 @@ const Profile: FunctionComponent = () => {
 	const [bookKeeping, bookKeepingSet] = useState(neededExpertise.bookKeeping)
 	const [accounting, accountingSet] = useState(neededExpertise.accounting)
 	const [cpa, cpaSet] = useState(false)
-	const [tresauryManagment, tresauryManagmentSet] = useState(
-		neededExpertise.tresauryManagment
+	const [treasuryManagement, treasuryManagementSet] = useState(
+		neededExpertise.treasuryManagement
 	)
 	const [paymentManagement, paymentManagementSet] = useState(
 		neededExpertise.paymentManagement
 	)
-	const [receivablesManagment, receivablesManagmentSet] = useState(
-		neededExpertise.receivablesManagment
+	const [receivablesManagement, receivablesManagementSet] = useState(
+		neededExpertise.receivablesManagement
 	)
 	const [
 		fluxAnalysisOfMonthlyFinancialStatements,
@@ -53,11 +53,11 @@ const Profile: FunctionComponent = () => {
 		neededExpertise.Management1099
 	)
 	const [w2Onboarding, w2OnboardingSet] = useState(neededExpertise.w2Onboarding)
-	const [payrollManagment, payrollManagmentSet] = useState(
-		neededExpertise.payrollManagment
+	const [payrollManagement, payrollManagementSet] = useState(
+		neededExpertise.payrollManagement
 	)
-	const [healthcareManagment, healthcareManagmentSet] = useState(
-		neededExpertise.healthcareManagment
+	const [healthcareManagement, healthcareManagementSet] = useState(
+		neededExpertise.healthcareManagement
 	)
 
 	const [error, setError] = useState('')
@@ -90,9 +90,9 @@ const Profile: FunctionComponent = () => {
 			| 'bookKeeping'
 			| 'accounting'
 			| 'cpa'
-			| 'tresauryManagment'
+			| 'treasuryManagement'
 			| 'paymentManagement'
-			| 'receivablesManagment'
+			| 'receivablesManagement'
 			| 'fluxAnalysisOfMonthlyFinancialStatements'
 			| 'budgetingPlanning'
 			| 'financialModeling'
@@ -100,16 +100,16 @@ const Profile: FunctionComponent = () => {
 			| 'CFOAdvisory'
 			| 'Management1099'
 			| 'w2Onboarding'
-			| 'payrollManagment'
-			| 'healthcareManagment'
+			| 'payrollManagement'
+			| 'healthcareManagement'
 
 		const neededExpertiseUpdate = {
 			bookKeeping,
 			accounting,
 			cpa,
-			tresauryManagment,
+			treasuryManagement,
 			paymentManagement,
-			receivablesManagment,
+			receivablesManagement,
 			fluxAnalysisOfMonthlyFinancialStatements,
 			budgetingPlanning,
 			financialModeling,
@@ -117,8 +117,8 @@ const Profile: FunctionComponent = () => {
 			CFOAdvisory,
 			Management1099,
 			w2Onboarding,
-			payrollManagment,
-			healthcareManagment
+			payrollManagement,
+			healthcareManagement
 		}
 
 		const expertiseKeys = Object.keys(neededExpertise) as Expertise[]
@@ -208,8 +208,8 @@ const Profile: FunctionComponent = () => {
 				/>
 				<Checkbox
 					label="Treasury Management"
-					isSelected={tresauryManagment}
-					onCheckboxChange={() => tresauryManagmentSet(!tresauryManagment)}
+					isSelected={treasuryManagement}
+					onCheckboxChange={() => treasuryManagementSet(!treasuryManagement)}
 				/>
 				<Checkbox
 					label="Payment Management (AP)"
@@ -218,9 +218,9 @@ const Profile: FunctionComponent = () => {
 				/>
 				<Checkbox
 					label="Receivables Management (AR)"
-					isSelected={receivablesManagment}
+					isSelected={receivablesManagement}
 					onCheckboxChange={() =>
-						receivablesManagmentSet(!receivablesManagment)
+						receivablesManagementSet(!receivablesManagement)
 					}
 				/>
 				<Checkbox
@@ -268,13 +268,13 @@ const Profile: FunctionComponent = () => {
 				/>
 				<Checkbox
 					label="Payroll Management"
-					isSelected={payrollManagment}
-					onCheckboxChange={() => payrollManagmentSet(!payrollManagment)}
+					isSelected={payrollManagement}
+					onCheckboxChange={() => payrollManagementSet(!payrollManagement)}
 				/>
 				<Checkbox
 					label="Healthcare Management"
-					isSelected={healthcareManagment}
-					onCheckboxChange={() => healthcareManagmentSet(!healthcareManagment)}
+					isSelected={healthcareManagement}
+					onCheckboxChange={() => healthcareManagementSet(!healthcareManagement)}
 				/>
 			</InputContainer>
 

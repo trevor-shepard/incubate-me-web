@@ -57,7 +57,7 @@ const MobileService: FunctionComponent = () => {
 				<ExpertsDisplay experts={experts} />
 			</ExpertsContainer>
 			{!services[
-				service as 'accounting' | 'humanResource' | 'stratigicFinance'
+				service as 'accounting' | 'humanResource' | 'strategicFinance'
 			] && <ChargeBee subscriptionPlan={plan}>Purchase</ChargeBee>}
 		</Container>
 	)

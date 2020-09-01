@@ -48,7 +48,7 @@ const DesktopService: FunctionComponent = () => {
 	))
 
 	const unsubscribed =
-		services[service as 'accounting' | 'humanResource' | 'stratigicFinance'] !==
+		services[service as 'accounting' | 'humanResource' | 'strategicFinance'] !==
 		undefined
 
 	return (

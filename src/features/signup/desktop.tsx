@@ -23,9 +23,9 @@ const SignUp: FunctionComponent = () => {
 	const [bookKeeping, bookKeepingSet] = useState(false)
 	const [accounting, accountingSet] = useState(false)
 	const [cpa, cpaSet] = useState(false)
-	const [tresauryManagment, tresauryManagmentSet] = useState(false)
+	const [treasuryManagement, treasuryManagementSet] = useState(false)
 	const [paymentManagement, paymentManagementSet] = useState(false)
-	const [receivablesManagment, receivablesManagmentSet] = useState(false)
+	const [receivablesManagement, receivablesManagementSet] = useState(false)
 	const [
 		fluxAnalysisOfMonthlyFinancialStatements,
 		fluxAnalysisOfMonthlyFinancialStatementsSet
@@ -39,8 +39,8 @@ const SignUp: FunctionComponent = () => {
 	const [CFOAdvisory, CFOAdvisorySet] = useState(false)
 	const [Management1099, Management1099Set] = useState(false)
 	const [w2Onboarding, w2OnboardingSet] = useState(false)
-	const [payrollManagment, payrollManagmentSet] = useState(false)
-	const [healthcareManagment, healthcareManagmentSet] = useState(false)
+	const [payrollManagement, payrollManagementSet] = useState(false)
+	const [healthcareManagement, healthcareManagementSet] = useState(false)
 	const [login, setLogin] = useState(false)
 
 	const [error, setError] = useState('')
@@ -60,9 +60,9 @@ const SignUp: FunctionComponent = () => {
 						bookKeeping,
 						accounting,
 						cpa,
-						tresauryManagment,
+						treasuryManagement,
 						paymentManagement,
-						receivablesManagment,
+						receivablesManagement,
 						fluxAnalysisOfMonthlyFinancialStatements,
 						budgetingPlanning,
 						financialModeling,
@@ -70,13 +70,13 @@ const SignUp: FunctionComponent = () => {
 						CFOAdvisory,
 						Management1099,
 						w2Onboarding,
-						payrollManagment,
-						healthcareManagment
+						payrollManagement,
+						healthcareManagement
 					},
 					services: {
 						accounting: false,
 						humanResource: false,
-						stratigicFinance: false
+						strategicFinance: false
 					},
 					expertIDs: [],
 					chatIDs: []
@@ -176,8 +176,8 @@ const SignUp: FunctionComponent = () => {
 						/>
 						<Checkbox
 							label="Treasury Management"
-							isSelected={tresauryManagment}
-							onCheckboxChange={() => tresauryManagmentSet(!tresauryManagment)}
+							isSelected={treasuryManagement}
+							onCheckboxChange={() => treasuryManagementSet(!treasuryManagement)}
 						/>
 						<Checkbox
 							label="Payment Management (AP)"
@@ -186,9 +186,9 @@ const SignUp: FunctionComponent = () => {
 						/>
 						<Checkbox
 							label="Receivables Management (AR)"
-							isSelected={receivablesManagment}
+							isSelected={receivablesManagement}
 							onCheckboxChange={() =>
-								receivablesManagmentSet(!receivablesManagment)
+								receivablesManagementSet(!receivablesManagement)
 							}
 						/>
 						<Checkbox
@@ -236,14 +236,14 @@ const SignUp: FunctionComponent = () => {
 						/>
 						<Checkbox
 							label="Payroll Management"
-							isSelected={payrollManagment}
-							onCheckboxChange={() => payrollManagmentSet(!payrollManagment)}
+							isSelected={payrollManagement}
+							onCheckboxChange={() => payrollManagementSet(!payrollManagement)}
 						/>
 						<Checkbox
 							label="Healthcare Management"
-							isSelected={healthcareManagment}
+							isSelected={healthcareManagement}
 							onCheckboxChange={() =>
-								healthcareManagmentSet(!healthcareManagment)
+								healthcareManagementSet(!healthcareManagement)
 							}
 						/>
 					</InputContainer>
