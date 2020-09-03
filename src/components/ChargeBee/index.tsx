@@ -17,16 +17,13 @@ const ChargeBee: FunctionComponent<{ subscriptionPlan: string }> = ({
 			window.Chargebee.init({
 				site: 'incubate-me-test'
 			})
-			// window.Chargebee.setCheckoutCallbacks(() => ({
-			// 	close: () => console.log('checkout closed'),
-			// 	success: () => history.push('/')
-			// }))
 		}
 		el.setAttribute('src', 'https://js.chargebee.com/v2/chargebee.js')
 		el.setAttribute('data-cb-site', 'incubate-me-test')
 		document.body.appendChild(el)
 		return () => {
 			el.remove()
+			window.Chargebee = undefined
 		}
 	}, [])
 
