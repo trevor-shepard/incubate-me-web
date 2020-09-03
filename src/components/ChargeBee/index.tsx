@@ -64,6 +64,9 @@ const Submit = styled.div`
 	margin: 0 auto;
 	margin-bottom: 22px;
 	margin-top: 25px;
+	&:hover{
+		cursor: pointer;
+	}
 `
 
 export default ChargeBee
