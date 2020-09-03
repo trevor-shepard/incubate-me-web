@@ -47,10 +47,10 @@ const DesktopService: FunctionComponent = () => {
 		</Detail>
 	))
 
-	const unsubscribed =
-		services[service as 'accounting' | 'humanResource' | 'strategicFinance'] !==
-		undefined
+	const subscribed =
+		services[service as 'accounting' | 'humanResource' | 'strategicFinance'] ? services[service as 'accounting' | 'humanResource' | 'strategicFinance'] : false
 
+		
 	return (
 		<Container>
 			<Left>
@@ -59,10 +59,10 @@ const DesktopService: FunctionComponent = () => {
 				<Pricing>{price}</Pricing>
 				<SubHeader>Our Online {displayName} Service includes:</SubHeader>
 				<DetailsContainer>{detailDisplays}</DetailsContainer>
-				{unsubscribed ? (
-					<ChargeBee subscriptionPlan={plan}>Purchase</ChargeBee>
+				{subscribed ? (
+					null
 				) : (
-					<div> footer </div>
+					<ChargeBee subscriptionPlan={plan}>Purchase</ChargeBee>
 				)}
 			</Left>
 			<Right>

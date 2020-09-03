@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import ExpertProfilePictures from 'assets/images/experts'
 import { Expert } from 'store/slices/expertsSlice'
 interface Props {
 	experts: Expert[]
