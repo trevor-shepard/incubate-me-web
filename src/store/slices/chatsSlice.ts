@@ -6,6 +6,7 @@ import {
 	recieveConversation,
 	fetchConversation
 } from 'store/slices/conversationsSlice'
+import { updateUser } from 'store/slices/userSlice'
 
 export interface Chat {
 	id: string
@@ -144,13 +145,18 @@ export const createChat = (experts: Expert[]): AppThunk => async (
 		}
 		await ref.set(chat)
 
+		const userChatIDs = [...user.chatIDs, id]
+
 		await db
 			.collection('users')
 			.doc(user.uid as string)
 			.update({
-				chatIDs: [...user.chatIDs, id]
+				chatIDs: userChatIDs
 			})
 
+		dispatch(updateUser({
+			chatIDs: userChatIDs
+		}))
 		for await (const expert of experts) {
 			await db
 				.collection('experts')

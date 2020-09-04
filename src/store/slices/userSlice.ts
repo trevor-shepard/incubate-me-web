@@ -152,7 +152,8 @@ interface UserUpdate {
 		accounting: boolean
 		humanResource: boolean
 		strategicFinance: boolean
-	}
+	},
+	chatIDs?: string[]
 }
 
 const initialState: UserState = {
